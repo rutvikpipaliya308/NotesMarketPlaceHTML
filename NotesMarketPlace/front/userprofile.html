@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Import Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>User Profile</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<section class="navigation white-nav">
+		<div class="nav-box">
+			<div class="container">
+				<nav class="navbar">
+
+					<!-- Logo -->
+					<div class="nav-logo">
+						<a href="./homepage.html"><img src="./images/Logos/top-logo-white.png" alt=""></a>
+					</div>
+
+					<!-- Link -->
+					<div class="nav-menu-link">
+						<ul class="navbar-nav container">
+							<!-- Dashboard -->
+							<li class="nav-item">
+								<a class="nav-link" href="./searchnotes.html">Search Notes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./dashboard.html">Sell Your Notes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./buyerrequest.html">Buyer Requests</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./faq.html">FAQ</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./contactus.html">Contact Us</a>
+							</li>
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="user-nav-link" data-toggle="dropdown" href="#">
+										<img class="rounded-circle" src="./img/user-profile-img/user-img.png" alt="">
+									</a>
+									<img class="arrow-down" src="./images/Dashboard/down-arrow.png" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">My Profile</a>
+										<a class="dropdown-item" href="./mydownloads.html">My Downloads</a>
+										<a class="dropdown-item" href="./soldnotes.html">My Sold Notes</a>
+										<a class="dropdown-item" href="./rejectednote.html">My Rejected Notes</a>
+										<a class="dropdown-item" href="./changepass.html">Change Password</a>
+										<a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+									</div>
+								</div>
+							</li>
+							<!-- Logout Btn -->
+							<li class="nav-item">
+								<div id="btn-white">
+									<a class="btn" href="" title="Logout" role="button">Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Mobile Toggle Btn -->
+					<div class="menu-toggle" id="mobile-menu">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- userprofile image -->
+	<section id="userprofile-head">
+		<div class="content-box">
+			<div class="container">
+				<div class="row">
+					<h1>User Profile</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- user profile content -->
+	<section id="userprofile-content">
+		<div class="content-box">
+			<div class="container">
+
+				<form>
+					<!-- Note Details -->
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<h2>Basic Note Details</h2>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>First Name *</label>
+							<input type="text" class="form-control" id="userprofile-firstname" placeholder="Enter your first name">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>Last Name *</label>
+							<input type="text" class="form-control" id="userprofile-lastname" placeholder="Enter your last name">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>Email *</label>
+							<input type="text" class="form-control" id="userprofile-email" placeholder="Enter your email address">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>Date Of Birth</label>
+							<input type="date" class="form-control" id="userprofile-dob" placeholder="Enter your date of birth">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>Gender</label>
+							<select class="form-control" id="userprofile-gender" placeholder="search">
+								<option value="" disabled selected hidden>Select your gender</option>
+								<option>Male</option>
+								<option>Female</option>
+							</select>
+						</div>
+
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 form-group mobile-predigit">
+							<label>
+								<nobr>Phone Number</nobr>
+							</label>
+							<select class="form-control" id="userprofile-predigit" placeholder="search">
+								<option value="" selected>+91</option>
+								<option>+99</option>
+								<option>+01</option>
+							</select>
+						</div>
+
+						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-8 form-group mobile-number">
+							<input type="text" class="form-control mobile-number" id="userprofile-phoneno" placeholder="Enter your phone number">
+						</div>
+
+						<div class="form-group upload-notes col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+							<label for="display-picture">Profile Picture</label>
+							<input type="file" class="form-control profile-pic-upload" id="addnote-display-picture">
+						</div>
+					</div>
+
+					<!-- Address Details -->
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<h2>Address Details</h2>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>Address Line 1 *</label>
+							<input type="text" class="form-control" id="userprofile-addressline1" placeholder="Enter your address">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>Address Line 2</label>
+							<input type="text" class="form-control" id="userprofile-addressline2" placeholder="Enter your address">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>City *</label>
+							<input type="text" class="form-control" id="userprofile-city" placeholder="Enter your city">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>State *</label>
+							<input type="text" class="form-control" id="userprofile-state" placeholder="Enter your state">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>ZipCode *</label>
+							<input type="text" class="form-control" id="userprofile-zipcode" placeholder="Enter your zipcode">
+						</div>
+
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>Country *</label>
+							<select class="form-control" id="userprofile-gender" placeholder="search">
+								<option value="" disabled selected hidden>Select your country</option>
+								<option>Australiya</option>
+								<option>India</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- University and college information -->
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<h2>University and College Information</h2>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>University</label>
+							<input type="text" class="form-control" id="userprofile-university" placeholder="Enter your university">
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+							<label>College</label>
+							<input type="text" class="form-control" id="userprofile-college" placeholder="Enter your college">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12 form-group userprofile-submit">
+							<button type="button" class="btn btn-primary btn-lg">SUBMIT</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer Section -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-7 col-12 footer-text text-left">
+					<p>Copyright @ Tatvasoft ALL Rights Reserved By</p>
+				</div>
+
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 col-12 footer-icon text-right">
+					<ul class="social-list">
+						<li><a haref="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a haref="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a haref="#"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+
+
+</body>
+
+</html>

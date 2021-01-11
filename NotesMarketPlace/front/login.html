@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	
+	<!-- Title -->
+	<title>Login</title>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+	
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+	
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+	
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+	
+</head>
+	
+<body id="login">
+	
+	<section id="loginpage">
+			
+		<!-- login page logo -->
+		<div class="login-logo">
+			<img src="img/logo/top-logo.png" alt="login-logo">
+		</div>
+		
+		<!-- login page content -->
+		<div class="login-content">
+			
+			<h2>Login</h2>
+			<p>Enter your Email address and password to login</p>
+			
+			<form>					
+				<!-- Email Box -->	
+				<div class="form-group">
+					<label for="exampleInputEmail">Email</label>
+					<input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Your email">
+				</div>
+				  
+			   <div class="form-group forgot-password">
+					<label for="password"><span>Password</span></label>
+					<a href="#">Forgot Password?</a>
+					<input id="password" type="password" class="form-control" placeholder="Enter your password" required>
+					<img src="img/comman-images/eye.png" toggle="#password" class="field-icon toggle-password">
+				</div>
+				  
+				<!-- check box -->  
+				<div class="form-group form-check">
+					<input type="checkbox" class="form-check-input" id="exampleCheck">
+					&nbsp;
+					<label class="form-check-label" for="exampleCheck">Remember Me</label>
+				</div>
+				  
+				<!-- Login button --> 
+				<div id="login-btn"> 
+					<button type="button" class="btn btn-primary btn-lg btn-block">Login</button>
+				</div>					  
+			</form>				
+			<span>Don't have an account? <a href="./signup.html">Sign Up</a></span>			
+		</div>
+		
+	</section>
+	
+	
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+	
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+	
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+	
+</body>	
+	
+</html>

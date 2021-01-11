@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Import Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>Rejected Notes</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+	<!-- Header Section -->
+	<!-- Navigation -->
+	<section class="navigation">
+		<div class="nav-box">
+			<div class="container">
+				<nav class="navbar">
+
+					<!-- Logo -->
+					<div class="nav-logo">
+						<img src="./img/logo/blue-logo.png" alt="logo">
+					</div>
+
+					<!-- Link -->
+					<div class="nav-menu-link">
+						<ul class="navbar-nav container">
+							<!-- Dashboard -->
+							<li class="nav-item">
+								<a class="nav-link" href="./dashboard.html">Dashboard</a>
+							</li>
+							<!-- Notes -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Notes</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+										<a class="dropdown-item" href="./published-notes.html">Published Notes</a>
+										<a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+										<a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+									</div>
+								</div>
+							</li>
+							<!-- Members -->
+							<li class="nav-item">
+								<a class="nav-link" href="./members.html">Members</a>
+							</li>
+							<!-- Reports -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Reports</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./spam-reports.html">Spam Reports</a>
+									</div>
+								</div>
+							</li>
+							<!-- Settings -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Settings</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./manage-system-configuration.html">Manage System Configuration</a>
+										<a class="dropdown-item" href="./manage-administrator.html">Manage Administrator</a>
+										<a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+										<a class="dropdown-item" href="./manage-type.html">Manage Type</a>
+										<a class="dropdown-item" href="./manage-country.html">Manage Countries</a>
+									</div>
+								</div>
+							</li>
+							<!-- Profile -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">
+										<img class="rounded-circle" src="./img/user-image/user-img.png" alt="">
+									</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./myprofile.html">Update Profile</a>
+										<a class="dropdown-item" href="./changepassword.html">Change Password</a>
+										<a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+									</div>
+								</div>
+							</li>
+							<!-- Logout Btn -->
+							<li class="nav-item">
+								<div id="btn-purple">
+									<a class="btn" href="#" title="Logout" role="button">Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Mobile Toggle Btn -->
+					<div class="menu-toggle" id="mobile-menu">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<!-- rejected notes notes -->
+	<section id="rejected-notes">
+		<div class="content-box">
+			<div class="container">
+				<!-- heading -->
+				<div class="row">
+					<div class="col-xl-12">
+						<h4>Rejected Notes</h4>
+					</div>
+				</div>
+				<!-- rejected note heading -->
+				<div class="row">
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+						<label>Seller</label>
+						<div class="form-group filter-seller">
+							<select id="inputState" class="form-control" placeholder="select">
+								<option>Select seller</option>
+								<option>Type 1</option>
+								<option>Type 2</option>
+								<option>Type 3</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12 search-bar-btn">
+						<div class="search-btn">
+							<button type="button" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+						</div>
+						<div>
+							<input type="text" id="myInput" placeholder="Search..." title="Type in a name">
+						</div>
+					</div>
+				</div>
+				<!-- inprogress note table -->
+				<div class="row">
+					<div class="table-responsive">
+						<table class="table rejected-notes-tbl">
+							<thead>
+								<tr>
+									<th scope="col">SR.NO</th>
+									<th scope="col">NOTE TITLE</th>
+									<th scope="col">CATEGORY</th>
+									<th scope="col">SELLER</th>
+									<th scope="col"></th>
+									<th scope="col">DATE ADDED</th>
+									<th scope="col">REJECTED BY</th>
+									<th scope="col">REMARK</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Software Engineer</td>
+									<td>IT</td>
+									<td>khayati patel</td>
+									<td><a><img src="img/comman-images/eye.png"></a></td>
+									<td>09-10-2020, 10:10</td>
+									<td>Raj Shah</td>
+									<td>Lorem is simply dummy text</td>
+									<td>
+										<div class="table-last-img">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Downloaded notes</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">View more details</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Computer Basic</td>
+									<td>Computer</td>
+									<td>khayati patel</td>
+									<td><a><img src="img/comman-images/eye.png"></a></td>
+									<td>10-10-2020, 12:30</td>
+									<td>Khyati Patel</td>
+									<td>Lorem is simply dummy text</td>
+									<td>
+										<div class="table-last-img">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Downloaded notes</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">View more details</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Human Body</td>
+									<td>Science</td>
+									<td>khayati patel</td>
+									<td><a><img src="img/comman-images/eye.png"></a></td>
+									<td>11-10-2020, 01:00</td>
+									<td>Raj Shah</td>
+									<td>Lorem is simply dummy text</td>
+									<td>
+										<div class="table-last-img">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Downloaded notes</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">View more details</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>World War 2</td>
+									<td>History</td>
+									<td>khayati patel</td>
+									<td><a><img src="img/comman-images/eye.png"></a></td>
+									<td>12-10-2020, 10:10</td>
+									<td>Raj Shah</td>
+									<td>Lorem is simply dummy text</td>
+									<td>
+										<div class="table-last-img">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Downloaded notes</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">View more details</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Accounting</td>
+									<td>Account</td>
+									<td>khayati patel</td>
+									<td><a><img src="img/comman-images/eye.png"></a></td>
+									<td>13-10-2020, 11:25</td>
+									<td>Raj Shah</td>
+									<td>Lorem is simply dummy text</td>
+									<td>
+										<div class="table-last-img">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Downloaded notes</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">View more details</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- pagination of progress notes -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+						<div class="pagination">
+							<a href="#"><i class="fa fa-chevron-left"></i></a>
+							<a class="active" href="#">1</a>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#"><i class="fa fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer Section -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-12 footer-text text-left">
+					<p>Version : 1.1.24</p>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-12 footer-text text-right">
+					<p>Copyright &copy; Tatvasoft ALL Rights Reserved By</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+
+	<!--Propper js-->
+	<script src="js/bootstrap/popper.min.js"></script>
+
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+
+</body></html>

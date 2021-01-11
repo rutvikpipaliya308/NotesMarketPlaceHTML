@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Import Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>Member Details</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+	<!-- Header Section -->
+	<!-- Navigation -->
+	<section class="navigation">
+		<div class="nav-box">
+			<div class="container">
+				<nav class="navbar">
+
+					<!-- Logo -->
+					<div class="nav-logo">
+						<img src="./img/logo/blue-logo.png" alt="logo">
+					</div>
+
+					<!-- Link -->
+					<div class="nav-menu-link">
+						<ul class="navbar-nav container">
+							<!-- Dashboard -->
+							<li class="nav-item">
+								<a class="nav-link" href="./dashboard.html">Dashboard</a>
+							</li>
+							<!-- Notes -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Notes</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+										<a class="dropdown-item" href="./published-notes.html">Published Notes</a>
+										<a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+										<a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+									</div>
+								</div>
+							</li>
+							<!-- Members -->
+							<li class="nav-item">
+								<a class="nav-link" href="./members.html">Members</a>
+							</li>
+							<!-- Reports -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Reports</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./spam-reports.html">Spam Reports</a>
+									</div>
+								</div>
+							</li>
+							<!-- Settings -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Settings</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./manage-system-configuration.html">Manage System Configuration</a>
+										<a class="dropdown-item" href="./manage-administrator.html">Manage Administrator</a>
+										<a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+										<a class="dropdown-item" href="./manage-type.html">Manage Type</a>
+										<a class="dropdown-item" href="./manage-country.html">Manage Countries</a>
+									</div>
+								</div>
+							</li>
+							<!-- Profile -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">
+										<img class="rounded-circle" src="./img/user-image/user-img.png" alt="">
+									</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./myprofile.html">Update Profile</a>
+										<a class="dropdown-item" href="./changepassword.html">Change Password</a>
+										<a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+									</div>
+								</div>
+							</li>
+							<!-- Logout Btn -->
+							<li class="nav-item">
+								<div id="btn-purple">
+									<a class="btn" href="#" title="Logout" role="button">Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Mobile Toggle Btn -->
+					<div class="menu-toggle" id="mobile-menu">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<!-- member details section -->
+	<section id="member-details">
+		<div class="content-box">
+			<div class="container">
+
+				<!-- heading -->
+				<div class="row">
+					<div class="col-xl-12">
+						<h2>Member Details</h2>
+					</div>
+				</div>
+
+				<div class="row member-details-top">
+					<div class="member-detail-img">
+						<img src="img/memberdetails/customer-1.jpg" alt="member details">
+					</div>
+					<!-- left side -->
+					<div class="member-info-left">
+						<div class="member-details-info1">
+							<ul class="member-info1">
+								<li>First Name:</li>
+								<li>Last Name:</li>
+								<li>Email:</li>
+								<li>DOB:</li>
+								<li>Phone Number:</li>
+								<li>College/University:</li>
+							</ul>
+						</div>
+						<div class="member-details-info2">
+							<ul class="member-info2">
+								<li>Richard</li>
+								<li>Brown</li>
+								<li>richardbrown77@gmail.com</li>
+								<li>13-08-1990</li>
+								<li>9988731221</li>
+								<li>University of California</li>
+							</ul>
+						</div>
+					</div>
+					<!-- right side -->
+					<div class="member-info-right">
+						<div class="member-details-info1">
+							<ul class="member-info1">
+								<li>Address 1:</li>
+								<li>Address 2:</li>
+								<li>City:</li>
+								<li>State:</li>
+								<li>Country:</li>
+								<li>Zip Code:</li>
+							</ul>
+						</div>
+						<div class="member-details-info2">
+							<ul class="member-info2">
+								<li>144 - Diamond Height</li>
+								<li>Star Colony</li>
+								<li>New York</li>
+								<li>New York State</li>
+								<li>United State</li>
+								<li>11004-5</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<hr>
+		</div>
+	</section>
+
+	<!-- member detail section -->
+	<section id="member-details-table">
+		<div class="content-box">
+			<div class="container">
+
+				<!-- notes heading -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-6 col-md-4 col-sm-4 col-12">
+						<h4>Notes</h4>
+					</div>
+				</div>
+
+				<!-- inprogress note table -->
+				<div class="row">
+					<div class="table-responsive">
+						<table class="table member-detail-tbl">
+							<thead>
+								<tr>
+									<th scope="col">SR.NO</th>
+									<th scope="col">NOTE TITLE</th>
+									<th scope="col">CATEGORY</th>
+									<th scope="col">STATUS</th>
+									<th scope="col">DOWNLOADED NOTES</th>
+									<th scope="col">TOTAL EARNINGS</th>
+									<th scope="col">DATE ADDED</th>
+									<th scope="col">PUBLISHED DATE</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Software Devlopment</td>
+									<td>IT</td>
+									<td>Published</td>
+									<td>22</td>
+									<td>$177</td>
+									<td>09-10-2020, 10:10</td>
+									<td>09-10-2020, 10:10</td>
+									<td>
+										<div class="btn-group dropleft">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Notes</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Computer Basic</td>
+									<td>Computer</td>
+									<td>Published</td>
+									<td>4</td>
+									<td>$125</td>
+									<td>10-10-2020, 12:30</td>
+									<td>10-10-2020, 12:30</td>
+									<td>
+										<div class="btn-group dropleft">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Notes</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Human Body</td>
+									<td>Sciencce</td>
+									<td>Inreview</td>
+									<td>17</td>
+									<td>$978</td>
+									<td>11-10-2020, 01:00</td>
+									<td>11-10-2020, 01:00</td>
+									<td>
+										<div class="btn-group dropleft">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Notes</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>World War 2</td>
+									<td>History</td>
+									<td>Published</td>
+									<td>28</td>
+									<td>$152</td>
+									<td>12-10-2020, 10:10</td>
+									<td>12-10-2020, 10:10</td>
+									<td>
+										<div class="btn-group dropleft">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Notes</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Accounting</td>
+									<td>Account</td>
+									<td>Published</td>
+									<td>0</td>
+									<td>$69</td>
+									<td>13-10-2020, 11:25</td>
+									<td>NA</td>
+									<td>
+										<div class="btn-group dropleft">
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Notes</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- pagination of progress notes -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+						<div class="pagination">
+							<a href="#"><i class="fa fa-chevron-left"></i></a>
+							<a class="active" href="#">1</a>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#"><i class="fa fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer Section -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-12 footer-text text-left">
+					<p>Version : 1.1.24</p>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-12 footer-text text-right">
+					<p>Copyright &copy; Tatvasoft ALL Rights Reserved By</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+
+	<!--Propper js-->
+	<script src="js/bootstrap/popper.min.js"></script>
+
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+
+</body></html>

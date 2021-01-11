@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Import Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>Note Details</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+	<!-- Header Section -->
+	<!-- Navigation -->
+	<section class="navigation">
+		<div class="nav-box">
+			<div class="container">
+				<nav class="navbar">
+
+					<!-- Logo -->
+					<div class="nav-logo">
+						<img src="./img/logo/blue-logo.png" alt="logo">
+					</div>
+
+					<!-- Link -->
+					<div class="nav-menu-link">
+						<ul class="navbar-nav container">
+							<!-- Dashboard -->
+							<li class="nav-item">
+								<a class="nav-link" href="./dashboard.html">Dashboard</a>
+							</li>
+							<!-- Notes -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Notes</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+										<a class="dropdown-item" href="./published-notes.html">Published Notes</a>
+										<a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+										<a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+									</div>
+								</div>
+							</li>
+							<!-- Members -->
+							<li class="nav-item">
+								<a class="nav-link" href="./members.html">Members</a>
+							</li>
+							<!-- Reports -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Reports</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./spam-reports.html">Spam Reports</a>
+									</div>
+								</div>
+							</li>
+							<!-- Settings -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Settings</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./manage-system-configuration.html">Manage System Configuration</a>
+										<a class="dropdown-item" href="./manage-administrator.html">Manage Administrator</a>
+										<a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+										<a class="dropdown-item" href="./manage-type.html">Manage Type</a>
+										<a class="dropdown-item" href="./manage-country.html">Manage Countries</a>
+									</div>
+								</div>
+							</li>
+							<!-- Profile -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">
+										<img class="rounded-circle" src="./img/user-image/user-img.png" alt="">
+									</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./myprofile.html">Update Profile</a>
+										<a class="dropdown-item" href="./changepassword.html">Change Password</a>
+										<a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+									</div>
+								</div>
+							</li>
+							<!-- Logout Btn -->
+							<li class="nav-item">
+								<div id="btn-purple">
+									<a class="btn" href="#" title="Logout" role="button">Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Mobile Toggle Btn -->
+					<div class="menu-toggle" id="mobile-menu">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<!-- note detail section-->
+	<section id="note-detail">
+		<div class="content-box">
+			<div class="container">
+				<div class="row">
+					<!-- note details left -->
+					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+						<div class="row">
+							<!-- Note details image -->
+							<div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+								<div class="note-detail-img">
+									<h4>Notes Details</h4>
+									<img src="img/note-details/1.jpg" alt="image of note">
+								</div>
+							</div>
+							<!-- details of notes -->
+							<div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
+								<div class="note-info">
+									<h4>Computer Science</h4>
+									<h6>Sciences</h6>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque iste autem, dolorem nemo a impedit fugiat alias tempore reprehenderit officia, eum necessit.</p>
+									<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalScrollable">DOWNLOAD/$15</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- note details right -->
+					<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+						<div class="note-details">
+							<ul class="note-full-detail">
+								<li>institution:<span>University of California</span></li>
+								<li>Country:<span>United State</span></li>
+								<li>Course Name<span>Computer Engineering</span></li>
+								<li>Course Code:<span>248705</span></li>
+								<li>Professor:<span>Mr.Richard Brown</span></li>
+								<li>Number of Pages:<span>277</span></li>
+								<li>Approved Date:<span>November 25 2020</span></li>
+								<li>Rating:<span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>100 Reviews</span></li>
+								<li>5 Users make this note as inappropriate</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<hr>
+
+	<!-- note-preview ssection-->
+	<section id="note-detail-preview">
+		<div class="content-box">
+			<div class="container">
+				<div class="row">
+					<!-- note review left-->
+					<div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+						<div class="note-preview">
+							<h4>Note Preview</h4>
+							<iframe src="./img/pdf/sample.pdf"></iframe>
+						</div>
+					</div>
+					<!-- note review right -->
+					<div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+						<div id="customer-review">
+							<h4>Customer Reviews</h4>
+							<div class="reviews">
+								<!-- customer review 1 -->
+								<div class="row">
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<img src="img/note-details/customer-1.jpg" alt="customer1">
+									</div>
+									<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 review-details">
+										<ul>
+											<li>
+												<h6>Richard Brown</h6>
+											</li>
+											<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></li>
+											<li>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt deserunt odio consectetur.</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<hr>
+								<!-- customer review 2 -->
+								<div class="row">
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<img src="img/note-details/customer-2.jpg" alt="customer2">
+									</div>
+									<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 review-details">
+										<ul>
+											<li>
+												<h6>Alice Ortiaz</h6>
+											</li>
+											<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+											<li>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt deserunt odio consectetur.</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<hr>
+								<!-- customer review 3 -->
+								<div class="row">
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<img src="img/note-details/customer-3.jpg" alt="customer3">
+									</div>
+									<div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 review-details">
+										<ul>
+											<li>
+												<h6>Sara Passmore</h6>
+											</li>
+											<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></li>
+											<li>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt deserunt odio consectetur.</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- thanks Popup box-->
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable" role="document">
+			<div class="modal-content">
+				<!-- top close button -->
+				<div class="popup-close-btn">
+					<button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><img src="img/notedetails/close.png"></span>
+					</button>
+				</div>
+
+				<!-- popup box content -->
+				<div class="modal-body">
+					<img src="img/notedetails/SUCCESS.png">
+					<h2 class="text-center">Thank you for purchasing!</h2>
+					<h5>Dear Kane,</h5>
+					<p>As this is paid notes - you need to pay to seller Rahil Shah offline. We will send him an email that you want to download this note. He may contact you further process compietion.</p>
+					<p>In case, you have urgency,<br>Please contact us on +9195377345959</p>
+					<p>Once he receives the payment and acknowledge us - selected notes you can see over my downloads tab for download.</p>
+					<p>Have a good day.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer Section -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-12 footer-text text-left">
+					<p>Version : 1.1.24</p>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-12 footer-text text-right">
+					<p>Copyright &copy; Tatvasoft ALL Rights Reserved By</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+
+</body></html>

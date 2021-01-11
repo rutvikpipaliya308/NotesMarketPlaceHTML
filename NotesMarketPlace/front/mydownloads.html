@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Import Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>My Downloads</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<section class="navigation white-nav">
+		<div class="nav-box">
+			<div class="container">
+				<nav class="navbar">
+
+					<!-- Logo -->
+					<div class="nav-logo">
+						<a href="./homepage.html"><img src="./images/Logos/top-logo-white.png" alt=""></a>
+					</div>
+
+					<!-- Link -->
+					<div class="nav-menu-link">
+						<ul class="navbar-nav container">
+							<!-- Dashboard -->
+							<li class="nav-item">
+								<a class="nav-link" href="./searchnotes.html">Search Notes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./dashboard.html">Sell Your Notes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./buyerrequest.html">Buyer Requests</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./faq.html">FAQ</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./contactus.html">Contact Us</a>
+							</li>
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="user-nav-link" data-toggle="dropdown" href="#">
+										<img class="rounded-circle" src="./img/user-profile-img/user-img.png" alt="">
+									</a>
+									<img class="arrow-down" src="./images/Dashboard/down-arrow.png" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">My Profile</a>
+										<a class="dropdown-item active" href="./mydownloads.html">My Downloads</a>
+										<a class="dropdown-item" href="./soldnotes.html">My Sold Notes</a>
+										<a class="dropdown-item" href="./rejectednote.html">My Rejected Notes</a>
+										<a class="dropdown-item" href="./changepass.html">Change Password</a>
+										<a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+									</div>
+								</div>
+							</li>
+							<!-- Logout Btn -->
+							<li class="nav-item">
+								<div id="btn-white">
+									<a class="btn" href="" title="Logout" role="button">Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- Mobile Toggle Btn -->
+					<div class="menu-toggle" id="mobile-menu">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<section id="mydownloads">
+		<div class="content-box">
+			<div class="container">
+
+				<!-- my downloads table heading -->
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-4 col-sm-4">
+						<h4>My Downloads</h4>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
+						<span>
+							<button type="button" class="btn btn-primary btn-lg">SEARCH</button>
+							<input type="text" id="myInput" placeholder="Search..." title="Type searches">
+						</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="table-responsive">
+						<table class="table mydownloads-tbl">
+							<thead>
+								<tr>
+									<th scope="col">SR NO.</th>
+									<th scope="col">NOTE TITLE</th>
+									<th scope="col">CATEGORY</th>
+									<th scope="col">BUYER</th>
+									<th scope="col">SELL TYPE</th>
+									<th scope="col">PRICE</th>
+									<th scope="col">DOWNLOADESD DATE/TIME</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Data Science</td>
+									<td>Science</td>
+									<td>testing123@gmail.com</td>
+									<td>Paid</td>
+									<td>$250</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Accounts</td>
+									<td>Commerce</td>
+									<td>testing123@gmail.com</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Social Studies</td>
+									<td>Social</td>
+									<td>testing123@gmail.com</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>AI</td>
+									<td>IT</td>
+									<td>testing123@gmail.com</td>
+									<td>Paid</td>
+									<td>$158</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Lorem ipsum</td>
+									<td>Lorem</td>
+									<td>testing123@gmail.com</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>Data Science</td>
+									<td>Science</td>
+									<td>testing123@gmail.com</td>
+									<td>Paid</td>
+									<td>$555</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>Accounts</td>
+									<td>Commerce</td>
+									<td>testing123@gmail.com</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>Social Studies</td>
+									<td>Social</td>
+									<td>testing123@gmail.com</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>AI</td>
+									<td>IT</td>
+									<td>testing123@gmail.com</td>
+									<td>Paid</td>
+									<td>$250</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>Lorem ipsum</td>
+									<td>Lorem</td>
+									<td>testing123@gmail.com</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>27 Nov 2020,11:24:34</td>
+									<td>
+										<div class="btn-group dropleft">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+											<!-- drop down menu -->
+											<button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<img src="img/comman-images/dots.png" alt="menu" class="dropdown">
+											</button>
+
+											<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+												<button class="dropdown-item" type="button">Download Note</button>
+												<button class="dropdown-item" type="button" data-toggle="modal" data-target="#addreview">Add Review/Feedback</button>
+												<button class="dropdown-item" type="button">Report as Inappropriate</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- pagination of my downloads table -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 text-center">
+						<div class="pagination">
+							<a href="#"><i class="fa fa-chevron-left"></i></a>
+							<a class="active" href="#">1</a>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#"><i class="fa fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer Section -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-7 col-12 footer-text text-left">
+					<p>Copyright @ Tatvasoft ALL Rights Reserved By</p>
+				</div>
+
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 col-12 footer-icon text-right">
+					<ul class="social-list">
+						<li><a haref="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a haref="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a haref="#"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- add review popup box-->
+	<!-- Modal -->
+	<div class="modal fade" id="addreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable" role="document">
+			<div class="modal-content">
+				<div class="popup-close-btn">
+					<button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><img src="img/notedetails/close.png"></span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2 class="text-left">Add Review</h2>
+					<div class="feed-rate">
+						<input type="radio" id="star5" name="rate" value="5" />
+						<label for="star5" title="text">5 stars</label>
+						<input type="radio" id="star4" name="rate" value="4" />
+						<label for="star4" title="text">4 stars</label>
+						<input type="radio" id="star3" name="rate" value="3" />
+						<label for="star3" title="text">3 stars</label>
+						<input type="radio" id="star2" name="rate" value="2" />
+						<label for="star2" title="text">2 stars</label>
+						<input type="radio" id="star1" name="rate" value="1" />
+						<label for="star1" title="text">1 star</label>
+					</div><br><br>
+
+					<div class="form-group">
+						<label>Comments*</label>
+						<textarea class="form-control" id="reviewpopup-comments" rows="4" placeholder="Comments..."></textarea>
+					</div>
+
+					<div>
+						<button type="button" class="btn btn-primary btn-lg">SUBMIT</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+
+	<!--Propper js-->
+	<script src="js/bootstrap/popper.min.js"></script>
+
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,2058 @@
+/*=================================================================
+						Html,Body 
+===================================================================*/
+*{
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html, body{
+	height: 100%;
+  	font-family: 'Open Sans', sans-serif;
+}
+
+.content-box {
+	padding: 60px 0;
+}
+
+section {
+	overflow: hidden;
+}
+
+a,p,h1,h2,h3,h4,h5,h6 {
+	text-decoration: none;
+}
+
+p:hover,
+a:hover{
+	text-decoration: none;
+}
+
+/*=================================================================
+						Navigation Section
+===================================================================*/
+
+.nav-box {
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    position: fixed;
+    background-color: transparent;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+.white-nav-top .nav-box{
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    position: fixed;
+    background-color: white;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+.navbar {
+    padding: 18px 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.nav-menu-link {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.navbar-nav.container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.nav-logo img {
+    max-width: 230px;
+}
+
+.navbar-nav img {
+    width: 28px;
+}
+
+.white-nav-top .navbar-nav .nav-item .btn {
+	background-color: #6255a5;
+	color: white;
+}
+
+.navbar-nav .nav-item .btn {
+	background-color: white;
+	color: #6255a5;
+	font-weight: 600;
+}
+
+.navbar-nav .nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.white-nav-top .navbar-nav .nav-link{
+    color: #333333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.white-nav-top .navbar-nav .nav-link.active,
+.white-nav-top .navbar-nav .nav-link:hover{
+    color: #6255a5;
+    border-bottom: 2px solid #6255a5;
+}
+
+.arrow-down {
+    display: none;
+}
+
+.navbar-nav #btn-purple {
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+/* dropdown */
+.navbar-nav .dropdown-menu {
+    position: absolute;
+}
+
+.dropdown-item span {
+    color: #6255a5;
+}
+
+.dropdown-item {
+    font-size: 16px;
+}
+
+.dropdown-item:hover, .dropdown-item.active, .dropdown-item:hover span {
+    background-color: #6255a5;
+    color: white;
+}
+
+/* Toggle */
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    color: #333333;
+    background-color: white;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.white-nav-top .menu-toggle .bar{
+    background-color: #333333;
+}
+
+.menu-toggle {
+    justify-self: end;
+    margin-top: 7px;
+}
+
+.menu-toggle:hover {
+    cursor: pointer;
+}
+
+#mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+#mobile-menu.is-active .bar:nth-child(1) {
+    -webkit-transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
+}
+
+#mobile-menu.is-active .bar:nth-child(3) {
+    -webkit-transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/*=================================================================
+						Footer Section
+===================================================================*/
+
+#footer hr {
+	margin-top: 0;
+}
+
+#footer {
+	padding: 20px;
+	border-top: 1px solid #333333;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+#footer .footer-text p {
+    font-size: 18px;
+	line-height: 18px;
+	font-weight: 400;
+	margin-bottom: 0;
+	color: #333333;
+	padding-top: 13px;
+}
+
+#footer .footer-text,
+#footer .footer-icon {
+	padding: 0;
+}
+
+#footer .footer-icon .social-list {
+	margin-bottom: 0;
+}
+
+ul.social-list li {
+    display: inline-block;
+    padding: 5px;
+}
+
+ul.social-list li a {
+    text-align: center;
+    background-color: #6255a5;
+    border: 1px solid #6255a5;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    line-height: 30px;
+    color: white;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    transition: all 400ms linear;
+    -webkit-transition: all 400ms linear;
+}
+
+ul.social-list li a i {
+	color: white;
+}
+
+/*=================================================================
+						Home page
+===================================================================*/
+
+/* ------------------------- Head section -------------------------- */
+
+#home-head {
+	width: 100%;
+	height: 620px;
+	position: relative;
+	background-image: url('../img/comman-images/banner-with-overlay.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+#home-head-inner-content {
+	position: absolute;
+	top: 55%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+#home-head-heading h1{
+	color: #ffffff;
+	font-size: 50px;
+	line-height: 54px;
+	font-weight: 700;
+}
+
+#home-head-text p{
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 30px;
+	color: #ffffff;
+}
+
+.btn-home-head{
+	color: #fff;
+	border: 1px solid #fff;
+	width: 172px;
+	height: 40px;
+	border-radius: 3px;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 22px;
+	padding-top: 8px;
+	background-color: transparent;
+	text-transform: uppercase;
+}
+
+.btn-home-head:hover {
+	background: #fff;
+	color: #6255a5;
+}
+
+/* ------------------------- About section -------------------------- */
+
+#home-about-left p{
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	width: 100%;
+}
+
+#home-about-right p{
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+}
+
+#home-about-right p:first-child{
+	margin-bottom: 50px;
+}
+
+/* ------------------------- Work section -------------------------- */
+
+#home-work {
+	background-color: #f2f1f5;
+}
+
+#home-work-heading {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	text-align: center;
+}
+
+.work-img {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	background-color: #fff;
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
+	-webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);
+	margin-bottom: 30px;
+}
+
+.work-img img {
+	margin: auto;
+	width: 50px;
+	height: 50px;
+}
+
+#home-work-left h5,
+#home-work-right h5{
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 20px;
+}
+
+#home-work-left p,
+#home-work-right p{
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+	margin-bottom: 10px;
+}
+
+#home-work .btn-work {
+	background-color: #6255a5;
+	width: 172px;
+	padding: 10px 0px;
+	text-align: center;
+	border-radius: 3px;
+	font-weight: 600;
+	font-size: 18px;
+	color: white;
+	text-transform: uppercase;
+}
+
+#home-work-right .btn-work {
+	width: 150px;
+}
+
+/* ------------------------- Customers section -------------------------- */
+
+#home-customers-heading h2{
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	padding-bottom: 60px;
+}
+
+.customer {
+	color: white;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.08);	
+	padding: 40px;
+	margin-bottom: 30px;
+}
+
+.customer p,
+.customer-name p{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+}
+
+.customer p{
+    margin-top: 30px;
+}
+
+.customer-name p{
+    margin-top: 0;
+}
+
+.customer .customer-name{
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.customer-name h5{
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+    color: #6255a5;
+    margin-bottom: 10px;
+}
+
+.customer img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+#home-customers .content-box{
+    padding-bottom: 30px !important;
+}
+
+
+/*==============================================================================
+						Login page
+================================================================================*/
+
+/*----------------------------------------------------------------------
+ background image of login, signup, forgotpass, email verification page
+/*----------------------------------------------------------------------*/
+#login,
+#forgotpass,
+#changePassword,
+#signup,
+#emailVerify {
+	background-image: url('../img/comman-images/banner-img.jpg');
+	position: fixed;
+	background-attachment: fixed;
+	background-position: center;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/*----------------------------------------------------------------------
+ content of login, signup, forgotpass, email verification page
+/*----------------------------------------------------------------------*/
+#loginpage,
+#forgotpassword-page,
+#changepassword-page,
+#signup-page,
+#emailverification-page {
+	height: auto;
+	margin: auto;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
+
+/*----------------------------------------------------------------------
+ css for form of login, signup, forgotpass, email verification page
+/*----------------------------------------------------------------------*/
+
+#loginpage form,
+#forgotpassword-page form,
+#changepassword-page form,
+#signup-page form,
+#emailverification-page form {
+	width: 480px;
+}
+
+.login-content .form-group {
+	padding-bottom: 15px;
+}
+
+/* ---------------------- logo ---------------------- */
+.login-logo img {
+	padding-bottom: 25px;
+}
+
+.login-content {
+	padding: 30px 50px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+/* ---------------------- login heading ---------------------- */
+.login-content h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	padding-bottom: 10px;
+}
+
+.login-content p {
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 19px;
+	color: #333333;
+	padding-bottom: 20px;
+}
+
+.login-content .form-group label:first-child,
+.login-content .form-group label:nth-child(1) {
+	float: left;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+/* ---------------------- forgot password link ---------------------- */
+.login-content .forgot-password a {
+	float: right;
+	color: #6255a5;
+	text-decoration: none;
+	line-height: 20px;
+	font-size: 16px;
+}
+
+.login-content .form-control {
+	border: 1px solid #6255a5;
+	height: 50px;
+	border-radius: 3px;
+}
+
+.login-content .form-check {
+	float: left;
+}
+
+#exampleCheck {
+	height: 20px;
+	width: 20px;
+}
+
+.login-content .form-check-input {
+	margin-top: 0;
+}
+
+.login-content .form-check-lable {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+/* ---------------------- login button ---------------------- */
+#login-btn .btn-primary {
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+}
+
+/* ---------------------- sign up details ---------------------- */
+#loginpage span {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+#loginpage span a {
+	color: #6255a5;
+	text-decoration: none;
+}
+
+/* ---------------------- password show/hide eye image ---------------------- */
+.login-content .field-icon {
+	float: right;
+	position: relative;
+	top: -35px;
+	right: 15px;
+	font-size: 25px;
+	color: darkgray;
+}
+
+
+/*=================================================================
+						Sign Up Page
+===================================================================*/
+
+.signup-logo img {
+	padding-bottom: 18px;
+}
+
+.signup-content {
+	padding: 15px 50px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.signup-content .form-group {
+	padding-bottom: 3px;
+}
+
+.signup-content h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+}
+
+.signup-content p {
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 19px;
+	color: #333333;
+}
+
+.signup-content .form-group label {
+	float: left;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 15px;
+	color: #333333;
+}
+
+.signup-content .form-control {
+	border: 1px solid #6255a5;
+	height: 30px;
+	border-radius: 3px;
+}
+
+/* ---------------------- sign up button ---------------------- */
+#signup-btn .btn-primary {
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	color: #fff;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+/* ---------------------- sign up page login image ---------------------- */
+#signup-page span {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	color: #333333;
+}
+
+#signup-page span a {
+	color: #6255a5;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+/* ---------------------- sign up eye image ---------------------- */
+#signup-page .field-icon {
+	float: right;
+	position: relative;
+	top: -27px;
+	right: 15px;
+	font-size: 25px;
+	color: darkgray;
+}
+
+/*=================================================================
+						Forgot Password Page
+===================================================================*/
+
+.forgotpass-logo img {
+	padding-bottom: 25px;
+}
+
+.forgotpass-content {
+	padding: 30px 50px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+/* ---------------------- heading ---------------------- */
+.forgotpass-content h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	padding-bottom: 10px;
+}
+
+.forgotpass-content p {
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 19px;
+	color: #333333;
+	padding-bottom: 20px;
+}
+
+/* ---------------------- content ---------------------- */
+.forgotpass-content .form-group {
+	padding-bottom: 20px;
+}
+
+.forgotpass-content .form-group label {
+	float: left;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+.forgotpass-content .form-control {
+	border: 1px solid #6255a5;
+	height: 50px;
+	border-radius: 3px;
+}
+
+/* ---------------------- forgot pass submit button ---------------------- */
+#forgotpass #submit-btn .btn-primary{
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+}
+
+/*=================================================================
+						Change Password Page
+===================================================================*/
+
+.changepass-logo img {
+	padding-bottom: 25px;
+}
+
+.changepass-content {
+	padding: 30px 50px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.changepass-content .form-group {
+	padding-bottom: 5px;
+}
+
+.changepass-content h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	padding-bottom: 5px;
+}
+
+.changepass-content p {
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 19px;
+	color: #333333;
+	padding-bottom: 10px;
+}
+
+.changepass-content .form-group label {
+	float: left;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+.changepass-content .form-control {
+	border: 1px solid #6255a5;
+	height: 50px;
+	border-radius: 3px;
+}
+
+#changePassword #submit-btn .btn-primary{
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+}
+
+/* change password eye button */
+.changepass-content .field-icon {
+	float: right;
+	position: relative;
+	top: -46px;
+	right: 15px;
+	font-size: 25px;
+	color: darkgray;
+}
+
+
+/*=================================================================
+						Search Notes Section
+===================================================================*/
+
+/*------------header section main image ------------------------*/
+
+#searchnote-head,
+#faq-head,
+#contactus-head,
+#addnotes-head,
+#userprofile-head {
+	width: 100%;
+	height: 300px;
+	position: relative;
+	background-image: url('../img/comman-images/banner-with-overlay.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+/* header section main title */
+#searchnote-head h1,
+#faq-head h1,
+#contactus-head h1,
+#addnotes-head h1,
+#userprofile-head h1 {
+	position: absolute;
+	top: 63%;
+	left: 50%;
+	-webkit-transform: translateY(-63%) translateX(-50%);
+	transform: translateY(-63%) translateX(-50%);
+	color: white;
+}
+
+/*--------------- search and dilter notes section -------------*/
+
+#search-filter-section h2 {
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	padding-bottom: 20px;
+	margin-bottom: 0;
+}
+
+#search-filter-section-content {
+	height: 181px;
+	background-color: #f9f9f9;
+	padding: 30px;
+}
+
+/* search bar */
+#searchnote-searchbar {
+  	background-image: url('../img/comman-images/search-icon.png');
+  	background-position: 10px 10px;
+  	background-repeat: no-repeat;
+  	width: 100%;
+	height: 50px;
+  	font-size: 16px;
+  	padding: 12px 20px 12px 40px;
+  	border: 1px solid #d1d1d1;
+	border-radius: 3px;
+	text-overflow: ellipsis;
+	white-space: normal;
+}
+
+.searchbar {
+	margin-bottom: 2px;
+}
+
+.search-field-icon {
+	color: #8a8a8a;
+}
+
+/* notes filters */
+
+.filters .form-control {
+	border: 1px solid #d1d1d1;
+	height: 50px;
+	border-radius: 3px;
+}
+
+.filters .form-group {
+	padding-bottom: 0px;
+	padding: 20px 10px 0;
+}
+
+/*----------------- search notes results--------------------*/
+
+/* heading */
+#search-notes-result .row:first-child h2 {
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 20px;
+}
+
+/* content */
+
+#search-notes-result .content-box {
+	padding-top: 0px;
+}
+
+.searched-note {
+	border: 1px solid #8a8a8a;
+	padding: 0px;
+	margin-bottom: 30px;
+}
+
+/* result note image */
+.searched-note .result-note-img {
+	height: 190px;
+}
+
+.result-note-img img {
+	height: 190px;
+	width: 100%;
+}
+
+/* result note title */
+.result-note-title {
+	width: 100%;
+	padding: 10px 10px 2px 10px;
+}
+
+.result-note-title .result-note-heading {
+	height: 100px;
+}
+
+.result-note-title h2{
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 26px;
+	color: #6255a5;
+	padding: 10px 10px;
+}
+
+/* result note details */
+.result-note-img .result-note-info {
+	border: 1px solid #333333;
+	height: 300px;
+}
+
+ul.search-note-info {
+	list-style: none;
+	padding: 0;
+}
+
+ul.search-note-info li {
+	padding-bottom: 10px;
+}
+
+ul.search-note-info li > span {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+ul.search-note-info li > img {
+	color: #333333;
+	padding-right: 10px;
+	font-size: 20px;
+}
+
+ul.search-note-info span.flagtext {
+	font-size: 16px;
+	font-weight: 400px;
+	line-height: 20px;
+	color: #df3434;
+}
+
+/* stars */
+ul.search-note-info li:last-child > i {
+	color: yellow;
+	height: 20px;
+	padding-right: 2px;
+}
+
+ul.search-note-info li:last-child > i.fa-star-o {
+	color: #d1d1d1;
+}
+
+/*-----------------------------------------------------
+		same pagination for all pages
+-----------------------------------------------------*/
+
+.pagination {
+  display: inline-block;
+	padding-top: 30px;
+}
+
+.pagination a {
+  color: #7d7d7d;
+  float: left;
+  padding: 8px 14px;
+  text-decoration: none;
+	margin-left: 5px;
+}
+
+.pagination a.active {
+	color: white;
+	border-radius: 50%;
+	background-color: #6255a5;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 400;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+	border-radius: 50%;
+}
+
+/*=================================================================
+						Notes Details Section
+===================================================================*/
+
+/* note detail section left */
+
+#note-detail .content-box {
+	padding: 150px 0 60px 0;
+}
+
+.note-detail-img img{
+	width: 100%;
+	height: 300px;
+}
+
+.note-detail-img h4,
+.note-info h4{
+	color: #6255a5;
+	font-weight: 600;
+	margin-bottom: 20px;
+	font-size: 24px;
+}
+
+.note-info h4 {
+	font-size: 34px;
+}
+
+#note-detail .note-detail-img,
+#note-detail .note-info {
+	height: 100%;
+}
+
+#note-detail .note-info {
+	padding: 0;
+}
+
+#note-detail .note-info h6 {
+	margin-bottom: 20px;
+}
+
+#note-detail .note-info p {
+	color: #333333;
+	font-weight: 400;
+}
+
+.note-info {
+	margin-top: 50px;
+}
+/* note download button */
+#note-detail .note-info .btn-primary {
+	background-color: #6255a5;
+	border-color: #6255a5;
+}
+
+/* note detail section right */
+
+ul.note-full-detail {
+	list-style: none;
+}
+
+.note-details {
+	min-height: 270px;
+	padding: 35px 5px 5px 115px;
+}
+
+ul.note-full-detail li > span {
+	float: right;
+	color: #6255a5;
+}
+
+ul.note-full-detail li {
+	color: #333333;
+	padding-bottom: 9px;
+	font-weight: 400;
+}
+
+ul.note-full-detail li:last-child {
+	color: #d53434;
+	font-size: 12px;
+	padding-top: 5px;
+}
+
+.note-full-detail .fa-star {
+	color: yellow;
+}
+
+.note-full-detail .fa-star-o {
+	color: #7d7d7d;
+}
+/* note preview left side */
+
+#note-detail-preview .note-preview iframe {
+	width: 100%;
+	height: 450px;
+} 
+
+.note-preview h4,
+#customer-review h4{
+	color: #6255a5;
+	font-weight: 600;
+	margin-bottom: 20px;
+	font-size: 24px;
+	line-height: 28px;
+}
+
+.note-preview,
+#customer-review {
+	min-height: 450px;
+}
+
+/* note preview right side (customer preview) */
+
+#customer-review .reviews img {
+	width: 60px;
+	border-radius: 50%;
+	height: 60px;
+}
+
+#customer-review .reviews ul {
+	list-style: none;
+}
+
+#customer-review ul > li > h6 {
+	font-weight: 600;
+	color: #575757;
+	margin-bottom: 10px;
+}
+
+#customer-review ul > li > p {
+	color: #333333;
+	font-weight: 400;
+	margin-bottom: 0;
+}
+
+#customer-review .reviews {
+	border: 1px solid #333333;
+	padding: 30px;
+}
+
+#customer-review .reviews hr {
+	margin: 15px 0;  
+}
+
+.reviews .fa-star {
+	color: yellow;
+}
+.reviews .fa-star-o {
+	color: #7d7d7d;
+}
+
+/*-------- Note details Popup box (thank you) ---------*/
+
+.modal-body {
+	padding: 0 55px 0 40px;
+}
+
+.modal {
+	margin-top: 55px;
+}
+
+.popup-close-btn {
+	padding: 10px 10px 0 0;
+}
+
+.modal-body img {
+	height: auto;
+	margin: auto;
+	text-align: center;
+	left: 50%;
+	position: relative;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	width: 63px;
+	height: 63px;
+}
+
+.modal-body h2 {
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 30px;
+	color: #6255a5;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+
+.modal-body p {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+	padding-bottom: 5px;
+}
+
+.modal-body h5{
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #333333;
+}
+
+
+/*=================================================================
+						Dashboard page
+===================================================================*/
+
+/* dashboard heading & add note button */
+#dashboard h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	padding-bottom: 30px;
+	margin-bottom: 0;
+}
+#dashboard p {
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 400;
+	color: #333333;
+	margin: 0;
+}
+
+#dashboard .btn-primary {
+	width: 150px;
+	height: 50px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	background-color: #6255a5;
+	border-color: #6255a5;
+	float: right;
+}
+
+/* ---------------------- Dash board stats ------------------------*/
+
+.stats-content {
+	border: 1px solid #7d7d7d;
+	padding: 30px 10px;
+	text-align: center;
+}
+
+.stats-content h6,
+.sec-stats-content h6 {
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 34px;
+	color: #6255a5;
+	margin-bottom: 10px;
+}
+
+.rstats {
+	padding-left: 30px;
+	padding-right: 0;
+}
+
+.first-stats h4,
+.first-stats i {
+	color: #6255a5;
+	width: 100%;
+}
+
+.fa-usd {
+	font-size: 45px;
+	padding-bottom: 5px;
+}
+
+.stats-content,
+.sec-stats-content{
+	min-height: 151px;
+}
+
+.sec-stats {
+	padding-left: 0;
+}
+.first-stats {
+	padding-right: 0;
+	padding-bottom: 1px;
+}
+
+.sec-stats .sec-stats-content {
+	margin: 0;
+	border: 1px solid #7d7d7d;
+	text-align: center;
+	padding: 30px 5px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+.sec-stats-content span:first-child {
+	padding-right: 20px;
+}
+
+.first-stats .sec-stats-content:first-child {
+	border-right: none;
+}
+
+
+/*------------------------------------------------------------------
+	dashboard, my downloads, sold notes, buyer request content box 
+---------------------------------------------------------------------*/
+
+#dashboard .content-box,
+#mydownloads .content-box,
+#mysoldnotes .content-box,
+#rejectednotes .content-box,
+#buyer-requests .content-box {
+	padding-top: 150px; 
+}
+
+#inprogress-note .content-box,
+#published-note .content-box{
+	padding-top: 0;
+}
+
+/*------------------- table header search button ----------------------*/
+
+/* --------------------------------------------------------------------------------------------- 
+table column heading for inprogress, published, my downloads, my soldnotes, buyer requests table
+------------------------------------------------------------------------------------------------*/
+#inprogress-note .btn-primary,
+#published-note .btn-primary,
+#mydownloads .btn-primary,
+#mysoldnotes .btn-primary,
+#rejectednotes .btn-primary,
+#buyer-requests .btn-primary {
+	float: right;
+	width: 117px;
+	height: 50px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	background-color: #6255a5;
+	border-color: #6255a5;
+}
+
+#inprogress-note h4, 
+#published-note h4,
+#mydownloads h4,
+#mysoldnotes h4,
+#rejectednotes h4,
+#buyer-requests h4 {
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	padding-bottom: 30px;
+	margin-bottom: 0;	
+}
+
+/*-------- search bar on table ---------*/
+#myInput {
+  	background-image: url('../img/comman-images/search-icon.png');
+  	background-position: 10px 15px;
+  	background-repeat: no-repeat;
+  	width: 322px;
+	height: 50px;
+  	font-size: 16px;
+  	padding: 12px 20px 12px 40px;
+  	border: 1px solid #d1d1d1;
+  	margin-right: 10px;
+	float: right;
+}
+
+/* --------inprogress notes table-----------*/
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #d1d1d1;
+}
+
+td, th {
+    border-bottom: 1px solid #d1d1d1;
+    text-align: center;
+    padding: 8px;
+	height: 75px;
+}
+
+.table tbody tr:hover{
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* -------- table heading for all tables ------------ */
+.inprogress-note-tbl th,
+.published-note-tbl th,
+.mydownloads-tbl th,
+.mysoldnotes-tbl th,
+.rejectednotes-tbl th,
+.buyer-requests-tbl th {
+	font-size: 16px;
+	line-height: 20px;
+	color: #333333;
+	padding-bottom: 25px;
+	text-align: center;
+}
+
+/* table data for all tables */
+.inprogress-note-tbl td,
+.published-note-tbl td,
+.mydownloads-tbl td,
+.mysoldnotes-tbl td,
+.rejectednotes-tbl td,
+.buyer-requests-tbl td {
+	padding-top: 25px;
+}
+
+/* last column images */
+.inprogress-note-tbl img,
+.published-note-tbl img{
+	margin-right: 5px;
+	padding-right: 5px;
+}
+
+#buyer-requests .buyer-requests-tbl td{
+	padding-left: 3px;
+	padding-right: 3px; 
+}
+
+.buyer-requests-tbl td:nth-child(2),
+.mysoldnotes-tbl td:nth-child(2),
+.rejectednotes-tbl td:nth-child(2),
+.mydownloads-tbl td:nth-child(2) {
+	color: #6255a5;
+}
+
+
+.inprogress-note-img {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+
+/*=================================================================
+						Add note page
+===================================================================*/
+
+
+/* add note small heading */
+#addnotes-details h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-bottom: 40px;
+}
+
+.form-control {
+	height: 50px;
+}
+
+#addnotes-details .form-group {
+	margin-bottom: 30px;
+}
+
+/* basic details of add notes */
+.form-group select {
+    text-indent: 1px;
+    text-overflow: '';
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #fff url('../img/comman-images/arrow-down.jpg') no-repeat;
+    background-size: 25px 25px;
+    background-position: 98%;
+}
+
+#addnotes-details .form-group label {
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #333333;
+	margin-bottom: 10px;
+}
+
+#addnotes-details .form-group label.form-check-label {
+	margin-top: 10px;
+}
+
+/* add notes page image upload */
+input[type="file"].image-upload {
+    border: 1px solid #d1d1d1;
+    display: inline-block;
+    width: 100%;
+    padding: 120px 0 0 0;
+    height: 100px;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url('../img/Add-notes/upload-file.png') center center no-repeat;
+    border-radius: 3px;
+    background-size: 120px 60px;
+}
+
+/* add note page note upload */
+input[type="file"].image-upload-note {
+    border: 1px solid #d1d1d1;
+    display: inline-block;
+    width: 100%;
+    padding: 120px 0 0 0;
+    height: 100px;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url('../img/Add-notes/upload-note.png') center center no-repeat;
+    border-radius: 3px;
+    background-size: 80px 80px;
+}
+
+.add-note-button a {
+    color: #fff;
+    border: 1px solid #6255a5;
+    background: #6255a5;
+    border-radius: 3px;
+    width: 150px;
+    height: 50px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-top: 8px;
+    text-transform: uppercase;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+.upload-notes {
+	margin-bottom: 0;
+}
+
+/* radio button of addnote */
+.addnote-radiobtn {
+	margin-bottom: 10px;
+}
+
+.addnote-radiobtn input[type=radio] {
+    width: 32px;
+    height: 32px;
+}
+
+.addnote-radiobtn input[type='radio']:checked + label:before {
+    border-color: #6255a5;
+    background-color: #6255a5;
+}
+
+/* add notes page buttons ( save & piublish ) */
+#addnotes-details .btn-primary {
+	width: 120px;
+	height: 40px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-right: 20px;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+/*=============================================================
+		my downloads note page
+==============================================================*/
+
+/*-----------drop down ----------*/
+
+#mydownloads .dropleft div.dropdown-menu.show {
+    -webkit-transform: translate3d(-155px, -34px, 0px) !important;
+    transform: translate3d(-155px, -34px, 0px) !important;
+}
+
+.dropdown-menu{
+    border: none;
+    -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.15);
+}
+
+a:focus {
+    outline: 0px;
+}
+
+.btn:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#my-downloads .dropleft .dropdown-item {
+    padding: 9px 12px;
+    font-size: 14px;
+}
+
+#dropdownMenu2 {
+	padding-top: 0;
+}
+
+.dropleft .dropdown-item:hover,
+.dropleft .dropdown-item:focus,
+.dropleft .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    outline: 0px;
+    background-color: #6255a5;
+}
+
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #6255a5;
+}
+
+.dropleft div.dropdown-menu {
+    padding: 0;
+}
+
+/*---------------------- ADD REVIEW popup box ---------------*/
+
+.modal-body {
+	padding: 0 55px 0 40px;
+}
+
+.modal {
+	margin-top: 55px;
+}
+
+.popup-close-btn {
+	padding: 10px 10px 0 0;
+}
+
+#addreview {
+	padding: 30px;
+}
+
+#addreview .modal-body h2 {
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	padding-top: 10px;
+	padding-bottom: 25px;
+}
+
+modal-body p {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+	padding-bottom: 5px;
+}
+
+.modal-body h5{
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #333333;
+}
+
+/* add review submit button */
+#addreview .btn-primary {
+	width: 120px;
+	height: 40px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+
+/* star */
+.feed-rate {
+    float: left;
+    height: 46px;
+}
+
+.feed-rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+
+.feed-rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+
+.feed-rate:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.feed-rate > input:checked ~ label {
+    color: #ffc700;    
+}
+
+.feed-rate:not(:checked) > label:hover,
+.feed-rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+
+.feed-rate > input:checked + label:hover,
+.feed-rate > input:checked + label:hover ~ label,
+.feed-rate > input:checked ~ label:hover,
+.feed-rate > input:checked ~ label:hover ~ label,
+.feed-rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/*=================================================================
+						email verification section
+===================================================================*/
+
+/* content size */
+#emailverification-page {
+	width: 480px;
+}
+
+.emailverify-logo img {
+	padding-bottom: 25px;
+}
+
+.emailverify-content {
+	padding: 30px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.emailverify-content h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 38px;
+	color: #6255a5;
+	margin-bottom: 30px;
+	padding-bottom: 0;
+}
+
+/* email verify submit btn */
+#verify-email-btn .btn-primary{
+	background-color: #6255a5;
+	border-color: #6255a5;
+	text-transform: uppercase;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+	margin-top: 30px;
+}
+
+.emailverify-content p {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+	margin-bottom: 0;
+	padding-bottom: 5px;
+}
+
+.emailverify-content h5{
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #333333;
+}
+
+/*=================================================================
+						user profile page
+===================================================================*/
+
+/*content box*/
+#userprofile-content .content-box {
+	padding-top: 35px;
+} 
+
+#userprofile-content .form-control {
+	height: 50px;
+}
+
+#userprofile-content h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	padding: 20px 0 40px 0;
+}
+
+#userprofile-content .form-group {
+	margin-bottom: 30px;
+}
+
+#userprofile-content label {
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #333333;
+	margin-bottom: 10px;
+}
+ 
+/*phone number*/
+#userprofile-phoneno {
+	position: absolute;
+	bottom: 0;
+}
+
+
+#userprofile-content .mobile-number {
+	width: 93%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+/* profile picture upload */
+input[type="file"].profile-pic-upload {
+    border: 1px solid #d1d1d1;
+    display: inline-block;
+    width: 100%;
+    padding: 120px 0 0 0;
+    height: 100px;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url('../img/Add-notes/upload-file.png') center center no-repeat;
+    border-radius: 3px;
+    background-size: 120px 60px;
+}
+
+/* userprofile submit buttons */
+#userprofile-content .btn-primary {
+	width: 120px;
+	height: 40px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-right: 20px;
+}
+
+#userprofile-content .userprofile-submit {
+	margin: 0;
+}
+
+/*=================================================================
+						Faq page
+===================================================================*/
+
+/* heaidng */
+#faq-questions h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	padding: 0;
+	margin: 30px 0;
+}
+
+#faq-general-questions .content-box {
+	padding-top: 40px;
+}
+
+.heading {
+	padding-left: 0;
+}
+
+/*--- Question Answer box ----*/
+.faq__detail {
+    margin: 0 0 0 0;
+    padding: 10px;
+	background-color: #f3f3f3;
+}
+
+.faq__detail[open] {
+	background: white;
+}
+
+.faq__summary::-webkit-details-marker {
+    display: none;
+  }
+
+.faq__summary { 
+    display: block;
+    padding: 0;
+    position: relative;
+    text-align: right;
+	list-style: none;
+}
+
+.faq__summary:after {
+    display: inline-block;
+    content: url("../img/faq/plus.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    text-align: right;
+    padding-bottom: 0;
+  }
+  
+details[open] .faq__summary:after {
+    display: inline-block;
+    width: 18px;
+    height: 10px;
+    content: "";
+    background-image: url("../img/faq/minus.png");
+    background-repeat: no-repeat;
+    background-position: center right;
+    -webkit-transform:scaleY(-1);
+    transform:scaleY(-1);
+}
+
+details[open] .faq__question > h6 {
+	font-weight: 600;
+}
+
+.faq__question {
+    left: 0;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    width: 90%;
+	display: inline-block;
+    margin: 5px 0;
+}
+
+.faq__summary {
+    font-size: 1.4rem; 
+}
+
+.faq__summary:focus {
+    font-weight: 600;
+    outline: none;
+}
+
+.faq__text {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+	color: #333333;
+}
+
+.faq__holder {
+	border: 1px solid #d1d1d1;
+	padding: 0;
+	margin-bottom: 15px;
+}
+
+.faq__question h6 {
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 22px;
+	color: #333333;
+}
+
+.faq__question,
+.faq__question h6 {
+	margin: 0;
+}
+
+/*=================================================================
+						Contact us page 
+===================================================================*/
+
+#getintouch-section h2 {
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+}
+
+.contactus-left input {
+	margin-bottom: 30px;
+}
+
+#getintouch-section p{
+	margin-bottom: 50px;
+	font-size: 22px;
+}
+
+#getintouch-section label {
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #333333;
+	margin-bottom: 10px;
+}
+/* contact us save button */
+
+#getintouch-section .btn-primary {
+	width: 120px;
+	height: 40px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 18px;
+	line-height: 22px;
+	font-weight: 700;
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-right: 20px;
+}

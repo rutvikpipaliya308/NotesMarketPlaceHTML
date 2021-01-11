@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Import Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>Search Note</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<section class="navigation white-nav">
+		<div class="nav-box">
+			<div class="container">
+				<nav class="navbar">
+
+					<!-- Logo -->
+					<div class="nav-logo">
+						<a href="./homepage.html"><img src="./images/Logos/top-logo-white.png" alt=""></a>
+					</div>
+
+					<!-- Link -->
+					<div class="nav-menu-link">
+						<ul class="navbar-nav container">
+							<!-- Dashboard -->
+							<li class="nav-item">
+								<a class="nav-link active" href="./searchnotes.html">Search Notes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./dashboard.html">Sell Your Notes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./faq.html">FAQ</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./contactus.html">Contact Us</a>
+							</li>
+							<!-- Logout Btn -->
+							<li class="nav-item">
+								<div>
+									<a class="btn" href="./login.html" title="Login" role="button">Login</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Mobile Toggle Btn -->
+					<div class="menu-toggle" id="mobile-menu">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<!-- image -->
+	<section id="searchnote-head">
+		<div class="content-box">
+			<div class="container">
+				<div class="row">
+					<h1>Search Notes</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="search-filter-section">
+		<div class="content-box">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<h2>Search and Filter Notes</h2>
+					</div>
+				</div>
+			</div>
+
+			<div class="container" id="search-filter-section-content">
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="form-group searchbar">
+							<input type="text" class="form-control" id="searchnote-searchbar" placeholder="Search Notes here...">
+						</div>
+					</div>
+				</div>
+
+				<div class="row filters">
+					<div class="form-group col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+						<select id="inputState" class="form-control" placeholder="select">
+							<option>Select type</option>
+							<option>Type 1</option>
+							<option>Type 2</option>
+							<option>Type 3</option>
+						</select>
+					</div>
+
+					<div class="form-group col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+						<select id="inputState" class="form-control">
+							<option selected>Select category</option>
+							<option>Type 1</option>
+							<option>Type 2</option>
+							<option>Type 3</option>
+						</select>
+					</div>
+
+					<div class="form-group col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+						<select id="inputState" class="form-control">
+							<option selected>Select university</option>
+							<option>Type 1</option>
+							<option>Type 2</option>
+							<option>Type 3</option>
+						</select>
+					</div>
+
+					<div class="form-group col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+						<select id="inputState" class="form-control">
+							<option selected>Select course</option>
+							<option>Type 1</option>
+							<option>Type 2</option>
+							<option>Type 3</option>
+						</select>
+					</div>
+
+					<div class="form-group col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+						<select id="inputState" class="form-control">
+							<option selected>Select country</option>
+							<option>Type 1</option>
+							<option>Type 2</option>
+							<option>Type 3</option>
+						</select>
+					</div>
+
+					<div class="form-group col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
+						<select id="inputState" class="form-control">
+							<option selected>Select rating</option>
+							<option>Type 1</option>
+							<option>Type 2</option>
+							<option>Type 3</option>
+						</select>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="search-notes-result">
+		<div class="content-box">
+			<div class="container">
+				<!-- search note heading -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<h2>Total 18 Notes</h2>
+					</div>
+				</div>
+
+				<!-- results of searched notes -->
+				<div class="row">
+					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+
+								<div class="result-note-img">
+									<img src="img/searchnotes/1.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>Computer Operating System - Final Exam Book With Paper Solution</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+								<div class="result-note-img">
+									<img src="img/searchnotes/2.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>Computer Science</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="col-xl-4 col-lg-4 col-md-6 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+
+								<div class="result-note-img">
+									<img src="img/searchnotes/3.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>Basic Computer Engineering Tech India Publication Series</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="col-xl-4 col-lg-4 col-md-6 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+								<div class="result-note-img">
+									<img src="img/searchnotes/4.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>Computer Science Illuminted - Seventh Edition</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="col-xl-4 col-lg-4 col-md-6 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+								<div class="result-note-img">
+									<img src="img/searchnotes/5.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>The Principle of Computer Hardware - Oxford</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="col-xl-4 col-lg-4 col-md-6 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+								<div class="result-note-img">
+									<img src="img/searchnotes/6.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>The Computer Book</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="col-xl-4 col-lg-4 col-md-6 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+								<div class="result-note-img">
+									<img src="img/searchnotes/1.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>Computer Operating System - Final Exam Book With Paper Solution</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="col-xl-4 col-lg-4 col-md-6 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+
+								<div class="result-note-img">
+									<img src="img/searchnotes/2.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>Computer Operating System - Final Exam Book With Paper Solution</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div class="col-xl-4 col-lg-4 col-md-6 col-12">
+						<a href="./notedetail.html">
+							<div class="searched-note">
+
+								<div class="result-note-img">
+									<img src="img/searchnotes/3.jpg">
+								</div>
+
+								<div class="result-note-title">
+									<div class="result-note-heading">
+										<h2>Computer Operating System - Final Exam Book With Paper Solution</h2>
+									</div>
+
+									<ul class="search-note-info">
+										<li><img src="img/searchnotes/university.png"><span>University of California, US</span></li>
+										<li><img src="img/searchnotes/pages.png"><span>204 Pages</span></li>
+										<li><img src="img/searchnotes/date.png"><span>Thu, Nov 26 2020</span></li>
+										<li><img src="img/searchnotes/flag.png"><span class="flagtext">5 users marked this note as inappropriate</span>
+										</li>
+										<li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><span>100 Reviews</span></li>
+									</ul>
+								</div>
+
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<!-- Pagination -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-12 text-center">
+						<div class="pagination">
+							<a href="#"><i class="fa fa-chevron-left"></i></a>
+							<a class="active" href="#">1</a>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#"><i class="fa fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer Section -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-7 col-12 footer-text text-left">
+					<p>Copyright @ Tatvasoft ALL Rights Reserved By</p>
+				</div>
+
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 col-12 footer-icon text-right">
+					<ul class="social-list">
+						<li><a haref="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a haref="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a haref="#"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>

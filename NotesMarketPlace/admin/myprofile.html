@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Import Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>My Profile</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+	<!-- Header Section -->
+	<!-- Navigation -->
+	<section class="navigation">
+		<div class="nav-box">
+			<div class="container">
+				<nav class="navbar">
+
+					<!-- Logo -->
+					<div class="nav-logo">
+						<img src="./img/logo/blue-logo.png" alt="logo">
+					</div>
+
+					<!-- Link -->
+					<div class="nav-menu-link">
+						<ul class="navbar-nav container">
+							<!-- Dashboard -->
+							<li class="nav-item">
+								<a class="nav-link" href="./dashboard.html">Dashboard</a>
+							</li>
+							<!-- Notes -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Notes</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./notes-under-review.html">Notes Under Review</a>
+										<a class="dropdown-item" href="./published-notes.html">Published Notes</a>
+										<a class="dropdown-item" href="./downloaded-notes.html">Downloaded Notes</a>
+										<a class="dropdown-item" href="./rejected-notes.html">Rejected Notes</a>
+									</div>
+								</div>
+							</li>
+							<!-- Members -->
+							<li class="nav-item">
+								<a class="nav-link" href="./members.html">Members</a>
+							</li>
+							<!-- Reports -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Reports</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./spam-reports.html">Spam Reports</a>
+									</div>
+								</div>
+							</li>
+							<!-- Settings -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">Settings</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./manage-system-configuration.html">Manage System Configuration</a>
+										<a class="dropdown-item" href="./manage-administrator.html">Manage Administrator</a>
+										<a class="dropdown-item" href="./manage-category.html">Manage Category</a>
+										<a class="dropdown-item" href="./manage-type.html">Manage Type</a>
+										<a class="dropdown-item" href="./manage-country.html">Manage Countries</a>
+									</div>
+								</div>
+							</li>
+							<!-- Profile -->
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="nav-link" data-toggle="dropdown" href="#">
+										<img class="rounded-circle" src="./img/user-image/user-img.png" alt="">
+									</a>
+									<img class="arrow-down" src="./img/comman-images/arrow-down.jpg" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="./myprofile.html">Update Profile</a>
+										<a class="dropdown-item" href="./changepassword.html">Change Password</a>
+										<a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+									</div>
+								</div>
+							</li>
+							<!-- Logout Btn -->
+							<li class="nav-item">
+								<div id="btn-purple">
+									<a class="btn" href="#" title="Logout" role="button">Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Mobile Toggle Btn -->
+					<div class="menu-toggle" id="mobile-menu">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<!-- my profile content -->
+	<section id="myprofile">
+		<div class="content-box">
+			<div class="container">
+
+				<form>
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<h2>My Profile</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+							<label>First Name *</label>
+							<input type="text" class="form-control" id="myprofile-firstname" placeholder="Enter your first name">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+							<label>Last Name *</label>
+							<input type="text" class="form-control" id="myprofile-lastname" placeholder="Enter your last name">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+							<label>Email *</label>
+							<input type="text" class="form-control" id="myprofile-email" placeholder="Enter your email address">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+							<label>Secondary Email *</label>
+							<input type="text" class="form-control" id="myprofile-email" placeholder="Enter your email address">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4 form-group mobile-predigit">
+							<label>
+								<nobr>Phone Number</nobr>
+							</label>
+							<select class="form-control" id="myprofile-predigit" placeholder="search">
+								<option value="" selected>+91</option>
+								<option>+99</option>
+								<option>+01</option>
+							</select>
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-9 col-8 form-group mobile-number">
+							<input type="text" class="form-control mobile-number" id="myprofile-phoneno" placeholder="Enter your phone number">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group upload-notes col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12">
+							<label for="display-picture">Profile Picture</label>
+							<input type="file" class="form-control profile-pic-upload" id="addnote-display-picture">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-8 col-sm-12 col-12 myprofile-submit">
+							<button type="button" class="btn btn-primary btn-lg">SUBMIT</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer Section -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-12 footer-text text-left">
+					<p>Version : 1.1.24</p>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-12 footer-text text-right">
+					<p>Copyright &copy; Tatvasoft ALL Rights Reserved By</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+
+</body></html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Import Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-UA-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>Dashboard</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="img/favicon/favicon.ico">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!-- Font Awasome CSS-->
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
+
+	<!-- Responsive tabs -->
+	<link rel="stylesheet" href="css/responsive-tabs/responsive-tabs.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<section class="navigation white-nav">
+		<div class="nav-box">
+			<div class="container">
+				<nav class="navbar">
+
+					<!-- Logo -->
+					<div class="nav-logo">
+						<a href="./homepage.html"><img src="./images/Logos/top-logo-white.png" alt=""></a>
+					</div>
+
+					<!-- Link -->
+					<div class="nav-menu-link">
+						<ul class="navbar-nav container">
+							<!-- Dashboard -->
+							<li class="nav-item">
+								<a class="nav-link" href="./searchnotes.html">Search Notes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./dashboard.html">Sell Your Notes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./buyerrequest.html">Buyer Requests</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./faq.html">FAQ</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./contactus.html">Contact Us</a>
+							</li>
+							<li class="nav-item">
+								<div class="dropdown">
+									<a class="user-nav-link" data-toggle="dropdown" href="#">
+										<img class="rounded-circle" src="./img/user-profile-img/user-img.png" alt="">
+									</a>
+									<img class="arrow-down" src="./images/Dashboard/down-arrow.png" alt="">
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">My Profile</a>
+										<a class="dropdown-item" href="./mydownloads.html">My Downloads</a>
+										<a class="dropdown-item" href="./soldnotes.html">My Sold Notes</a>
+										<a class="dropdown-item" href="./rejectednote.html">My Rejected Notes</a>
+										<a class="dropdown-item" href="./changepass.html">Change Password</a>
+										<a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+									</div>
+								</div>
+							</li>
+							<!-- Logout Btn -->
+							<li class="nav-item">
+								<div id="btn-white">
+									<a class="btn" href="" title="Logout" role="button">Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- Mobile Toggle Btn -->
+					<div class="menu-toggle" id="mobile-menu">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<section id="dashboard">
+		<div class="content-box">
+			<div class="container">
+				<!-- dashboard add note button -->
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+						<h2>Dashboard</h2>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+						<button type="button" class="btn btn-primary btn-lg">ADD NOTE</button>
+					</div>
+				</div>
+				<!-- dashboard stats -->
+				<div class="row">
+					<!-- My earnings -->
+					<div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 first-stats">
+						<div class="sec-stats-content stats-content">
+							<img src="img/Dashboard/my-earning.png">
+							<h4>My Earning</h4>
+						</div>
+					</div>
+					<!-- Notes Sold & money earned -->
+					<div class="col-xl-4 col-lg-4 col-md-8 col-sm-8 col-12 sec-stats">
+						<div class="sec-stats-content">
+							<span>
+								<h6>100</h6>
+								<p>Number Notes Sold</p>
+							</span>
+							<span>
+								<h6>$10,00,000</h6>
+								<p>Money Earned</p>
+							</span>
+						</div>
+					</div>
+					<!-- My downloads -->
+					<div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
+						<div class="stats-content">
+							<h6>38</h6>
+							<p>My Downloads</p>
+						</div>
+					</div>
+					<!-- My rejected notes -->
+					<div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
+						<div class="stats-content">
+							<h6>12</h6>
+							<p>My Rejected Notes</p>
+						</div>
+					</div>
+					<!-- Buyer Requests -->
+					<div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
+						<div class="stats-content">
+							<h6>102</h6>
+							<p>Buyer Requests</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- inprogress note section -->
+	<section id="inprogress-note">
+		<div class="content-box">
+			<div class="container">
+				<!-- inprogress note heading -->
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 col-12">
+						<h4>In Progress Notes</h4>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-12">
+						<span>
+							<button type="button" class="btn btn-primary btn-lg">SEARCH</button>
+							<input type="text" id="myInput" placeholder="Search..." title="Type in a name">
+						</span>
+					</div>
+				</div>
+
+				<!-- inprogress note table -->
+				<div class="row">
+					<div class="table-responsive">
+						<table class="table inprogress-note-tbl">
+							<thead>
+								<tr>
+									<th scope="col">ADDED DATE</th>
+									<th scope="col">TITLE</th>
+									<th scope="col">CATEGORY</th>
+									<th scope="col">STATUS</th>
+									<th scope="col">ACTION</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>09-10-2020</td>
+									<td>Dara Science</td>
+									<td>Science</td>
+									<td>Draft</td>
+									<td>
+										<div class="inprogress-note-img">
+											<div><a href="#"><img src="img/comman-images/edit.png"></a></div>
+											<div><a href="#"><img src="img/comman-images/delete.png"></a></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>10-10-2020</td>
+									<td>Accounts</td>
+									<td>Commerce</td>
+									<td>In Review</td>
+									<td>
+										<div class="inprogress-note-img">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>11-10-2020</td>
+									<td>Social Studies</td>
+									<td>Social</td>
+									<td>Submitted</td>
+									<td>
+										<div class="inprogress-note-img">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>12-10-2020</td>
+									<td>AI</td>
+									<td>IT</td>
+									<td>Submitted</td>
+									<td>
+										<div class="inprogress-note-img">
+											<div><a href="#"><img src="img/comman-images/eye.png"></a></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>13-10-2020</td>
+									<td>Computer Science</td>
+									<td>IT</td>
+									<td>Draft</td>
+									<td>
+										<div class="inprogress-note-img">
+											<div><a href="#"><img src="img/comman-images/edit.png"></a></div>
+											<div><a href="#"><img src="img/comman-images/delete.png"></a></div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- pagination of progress notes -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+						<div class="pagination">
+							<a href="#"><i class="fa fa-chevron-left"></i></a>
+							<a class="active" href="#">1</a>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#"><i class="fa fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Published Notes-->
+	<section id="published-note">
+		<div class="content-box">
+			<div class="container">
+				<!-- published note heading -->
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-4 col-sm-4">
+						<h4>Published Notes</h4>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
+						<span>
+							<button type="button" class="btn btn-primary btn-lg">SEARCH</button>
+							<input type="text" id="myInput" placeholder="Search..." title="Type in a name">
+						</span>
+					</div>
+				</div>
+
+				<!-- published note table -->
+				<div class="row">
+					<div class="table-responsive">
+						<table class="table published-note-tbl">
+							<thead>
+								<tr>
+									<th scope="col">ADDED DATE</th>
+									<th scope="col">TITLE</th>
+									<th scope="col">CATEGORY</th>
+									<th scope="col">SELL TYPE</th>
+									<th scope="col">PRICE</th>
+									<th scope="col">ACTION</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>09-10-2020</td>
+									<td>Dara Science</td>
+									<td>Science</td>
+									<td>Paid</td>
+									<td>$575</td>
+									<td>
+										<a href="#"><img src="img/comman-images/eye.png"></a>
+									</td>
+								</tr>
+								<tr>
+									<td>10-10-2020</td>
+									<td>Accounts</td>
+									<td>Commerce</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>
+										<a href="#"><img src="img/comman-images/eye.png"></a>
+									</td>
+								</tr>
+								<tr>
+									<td>11-10-2020</td>
+									<td>Social Studies</td>
+									<td>Social</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>
+										<a href="#"><img src="img/comman-images/eye.png"></a>
+									</td>
+								</tr>
+								<tr>
+									<td>12-10-2020</td>
+									<td>AI</td>
+									<td>IT</td>
+									<td>Paid</td>
+									<td>$3542</td>
+									<td>
+										<a href="#"><img src="img/comman-images/eye.png"></a>
+									</td>
+								</tr>
+								<tr>
+									<td>13-10-2020</td>
+									<td>Computer Science</td>
+									<td>IT</td>
+									<td>Free</td>
+									<td>$0</td>
+									<td>
+										<a href="#"><img src="img/comman-images/eye.png"></a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- pagination of published notes -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-sm-12 text-center">
+						<div class="pagination">
+							<a href="#"><i class="fa fa-chevron-left"></i></a>
+							<a class="active" href="#">1</a>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#"><i class="fa fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer Section -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-7 col-12 footer-text text-left">
+					<p>Copyright @ Tatvasoft ALL Rights Reserved By</p>
+				</div>
+
+				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 col-12 footer-icon text-right">
+					<ul class="social-list">
+						<li><a haref="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a haref="#"><i class="fa fa-twitter"></i></a></li>
+						<li><a haref="#"><i class="fa fa-linkedin"></i></a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!-- jquery -->
+	<script src="js/jquery/jquery.js"></script>
+
+	<!-- Bootsrap js -->
+	<script src="js/bootstrap/bootstrap.js"></script>
+
+	<!-- Custom js -->
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>

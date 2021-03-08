@@ -1,0 +1,383 @@
+﻿@model NotesMarketPlace.Models.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Header Section -->
+<!-- Navigation -->
+<section class="navigation white-nav">
+    <div class="nav-box">
+        <div class="container">
+            <nav class="navbar">
+
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <a href="./homepage.html"><img src="./image/logo/blue-logo.png" alt=""></a>
+                </div>
+
+                <!-- Link -->
+                <div class="nav-menu-link">
+                    <ul class="navbar-nav container">
+                        <!-- Dashboard -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="./searchnotes.html">Search Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="./dashboard.html">Sell Your Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./buyerrequest.html">Buyer Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="faq.html">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contactus.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="user-nav-link" data-toggle="dropdown" href="#">
+                                    <img class="rounded-circle" src="~/Content/image/notedetails/customer-1.jpg" alt="">
+                                </a>
+                                <img class="arrow-down" src="./images/Dashboard/down-arrow.png" alt="">
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">My Profile</a>
+                                    <a class="dropdown-item" href="./mydownloads.html">My Downloads</a>
+                                    <a class="dropdown-item" href="./soldnotes.html">My Sold Notes</a>
+                                    <a class="dropdown-item" href="./rejectednote.html">My Rejected Notes</a>
+                                    <a class="dropdown-item" href="./changepass.html">Change Password</a>
+                                    <a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Logout Btn -->
+                        <li class="nav-item">
+                            <div id="btn-white">
+                                <a class="btn" href="" title="Logout" role="button">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Toggle Btn -->
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+</section>
+
+<!-- Dashboard Stats -->
+<section id="dashboard">
+    <div class="content-box">
+        <div class="container">
+            <!-- dashboard add note button -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <a type="button" class="btn btn-primary btn-lg" href="@Url.Action("AddNote","SellNotes")">ADD NOTE</a>
+                </div>
+            </div>
+            <!-- dashboard stats -->
+            <div class="row">
+                <!-- My earnings -->
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 first-stats">
+                    <div class="sec-stats-content stats-content">
+                        <img src="~/Content/image/Dashboard/my-earning.png">
+                        <h4>My Earning</h4>
+                    </div>
+                </div>
+                <!-- Notes Sold & money earned -->
+                <div class="col-xl-4 col-lg-4 col-md-8 col-sm-8 col-12 sec-stats">
+                    <div class="sec-stats-content">
+                        <span>
+                            <h6>100</h6>
+                            <p>Number Notes Sold</p>
+                        </span>
+                        <span>
+                            <h6>$10,00,000</h6>
+                            <p>Money Earned</p>
+                        </span>
+                    </div>
+                </div>
+                <!-- My downloads -->
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
+                    <div class="stats-content">
+                        <h6>38</h6>
+                        <p>My Downloads</p>
+                    </div>
+                </div>
+                <!-- My rejected notes -->
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
+                    <div class="stats-content">
+                        <h6>12</h6>
+                        <p>My Rejected Notes</p>
+                    </div>
+                </div>
+                <!-- Buyer Requests -->
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
+                    <div class="stats-content">
+                        <h6>102</h6>
+                        <p>Buyer Requests</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- inprogress note section -->
+<section id="inprogress-note">
+    <div class="content-box">
+        <div class="container">
+            <!-- inprogress note heading -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 col-12">
+                    <h4>In Progress Notes</h4>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-12">
+                    @using (Html.BeginForm("Dashboard", "SellNotes", FormMethod.Get))
+                    {
+                        <span>
+                            <button type="submit" class="btn btn-primary btn-lg">SEARCH</button>
+                            <input type="text" id="myInput" name="Pro_search" placeholder="Search..." title="Type in a name">
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- inprogress note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table inprogress-note-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">@Html.ActionLink("ADDED DATE", "Dashboard", new { sortOrderPro = ViewBag.DateSortParm, Pro_search = Request.QueryString["search"] })</th>
+                                <th scope="col">@Html.ActionLink("TITLE", "Dashboard", new { sortOrderPro = ViewBag.TitleSortParm, Pro_search = Request.QueryString["search"] })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "Dashboard", new { sortOrderPro = ViewBag.CategorySortParm, Pro_search = Request.QueryString["search"] })</th>
+                                <th scope="col">@Html.ActionLink("STATUS", "Dashboard", new { sortOrderPro = ViewBag.StatusSortParm, Pro_search = Request.QueryString["search"] })</th>
+                                <th scope="col" class="text-center">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @if (Model.InProgressNote.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var items in Model.InProgressNote)
+                                {
+                                    using (Html.BeginForm("Delete", "SellNote", new { id = items.ID }))
+                                    {
+                                        <tr>
+                                            <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", items.CreatedDate))</td>
+                                            <td>@Html.DisplayFor(modelItem => items.Title)</td>
+                                            <td>@Html.DisplayFor(modelItem => items.NoteCategories.Name)</td>
+                                            <td>@Html.DisplayFor(modelItem => items.ReferenceData.Value)</td>
+                                            <td>
+                                                <div class="inprogress-note-img">
+                                                    @if (items.Status == 6)
+                                                    {
+                                                        <a href="@Url.Action("EditNote", "SellNotes", new { id = items.ID})"><img src="~/Content/image/comman-images/edit.png" alt="edit"></a>                                                        
+                                                        <button type="submit" onclick="return confirm('Are you sure you want to delete @items.Title Book')">
+                                                            <img src="~/Content/image/comman-images/delete.png" alt="delete">
+                                                        </button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="@Url.Action("NoteDetails", "SearchNote", new { id = items.ID})"><img src="~/Content/image/comman-images/eye.png" alt="eye"></a>
+                                                    }
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- pagination of progress notes -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                    <div class="pagination">
+
+
+                        @if (ViewBag.PageNumber == 1)
+                        {
+                            <a href="@Url.Action("Dashboard", new { Pro_page = @ViewBag.PageNumber, Pro_search = Request.QueryString["Pro_search"], sortOrderPro = Request.QueryString["sortOrderPro"] })"><i class="fa fa-angle-left"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Dashboard", new { Pro_page = @ViewBag.PageNumber - 1, Pro_search = Request.QueryString["Pro_search"], sortOrderPro = Request.QueryString["sortOrderPro"] })"><i class="fa fa-angle-left"></i></a>
+                        }
+
+                        @{
+                            double TotalPagesInProgress = ViewBag.TotalPagesInProgress;
+                            for (int i = 1; i <= TotalPagesInProgress; i++)
+                            {
+                                if (i == ViewBag.PageNumber)
+                                {
+                                    <a class="active">@i<span class="sr-only">(current)</span></a>
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(i.ToString(), "Dashboard", new { Pro_page = i, Pro_search = Request.QueryString["Pro_search"], sortOrderPro = Request.QueryString["sortOrderPro"] }, new { @class = "page-link" })
+                                }
+                            }
+                        }
+
+                        @if (ViewBag.PageNumber == TotalPagesInProgress)
+                        {
+                            <a href="@Url.Action("Dashboard", new {Pro_page = @ViewBag.PageNumber , Pro_search = Request.QueryString["Pro_search"], sortOrderPro = Request.QueryString["sortOrderPro"] })"><i class="fa fa-angle-right"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Dashboard", new {  Pro_page = @ViewBag.PageNumber + 1 , Pro_search = Request.QueryString["Pro_search"], sortOrderPro = Request.QueryString["sortOrderPro"]})"><i class="fa fa-angle-right"></i></a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Published Notes-->
+<section id="published-note">
+    <div class="content-box">
+        <div class="container">
+            <!-- published note heading -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4">
+                    <h4>Published Notes</h4>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
+                    @using (Html.BeginForm("Dashboard", "SellNotes", FormMethod.Get))
+                    {
+                        <span>
+                            <button type="submit" class="btn btn-primary btn-lg">SEARCH</button>
+                            <input type="text" id="myInput" name="Pub_search" placeholder="Search..." title="Type in a name">
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <!-- published note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table published-note-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">@Html.ActionLink("ADDED DATE", "Dashboard", new { sortOrderPub = ViewBag.DateSortParm1, Pub_search = Request.QueryString["Pub_search"], Pub_page = Request.QueryString["Pub_page"] })</th>
+                                <th scope="col">@Html.ActionLink("TITLE", "Dashboard", new { sortOrderPub = ViewBag.TitleSortParm1, Pub_search = Request.QueryString["Pub_search"], Pub_page = Request.QueryString["Pub_page"] })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "Dashboard", new { sortOrderPub = ViewBag.CategorySortParm1, Pub_search = Request.QueryString["Pub_search"], Pub_page = Request.QueryString["Pub_page"] })</th>
+                                <th scope="col">@Html.ActionLink("SELL TYPE", "Dashboard", new { sortOrderPub = ViewBag.STypeSortParm1, Pub_search = Request.QueryString["Pub_search"], Pub_page = Request.QueryString["Pub_page"] })</th>
+                                <th scope="col">@Html.ActionLink("PRICE", "Dashboard", new { sortOrderPub = ViewBag.PriceSortParm1, Pub_search = Request.QueryString["Pub_search"], Pub_page = Request.QueryString["Pub_page"] })</th>
+                                <th scope="col" class="text-center">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (Model.PublishedNote.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var items in Model.PublishedNote)
+                                {
+                                    <tr>
+                                        <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", items.CreatedDate))</td>
+                                        <td>@Html.DisplayFor(modelItem => items.Title)</td>
+                                        <td>@Html.DisplayFor(modelItem => items.NoteCategories.Name)</td>
+                                        @if (items.IsPaid)
+                                        {
+                                            <td>Paid</td>
+                                            <td>$@Html.DisplayFor(modelItem => items.SellingPrice)</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Free</td>
+                                            <td>$0</td>
+                                        }
+                                        <td class="text-center">
+                                            <a href="@Url.Action("NoteDetails", "SearchNote", new { id = items.ID})"><img src="~/Content/image/comman-images/eye.png" alt="eye"></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- pagination of published notes -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-sm-12 text-center">
+                    <div class="pagination">
+
+                        @if (ViewBag.PageNumberPublished == 1)
+                        {
+                            <a href="@Url.Action("Dashboard", new { Pub_page = @ViewBag.PageNumberPublished, Pub_search = Request.QueryString["Pub_search"], sortOrderPub = Request.QueryString["sortOrderPub"] })"><i class="fa fa-angle-left"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Dashboard", new {  Pub_page = @ViewBag.PageNumberPublished -1, Pub_search = Request.QueryString["Pub_search"], sortOrderPub = Request.QueryString["sortOrderPub"] })"><i class="fa fa-angle-left"></i></a>
+                        }
+
+                        @{
+                            double TotalPagesInPublished = ViewBag.TotalPagesInPublished;
+
+                            for (int i = 1; i <= TotalPagesInPublished; i++)
+                            {
+                                if (i == ViewBag.PageNumberPublished)
+                                {
+                                    <a class="active" href="#">@i<span class="sr-only">(current)</span></a>
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(i.ToString(), "Dashboard", new { Pub_page = i, Pub_search = Request.QueryString["Pub_search"], sortOrderPub = Request.QueryString["sortOrderPub"] }, new { @class = "page-link" })
+                                }
+                            }
+                        }
+
+                        @if (ViewBag.PageNumberPublished == TotalPagesInPublished)
+                        {
+                            <a href="@Url.Action("Dashboard", new {Pub_page = @ViewBag.PageNumberPublished, Pub_search = Request.QueryString["Pub_search"], sortOrderPub = Request.QueryString["sortOrderPub"] })"><i class="fa fa-angle-right"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Dashboard", new { Pub_page = @ViewBag.PageNumberPublished + 1, Pub_search = Request.QueryString["Pub_search"], sortOrderPub = Request.QueryString["sortOrderPub"] })"><i class="fa fa-angle-right"></i></a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@{
+    Html.RenderPartial("_Footer");
+}
+

@@ -1,0 +1,262 @@
+﻿
+@{
+    ViewBag.Title = "NoteDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Navigation -->
+<section class="navigation white-nav">
+    <div class="nav-box">
+        <div class="container">
+            <nav class="navbar">
+
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <a href="./homepage.html"><img src="~/Content/image/logo/top-logo-blue.jpg" alt=""></a>
+                </div>
+
+                <!-- Link -->
+                <div class="nav-menu-link">
+                    <ul class="navbar-nav container">
+                        <!-- Dashboard -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="./searchnotes.html">Search Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./dashboard.html">Sell Your Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./buyerrequest.html">Buyer Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./faq.html">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./contactus.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="user-nav-link" data-toggle="dropdown" href="#">
+                                    <img class="rounded-circle" src="./img/user-profile-img/user-img.png" alt="">
+                                </a>
+                                <img class="arrow-down" src="./images/Dashboard/down-arrow.png" alt="">
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">My Profile</a>
+                                    <a class="dropdown-item" href="./mydownloads.html">My Downloads</a>
+                                    <a class="dropdown-item" href="./soldnotes.html">My Sold Notes</a>
+                                    <a class="dropdown-item" href="./rejectednote.html">My Rejected Notes</a>
+                                    <a class="dropdown-item" href="./changepass.html">Change Password</a>
+                                    <a class="dropdown-item" href="#"><span><b>Logout</b></span> </a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Logout Btn -->
+                        <li class="nav-item">
+                            <div id="btn-white">
+                                <a class="btn" href="" title="Logout" role="button">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Toggle Btn -->
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+<!-- note detail section-->
+<section id="note-detail">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+
+                <!-- note details left -->
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="row">
+                        <!-- Note details image -->
+                        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                            <div class="note-detail-img">
+                                <h4>Notes Details</h4>
+                                <img src="~/Content/image/notedetails/1.jpg" alt="image of note">
+                            </div>
+                        </div>
+
+                        <!-- details of notes -->
+                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
+                            <div class="note-info">
+                                <h4>@Model.Title</h4>
+                                <h6>@Model.Category</h6>
+                                <p>@Model.Description</p>
+
+                                @if (Model.IsPaid)
+                                {
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confirmationbox">DOWNLOAD/$@Model.SellingPrice</button>
+
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("DOWNLOAD/$0", "Download", "SearchNote", new { noteId = Model.ID, userId = Model.SellerID }, new { @class = "btn btn-primary btn-lg", type = "button" })
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- note details right -->
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="note-details">
+                        <ul class="note-full-detail">
+                            <li>institution:<span>@Model.UniversityName</span></li>
+                            <li>Country:<span>1</span></li>
+                            <li>Course Name<span>@Model.Course</span></li>
+                            <li>Course Code:<span>@Model.CourseCode</span></li>
+                            <li>Professor:<span>@Model.Professor</span></li>
+                            <li>Number of Pages:<span>@Model.NumberofPages</span></li>
+                            <li>Approved Date:<span>November 25 2020</span></li>
+                            <li>Rating:<span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>100 Reviews</span></li>
+                            <li>5 Users make this note as inappropriate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+
+<!-- note-preview ssection-->
+<section id="note-detail-preview">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+
+                <!-- note review left-->
+                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                    <div class="note-preview">
+                        <h4>Note Preview</h4>
+                        <iframe src="@Model.NotesPreview"></iframe>
+                    </div>
+                </div>
+
+                <!-- note review right -->
+                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                    <div id="customer-review">
+                        <h4>Customer Reviews</h4>
+                        <div class="reviews">
+                            <!-- customer review 1 -->
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <img src="~/Content/image/notedetails/customer-1.jpg" alt="customer1">
+                                </div>
+
+                                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 review-details">
+                                    <ul>
+                                        <li>
+                                            <h6>Richard Brown</h6>
+                                        </li>
+                                        <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt deserunt odio consectetur.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- customer review 2 -->
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <img src="~/Content/image/notedetails/customer-2.jpg" alt="customer2">
+                                </div>
+                                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 review-details">
+                                    <ul>
+                                        <li>
+                                            <h6>Alice Ortiaz</h6>
+                                        </li>
+                                        <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt deserunt odio consectetur.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- customer review 3 -->
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                                    <img src="~/Content/image/notedetails/customer-3.jpg" alt="customer3">
+                                </div>
+                                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 review-details">
+                                    <ul>
+                                        <li>
+                                            <h6>Sara Passmore</h6>
+                                        </li>
+                                        <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt deserunt odio consectetur.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- thanks Popup box-->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <!-- top close button -->
+            <div class="popup-close-btn">
+                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><img src="~/Content/image/notedetails/close.png"></span>
+                </button>
+            </div>
+
+            <!-- popup box content -->
+            <div class="modal-body">
+                <img src="~/Content/image/notedetails/SUCCESS.png">
+                <h2 class="text-center">Thank you for purchasing!</h2>
+                <h5>Dear Kane,</h5>
+                <p>As this is paid notes - you need to pay to seller Rahil Shah offline. We will send him an email that you want to download this note. He may contact you further process compietion.</p>
+                <p>In case, you have urgency,<br>Please contact us on +9195377345959</p>
+                <p>Once he receives the payment and acknowledge us - selected notes you can see over my downloads tab for download.</p>
+                <p>Have a good day.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmationbox" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          
+            <div class="modal-body">
+                <p>Are you sure you want to perchasing this note ?</p><br />
+                @Html.ActionLink("Yes", "Download", "SearchNote", new { noteId = Model.ID, userId = Model.SellerID }, new { @class = "btn btn-primary btn-lg", type = "button"})
+                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{ 
+    Html.RenderPartial("_Footer");
+}
+

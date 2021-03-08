@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Email Verification";
+    Layout = "~/Views/Shared/_Layout_Account.cshtml";
+}
+
+    <div id="emailVerify">
+
+        <section id="emailverification-page">
+
+            <div class="emailverify-logo">
+                <img src="~/Content/image/logo/top-logo.png" alt="forgotpass-logo">
+            </div>
+
+            <div class="emailverify-content">
+                <!-- heading -->
+                <h2 class="text-left">Email Verifiaction</h2>
+                <!-- verification message -->
+                <h5 class="text-left">Dear Kane,</h5>
+                <p class="text-left">Thanks for Signing up!</p>
+                <p class="text-left">Simply click below for email verification.</p>
+                <!-- Submit button -->
+                <div id="verify-email-btn">
+                    @Html.ActionLink("Verify Email Address", "RegisterConfirm", "Account", new { regID = @ViewBag.regID }, new { @class = "btn btn-primary btn-lg btn-block" })
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script>
+    function verified() {
+        $.ajax({
+            type: "post",
+            url: "Account/RegisterConfirm",
+            data: { 'regID': '@ViewBag.regID' },
+        })
+    }
+    </script>

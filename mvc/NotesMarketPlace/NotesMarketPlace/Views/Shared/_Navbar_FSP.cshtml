@@ -1,0 +1,74 @@
+﻿<!-- Navigation for some pages -->
+<section class="navigation @ViewBag.navClass">
+    <div class="nav-box">
+        <div class="container">
+            <nav class="navbar">
+
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <a href="@Url.Action("Index", "Home")"><img src="~/Content/image/logo/blue-logo.png" title="navlogo" alt="toplogo"></a>
+                </div>
+
+                <!-- Link -->
+                <div class="nav-menu-link">
+                    <ul class="navbar-nav container">
+
+                        <!-- Dashboard -->
+                        <li class="nav-item">
+                            <a class="nav-link @ViewBag.SearchNotes" href="@Url.Action("SearchNotes","SearchNote")">Search Notes</a>
+                        </li>
+
+                        @if (Session["ID"] != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @ViewBag.SellNotes" href="@Url.Action("Dashboard", "SellNotes")">Sell Your Notes</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @ViewBag.SellNotes" href="@Url.Action("Login", "Account")">Sell Your Notes</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link @ViewBag.Faq" href="@Url.Action("Faq","Faq")">FAQ</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link @ViewBag.ContactUs" href="@Url.Action("ContactUs","ContactUs")">Contact Us</a>
+                        </li>
+
+                        @if (Session["ID"] != null)
+                        {
+                            <!-- Logout Btn -->
+                            <li class="nav-item">
+                                <div id="btn-white">
+                                    <a class="btn" href="@Url.Action("Logout","Account")" title="Logout" role="button">Logout</a>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <!-- Login Btn -->
+                            <li class="nav-item">
+                                <div id="btn-white">
+                                    <a class="btn" href="@Url.Action("Login","Account")" role="button">Login</a>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+
+                <!-- Mobile Toggle Btn -->
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+</section>

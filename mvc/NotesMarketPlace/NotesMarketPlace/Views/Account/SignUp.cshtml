@@ -1,0 +1,84 @@
+﻿@model NotesMarketPlace.Models.UsersViewModel
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="signup">
+    <div class="box">
+
+        <!-- Logo -->
+        <div class="logo">
+            <div class="signup-logo text-center">
+                <img src="~/Content/image/logo/top-logo.png" alt="login-logo">
+            </div>
+        </div>
+
+        <!-- signup content -->
+        <div class="signup-content text-center">
+                
+            <!-- heading -->
+            <div class="signup-heading text-center">
+                <h2>Create an Account</h2>
+                <p>Enter your details to signup</p>
+            </div>
+
+            @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                if (ViewBag.sucess != null)
+                {
+                    <p class="text-success"><i class="fa fa-check-circle text-success"></i>@ViewBag.sucess</p>
+                }
+
+                <!-- First Name -->
+                <div class="form-group">
+                    <label class="pull-left"> @Html.DisplayNameFor(model => model.FirstName)</label>
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", id = "signup-firstName", placeholder = "Enter your first name" })
+                    @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text-danger pull-left" })
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-group">
+                    <label class="pull-left"> @Html.DisplayNameFor(model => model.LastName)</label>
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", id = "signup-lastname", placeholder = "Enter your last name" })
+                    @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "text-danger pull-left" })
+                </div>
+
+                <!-- Email Box -->
+                <div class="form-group">
+                    <label class="pull-left">@Html.DisplayNameFor(model => model.Email)</label>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "signup-email", placeholder = "Enter your email address", type = "email" })
+                    @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger pull-left" })
+                </div>
+
+                <!-- password Box -->
+                <div class="form-group">
+                    <label class="pull-left"> @Html.DisplayNameFor(model => model.Password)</label>
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "Password", placeholder = "Enter your Password" })
+                    <span class="field-icon"><img src="~/Content/image/comman-images/eye.png" toggle="#Password" class="field-icon toggle-password"></span>
+                    @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger pull-left" })
+                </div>
+
+                <!-- Confirm password Box -->
+                <div class="form-group">
+                    <label class="pull-left"> @Html.DisplayNameFor(model => model.Confirmpassword)</label>
+                    @Html.PasswordFor(model => model.Confirmpassword, new { @class = "form-control", id = "Confirmpassword", placeholder = "Re-Enter your Password" })
+                    <span class="field-icon"><img src="~/Content/image/comman-images/eye.png" toggle="#Confirmpassword" class="field-icon toggle-password"></span>
+                    @Html.ValidationMessageFor(model => model.Confirmpassword, null, new { @class = "text-danger pull-left" })
+                </div>
+
+                <!-- Sign up button -->
+                <div id="signup-btn">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Signup</button>
+                </div>
+            }
+
+            <!-- login link -->
+            <span>Already have an account? <b>@Html.ActionLink("Login", "Login")</b></span>
+
+        </div>
+    </div>
+</section>
+

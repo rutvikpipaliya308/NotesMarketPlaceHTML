@@ -1,0 +1,140 @@
+﻿@model IEnumerable<NotesMarketPlace.Models.RejectedNotesViewModel>
+@{
+    ViewBag.Title = "RejectedNotes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ 
+    Html.RenderPartial("_Navbar");
+}
+
+<section id="rejectednotes">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- rejected note heading -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 col-12">
+                    <h4>My Rejected Note</h4>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-12">
+                    @using (Html.BeginForm("RejectedNotes", "RejectedNotes", FormMethod.Get))
+                    {
+                        <span>
+                            <button type="submit" class="btn btn-primary btn-lg">SEARCH</button>
+                            <input type="text" id="myInput" name="RN_search" placeholder="Search..." title="Type searches">
+                        </span>
+                    }
+                </div>
+            </div>
+            <!-- End of rejected note heading -->
+
+            <!-- rejected notes table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table rejectednotes-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">SR NO.</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "RejectedNotes", new { sortOrder = ViewBag.TitleSortParm, RN_search = Request.QueryString["RN_search"] })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "RejectedNotes", new { sortOrder = ViewBag.CategorySortParm, RN_search = Request.QueryString["RN_search"] })</th>
+                                <th scope="col">REMARKS</th>
+                                <th scope="col">CLONE</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.TotalRejectedNotesPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                int no = (ViewBag.srno - 1) * 10 + 1;
+                            }
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td><a href="@Url.Action("NoteDetails", "SearchNote", new { id = item.rejectednotestbl.ID })">@item.rejectednotestbl.Title</a></td>
+                                    <td>@item.notecategorytbl.Name</td>
+                                    <td>@item.rejectednotestbl.AdminRemarks</td>
+                                    <td><a href="@Url.Action("CloneNote","RejectedNotes",  new { noteid = item.rejectednotestbl.ID})">Clone</a></td>
+                                    <td>
+                                        <div class="btn-group dropleft">
+                                            <!-- drop down menu -->
+                                            <button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/Content/image/comman-images/dots.png" alt="menu" class="dropdown">
+                                            </button>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @Html.ActionLink("Download Note", "Download", "SearchNote", new { noteId = item.rejectednotestbl.ID, userId = item.rejectednotestbl.SellerID }, new { @class = "dropdown-item" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            @if (ViewBag.TotalRejectedNotesPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage - 1 })"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "RejectedNotes", new { RejecteNotes_page = i }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("RejectedNotes", new {  RejecteNotes_page = @ViewBag.currentPage + 1 })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- End of pagination -->
+
+        </div>
+    </div>
+</section>
+
+@{ 
+    Html.RenderPartial("_Footer");
+}
+

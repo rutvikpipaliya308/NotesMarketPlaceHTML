@@ -1,0 +1,155 @@
+﻿@model IEnumerable<NotesMarketPlace.Models.MySoldNotesViewModel>
+@{
+    ViewBag.Title = "MySoldNotes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Navbar");
+}
+
+
+<!-- sold notes content -->
+<section id="mysoldnotes">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- sold notes heading -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 col-12">
+                    <h4>My Sold Notes</h4>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-12">
+
+                    @using (Html.BeginForm("MySoldNotes", "SoldNotes", FormMethod.Get))
+                    {
+                        <span>
+                            <button type="submit" class="btn btn-primary btn-lg">SEARCH</button>
+                            <input type="text" id="myInput" name="SN_search" placeholder="Search..." title="Type searches">
+                        </span>
+                    }
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table mysoldnotes-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">SR NO.</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "MySoldNotes", new { sortOrder = ViewBag.TitleSortParm, SN_search = Request.QueryString["SN_search"] })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "MySoldNotes", new { sortOrder = ViewBag.CategorySortParm, SN_search = Request.QueryString["SN_search"] })</th>
+                                <th scope="col">@Html.ActionLink("BUYER", "MySoldNotes", new { sortOrder = ViewBag.BuyerNameSortParm, SN_search = Request.QueryString["SN_search"] })</th>
+                                <th scope="col">@Html.ActionLink("SELL TYPE", "MySoldNotes", new { sortOrder = ViewBag.SellTypeSortParm, SN_search = Request.QueryString["SN_search"] })</th>
+                                <th scope="col">@Html.ActionLink("PRICE", "MySoldNotes", new { sortOrder = ViewBag.PriceSortParm, SN_search = Request.QueryString["SN_search"] })</th>
+                                <th scope="col">@Html.ActionLink("DOWNLOADESD DATE/TIME", "MySoldNotes", new { sortOrder = ViewBag.DateSortParm, SN_search = Request.QueryString["SN_search"] })</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.TotalMySoldNotesPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                int no = (ViewBag.srno - 1) * 10 + 1;
+                            }
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@item.downloadtbl.NoteTitle</td>
+                                    <td>@item.downloadtbl.NoteCategory</td>
+                                    <td>@item.usertbl.Email</td>
+                                    @if (item.downloadtbl.IsPaid == true)
+                                    {
+                                        <td>paid</td>
+                                        <td>$@item.downloadtbl.PurchasedPrice</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                        <td>$0</td>
+                                    }
+                                    <td>@item.downloadtbl.AttachmentDownloadedDate</td>
+                                    <td>
+                                        <div class="btn-group dropleft">
+                                            <div>
+                                                <a href="@Url.Action("NoteDetails", "SearchNote", new { id = item.downloadtbl.NoteID})"><img src="~/Content/image/comman-images/eye.png" alt="eye"></a>
+                                            </div>
+                                            <!-- drop down menu -->
+                                            <button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/Content/image/comman-images/dots.png" alt="menu" class="dropdown">
+                                            </button>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @Html.ActionLink("Download Note", "Download", "SearchNote", new { noteId = item.downloadtbl.NoteID, userId = item.usertbl.ID }, new { @class = "dropdown-item" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                no++;
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- pagination od my sold notes -->            
+            @if (ViewBag.TotalMySoldNotesPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage - 1 })"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{                                     
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "MySoldNotes", new { MySoldNotes_page = i }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("MySoldNotes", new {  MySoldNotes_page = @ViewBag.currentPage + 1 })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Footer");
+}
+

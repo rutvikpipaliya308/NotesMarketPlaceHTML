@@ -1,0 +1,203 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    Html.RenderPartial("_Navbar_FSP");
+}
+
+<!-- Home Section -->
+<section id="home-head">
+    <div class="container">
+        <div class="row">
+
+            <!-- home head content -->
+            <div id="home-head-inner-content" class="col-lg-6 col-xl-6 col-md-8 col-sm-10">
+                <div id="home-head-heading">
+                    <h1>Download Free/paid Notes <br> or Sale your Book</h1>
+                </div>
+                <div id="home-head-text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum asperiores reiciendis numquam.</p>
+                </div>
+                <div id="home-head-button">
+                    @Html.ActionLink("LEARN MORE","Faq","Faq", null, new { @class = "btn btn-home-head"})
+                </div>
+            </div>
+            <!--end of head content -->
+
+        </div>
+    </div>
+</section>
+
+<!-- About section-->
+<section id="home-about">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <!-- left side -->
+                <div id="home-about-left" class="col-lg-4 col-xl-4 col-md-12 col-sm-12 col-12">
+                    <p>About <br>NotesMarketPlace</p>
+                </div>
+                <!-- right side -->
+                <div id="home-about-right" class="col-lg-8 col-xl-8 col-md-12 col-sm-12 col-12">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, maiores corporis omnis aliquam nisi accusamus ad, error est, eius officia natus vero a culpa in expedita laboriosam et. Voluptas, nostrum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, maiores corporis omnis aliquam nisi accusamus.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita consequatur doloribus totam esse minima culpa sequi suscipit voluptatem eius molestiae, praesentium illum perspiciatis eveniet itaque nostrum illo corporis laborum. Id.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End of about section -->
+
+<!-- Work section -->
+<section id="home-work">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- work heading -->
+            <div class="row">
+                <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                    <div id="home-work-heading">
+                        <p>How it Works</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- left side -->
+                <div class="col-lg-6 col-xl-6 col-md-6 col-sm-6 col-12 text-center">
+                    <div id="home-work-left">
+                        <div class="work-img">
+                            <img src="~/Content/image/homepage/download.png" alt="download">
+                        </div>
+                        <h5>Download Free/Paid Notes</h5>
+                        <p>Get Material for your <br>Cource etc.</p>
+                        <div id="work-button-download">                            
+                                @Html.ActionLink("Download", "SearchNotes", "SearchNote", null , new { @class = "btn btn-work", title = "Download" })
+                        </div>
+                    </div>
+                </div>
+                <!-- right side -->
+                <div class="col-lg-6 col-xl-6 col-md-6 col-sm-6 col-12 text-center">
+                    <div id="home-work-right">
+                        <div class="work-img">
+                            <img src="~/Content/image/homepage/seller.png" alt="download">
+                        </div>
+                        <h5>Seller</h5>
+                        <p>Upload and Download Cource <br>and Material etc.</p>
+                        <div id="work-button-seller">
+                            @if (Session["ID"] != null)
+                            {                                
+                                @Html.ActionLink("Sell Book", "Dashboard", "SellNotes", null, new { @class = "btn btn-work", title = "sell book" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Sell Book", "Login", "Account", null, new { @class = "btn btn-work", title = "sell book" })
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of work section -->
+
+<!-- Customers section -->
+<section id="home-customers">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- customers heading -->
+            <div class="row">
+                <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                    <div id="home-customers-heading">
+                        <h2>What our Customers are Saying</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customers details -->
+            <div class="row">
+
+                <!-- customer 1 -->
+                <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-12">
+                    <div class="customer">
+                        <div class="row">
+                            <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3">
+                                <img src="~/Content/image/homepage/team-1.jpg" alt='customer1'>
+                            </div>
+                            <div class="col-lg-9 col-xl-9 col-md-9 col-sm-9 col-9 customer-name-wrapper">
+                                <div class="customer-name">
+                                    <h5>Walter Meller</h5>
+                                    <p>Founder &amp; CEO, Matrix Group</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam officia alias sapiente non, quisquam doloremque, eum numquam aspernatur minus cupiditate ratione soluta quos.</p>
+                    </div>
+                </div>
+
+                <!-- customer 2 -->
+                <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+                    <div class="customer">
+                        <div class="row">
+                            <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3">
+                                <img src="~/Content/image/homepage/team-2.jpg" alt='customer1'>
+                            </div>
+                            <div class="col-lg-9 col-xl-9 col-md-9 col-sm-9 col-9 customer-name-wrapper">
+                                <div class="customer-name">
+                                    <h5>Jonnie Riley</h5>
+                                    <p>Employee, Curious Snakcs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam officia alias sapiente non, quisquam doloremque, eum numquam aspernatur minus cupiditate ratione soluta quos.</p>
+                    </div>
+                </div>
+
+                <!-- customer 3 -->
+                <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+                    <div class="customer">
+                        <div class="row">
+                            <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3">
+                                <img src="~/Content/image/homepage/team-3.jpg" alt='customer1'>
+                            </div>
+                            <div class="col-lg-9 col-xl-9 col-md-9 col-sm-9 col-9 customer-name-wrapper">
+                                <div class="customer-name">
+                                    <h5>Amilia Luna</h5>
+                                    <p>Teacher, Saint Joseph High School</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam officia alias sapiente non, quisquam doloremque, eum numquam aspernatur minus cupiditate ratione soluta quos.</p>
+                    </div>
+                </div>
+
+                <!-- customer 4 -->
+                <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12">
+                    <div class="customer">
+                        <div class="row">
+                            <div class="col-lg-3 col-xl-3 col-md-3 col-sm-3 col-3">
+                                <img src="~/Content/image/homepage/team-4.jpg" alt='customer1'>
+                            </div>
+                            <div class="col-lg-9 col-xl-9 col-md-9 col-sm-9 col-9">
+                                <div class="customer-name">
+                                    <h5>Daniel Cardos</h5>
+                                    <p>Software Engineer, Infinitum Company</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam officia alias sapiente non, quisquam doloremque, eum numquam aspernatur minus cupiditate ratione soluta quos.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of customer section -->
+
+@{
+    Html.RenderPartial("_Footer");
+}

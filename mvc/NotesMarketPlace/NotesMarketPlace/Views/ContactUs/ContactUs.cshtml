@@ -1,0 +1,96 @@
+﻿@model NotesMarketPlace.Models.ContactUsViewModel
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Navbar_FSP");
+}
+
+<!-- top-image -->
+<section id="contactus-head">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <h1>Contact Us</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- contact us section -->
+<section id="getintouch-section">
+    <div class="content-box">
+
+        <!-- heading -->
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <h2>Get in Touch</h2>
+                    <p>Let us know how to get back to you</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- contact form-->
+        @using (Html.BeginForm("ContactUs", "ContactUs", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contactus-left">
+
+                        <!-- name -->
+                        <div class="form-group">
+                            <label class="pull-left"> @Html.DisplayNameFor(model => model.FirstName)*</label>
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", id = "contactus-name", placeholder = "Enter your full name" })
+                            @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text-danger" })
+                        </div>
+
+                        <!-- email -->
+                        <div class="form-group">
+                            <label class="pull-left"> @Html.DisplayNameFor(model => model.Email)*</label>
+                            @if (Session["ID"] != null)
+                            {
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "contactus-email", placeholder = "Enter your Email", @readonly = "readonly" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "contactus-email", placeholder = "Enter your Email" })
+                            }
+                            @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
+                        </div>
+
+                        <!-- subject -->
+                        <div class="form-group">
+                            <label class="pull-left"> @Html.DisplayNameFor(model => model.Subject)*</label>
+                            @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", id = "contactus-subject", placeholder = "Enter notes subject" })
+                            @Html.ValidationMessageFor(model => model.Subject, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!--comman question  -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group">
+                        <label class="pull-left"> @Html.DisplayNameFor(model => model.Comments)*</label>
+                        @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", id = "contactus-questions", rows = "5", placeholder = "comments..." })
+                        @Html.ValidationMessageFor(model => model.Comments, null, new { @class = "text-danger" })
+                    </div>
+
+                    <!-- contact us save button -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <button type="submit" class="btn btn-primary btn-lg">SAVE</button>
+                    </div>
+                </div>
+            </div>
+        }
+        <!-- Contact form end -->
+
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Footer");
+}
+

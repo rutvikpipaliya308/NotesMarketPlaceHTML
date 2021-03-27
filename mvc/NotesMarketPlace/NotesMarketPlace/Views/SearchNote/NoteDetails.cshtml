@@ -1,0 +1,257 @@
+﻿@model NotesMarketPlace.Models.NoteDetailViewModel
+@{
+    ViewBag.Title = "NoteDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ 
+    Html.RenderPartial("_Navbar");
+}
+
+<!-- note detail section-->
+<section id="note-detail">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+
+                <!-- note details left -->
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="row">
+                        <!-- Note details image -->
+                        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-12">
+                            <div class="note-detail-img">
+                                <h4>Notes Details</h4>
+                                <img src="~/Content/image/notedetails/1.jpg" alt="image of note">
+                            </div>
+                        </div>
+
+                        <!-- details of notes -->
+                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-12">
+                            <div class="note-info">
+                                @if (Model.sellnote.Title == null)
+                                {
+                                    <h4>Title</h4>
+                                }
+                                else
+                                {
+                                    <h4>@Model.sellnote.Title</h4>
+                                }
+                                <h6>@Model.sellnote.Category</h6>
+                                <p>@Model.sellnote.Description</p>
+                                @if (Model.sellnote.IsPaid)
+                                {
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confirmationbox">DOWNLOAD/$@Model.sellnote.SellingPrice</button>
+                                }
+                                else
+                                {   
+                                    @Html.ActionLink("DOWNLOAD/$0", "Download", "SearchNote", new { noteId = Model.sellnote.ID, userId = Model.sellnote.SellerID }, new { @class = "btn btn-primary btn-lg", type = "button" })                                    
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- note details right -->
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="note-details">
+                        <ul class="note-full-detail">
+                            @if (Model.sellnote.UniversityName == null)
+                            {
+                                <li>institution:<span>University</span></li>
+                            }
+                            else
+                            {
+                                <li>institution:<span>@Model.sellnote.UniversityName</span></li>
+                            }
+                            <li>Country:<span>@ViewBag.countryName</span></li>
+                            @if (Model.sellnote.Course == null)
+                            {
+                                <li>Course Name<span>Course</span></li>
+                            }
+                            else
+                            {
+                                <li>Course Name<span>@Model.sellnote.Course</span></li>
+                            }
+                            @if (Model.sellnote.CourseCode == null)
+                            {
+                                <li>Course Code:<span>CourseCode</span></li>
+                            }
+                            else
+                            {
+                                <li>Course Code:<span>@Model.sellnote.CourseCode</span></li>
+                            }
+                            @if (Model.sellnote.Professor == null)
+                            {
+                                <li>Professor:<span>Professor</span></li>
+                            }
+                            else
+                            {
+                                <li>Professor:<span>@Model.sellnote.Professor</span></li>
+                            }
+                            @if (Model.sellnote.NumberofPages == null)
+                            {
+                                <li>Number of Pages:<span>Pages</span></li>
+                            }
+                            else
+                            {
+                                <li>Number of Pages:<span>@Model.sellnote.NumberofPages</span></li>
+                            }
+
+                            <li>Approved Date:<span>@Convert.ToString(string.Format("{0:MMMM/dd/yyyy}", Model.sellnote.CreatedDate))</span></li>
+                            <li>
+                                Rating:
+                                <span>
+                                    @for (var i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= Model.AvgRating)
+                                        {
+                                            <i class="fa fa-star"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-star-o"></i>
+                                        }
+                                    }
+                                    @Model.TotalReview reviews
+                                </span>
+                            </li>
+                            <li> @Model.reportedIssue  Users make this note as inappropriate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+
+<!-- note-preview ssection-->
+<section id="note-detail-preview">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+
+                <!-- note review left-->
+                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
+                    <div class="note-preview">
+                        <h4>Note Preview</h4>
+                        @if (Model.sellnote.NotesPreview == null)
+                        {
+                            <p>Note preview is not available</p>
+                        }
+                        else
+                        {
+                            <iframe src="@Url.Content(Model.sellnote.NotesPreview)"></iframe>
+                        }                        
+                    </div>
+                </div>
+                <!-- End of note review left section -->
+
+                <!-- note review right -->
+                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+                    <div id="customer-review">
+                        <h4>Customer Reviews</h4>
+                        <div class="reviews">
+                            <div class="comment-box">
+                                @if (Model.notesreview.Count() == 0)
+                                {
+                                    <p>No any review for this note</p>
+                                }
+                                @foreach (var item in Model.notesreview)
+                                {
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                                            <img src="@Url.Content(item.userProfiles.ProfilePicture)" alt="customer1">
+                                        </div>
+
+                                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10 review-details">
+                                            <ul>
+                                                <li>
+                                                    <h6>@item.users.FirstName @item.users.LastName</h6>
+                                                </li>
+                                                <li>
+                                                    @for (var i = 1; i <= 5; i++)
+                                                    {
+                                                        if (i <= item.sellerNotesReviews.Ratings)
+                                                        {
+                                                            <i class="fa fa-star"></i>
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="fa fa-star-o"></i>
+                                                        }
+                                                    }
+                                                </li>
+                                                <li>
+                                                    <p>@item.sellerNotesReviews.Comments.</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of note review right section -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- thanks Popup box-->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <!-- top close button -->
+            <div class="popup-close-btn">
+                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><img src="~/Content/image/notedetails/close.png"></span>
+                </button>
+            </div>
+
+            <!-- popup box content -->
+            <div class="modal-body">
+                <img src="~/Content/image/notedetails/SUCCESS.png">
+                <h2 class="text-center">Thank you for purchasing!</h2>
+                <h5>Dear Kane,</h5>
+                <p>As this is paid notes - you need to pay to seller Rahil Shah offline. We will send him an email that you want to download this note. He may contact you further process compietion.</p>
+                <p>In case, you have urgency,<br>Please contact us on +9195377345959</p>
+                <p>Once he receives the payment and acknowledge us - selected notes you can see over my downloads tab for download.</p>
+                <p>Have a good day.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of thanks popup-->
+
+<!-- Confirmation box -->
+<div class="modal fade" id="confirmationbox" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+
+            <!--popup close btn-->
+            <div class="popup-close-btn">
+                <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><img src="~/Content/image/notedetails/close.png"></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p class="confirmBox">Are you sure you want to perchasing this note ?</p><br />                
+                @Html.ActionLink("Yes", "Download", "SearchNote", new { noteId = Model.sellnote.ID, userId = Model.sellnote.SellerID }, new { @class = "btn btn-primary btn-lg confirmBoxYes", type = "button" })
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of confirmation box -->
+
+@{ 
+    Html.RenderPartial("_Footer");
+}
+

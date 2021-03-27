@@ -1,0 +1,70 @@
+﻿@model NotesMarketPlace.Models.UsersViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="login">
+    <div class="box">
+
+        <!-- login page logo -->
+        <div class="logo">
+            <div class="login-logo text-center">
+                <img src="~/Content/image/logo/top-logo.png" alt="login-logo">
+            </div>
+        </div>
+
+        <!-- login page content -->
+        <div class="login-content text-center">
+
+            <div class="login-heading text-center">
+                <h2>Login</h2>
+                <p>Enter your Email address and password to login</p>
+            </div>
+
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                if (ViewBag.EmailNotVerified != null)
+                {
+                    <p class="text-danger email-not-verify">@ViewBag.EmailNotVerified</p>
+                }
+
+                <!-- Email Box -->
+                <div class="form-group">
+                    <label class="pull-left"> @Html.DisplayNameFor(model => model.Email)</label>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "exampleInputEmail", placeholder = "Enter your email", type = "email" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger pull-left" })
+                </div>
+
+                <!-- Password box -->
+                <div class="form-group forgot-password">
+                    <label class="pull-left"> @Html.DisplayNameFor(model => model.Password)</label>
+                    <span>@Html.ActionLink("Forgot password ?", "ForgotPassword")</span>
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "password", placeholder = "Enter your password" })
+                    <img src="~/Content/image/comman-images/eye.png" toggle="#password" class="field-icon toggle-password">
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger pull-left" })
+                </div>
+
+                <!-- check box -->
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input logincheck" id="exampleCheck">
+                    &nbsp;
+                    <label class="form-check-label" for="exampleCheck">Remember Me</label>
+                </div>
+
+                <!-- Login button -->
+                <div id="login-btn">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                </div>
+
+                <!-- signup link -->
+                <span>Don't have an account? <b>@Html.ActionLink("Signup", "Signup")</b></span>
+            }
+
+        </div>
+    </div>
+</section>
+
+

@@ -5,7 +5,7 @@
 }
 
 @{ 
-    Html.RenderPartial("_Navbar");
+    Html.RenderPartial("_Front_Navbar");
 }
 
 <!-- page top image -->
@@ -37,12 +37,12 @@
 
                     <!-- first row -->
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 form-group">
-                        <label>Title*</label>
+                        <label>Title *</label>
                         @Html.TextBoxFor(model => model.Title, new { @class = "form-control", id = "addnote-title", placeholder = "Enter your note title" })
                         @Html.ValidationMessageFor(model => model.Title, null, new { @class = "text-danger pull-left" })
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 form-group">
-                        <label>Category*</label>
+                        <label>Category *</label>
                         @Html.DropDownListFor(model => Model.Category, new SelectList(Model.NoteCategoryList, "ID", "Name", Model.Category), "Select your note Category", new { @class = "form-control", id = "addnote-category" })
                         @Html.ValidationMessageFor(model => model.Category, null, new { @class = "text-danger" })
                     </div>
@@ -55,13 +55,13 @@
                     </div>
                     <div class="form-group upload-notes col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <label for="upload-notes">Upload Notes *</label>
-                        @Html.TextBoxFor(model => model.UploadNotes, new { type = "file", accept = ".pdf,.doc", @class = "form -control-file image-upload-note", id = "addnote-upload-notes", @multiple = "multiple" })
+                        @Html.TextBoxFor(model => model.UploadNotes, new { type = "file", accept = ".pdf,.doc", @class = "form -control-file image-upload-note", id = "addnote-upload-notes", @multiple = "multiple", required = "required" })
                         @Html.ValidationMessageFor(model => model.UploadNotes, null, new { @class = "text-danger" })
                     </div>
 
                     <!-- third row -->
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 form-group">
-                        <label>Type</label>
+                        <label>Type *</label>
                         @Html.DropDownListFor(model => Model.NoteType, new SelectList(Model.NoteTypeList, "ID", "Name", Model.NoteType), "Select your note type", new { @class = "form-control", id = "addnote-type" })
                         @Html.ValidationMessageFor(model => model.NoteType, null, new { @class = "text-danger" })
                     </div>
@@ -72,7 +72,7 @@
 
                     <!-- forth row -->
                     <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12 form-group">
-                        <label>Description*</label>
+                        <label>Description *</label>
                         @Html.TextAreaFor(model => model.Description, new { @class = "form-control", id = "addnote-Discription", placeholder = "Enter your Description..", rows = "4" })
                         @Html.ValidationMessageFor(model => model.Description, null, new { @class = "text-danger" })
                     </div>
@@ -88,7 +88,7 @@
 
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 form-group">
-                        <label>Country</label>
+                        <label>Country *</label>
                         @Html.DropDownListFor(model => Model.Country, new SelectList(Model.CountryList, "ID", "Name", Model.Country), "Select your country name", new { @class = "form-control", id = "addnote-type" })
                         @Html.ValidationMessageFor(model => model.Country, null, new { @class = "text-danger" })
                     </div>
@@ -147,7 +147,7 @@
                         </div>
 
                         <div class="addnote-professor">
-                            <label>Selling Price*</label>
+                            <label>Selling Price *</label>
                             @Html.TextBoxFor(model => model.SellingPrice, new { @class = "form-control", id = "addnote-professor", placeholder = "Enter notes price" })
                             @Html.ValidationMessageFor(model => model.SellingPrice, null, new { @class = "text-danger" })
                         </div>
@@ -202,6 +202,6 @@
 </section>
 
 @{
-    Html.RenderPartial("_Footer");
+    Html.RenderPartial("_Front_Footer");
 }
 

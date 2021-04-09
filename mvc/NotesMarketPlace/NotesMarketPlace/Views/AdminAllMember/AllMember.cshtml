@@ -1,0 +1,180 @@
+﻿@model NotesMarketPlace.Models.AdminAllMemberViewModel
+@{
+    ViewBag.Title = "All-Members";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- members section -->
+<section id="members">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- members heading -->
+            @using (Html.BeginForm("AllMember", "AdminAllMember", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-3 col-sm-3 col-12">
+                        <h4>Members</h4>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-9 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="AllMember_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- END of member heading -->
+
+            <!-- inprogress note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table members-tbl">
+
+                        <!-- table heading -->
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("FIRST NAME", "AllMember", new { SortOrder = ViewBag.FirstNameSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("LAST NAME", "AllMember", new { SortOrder = ViewBag.LastNameSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("EMAIL", "AllMember", new { SortOrder = ViewBag.EmailSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("JOINING DATE", "AllMember", new { SortOrder = ViewBag.JDateSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("UNDER REVIEW NOTES", "AllMember", new { SortOrder = ViewBag.UnderReviewNoteSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("PUBLISHED NOTES", "AllMember", new { SortOrder = ViewBag.PublishedNoteSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("DOWNLOADED NOTES", "AllMember", new { SortOrder = ViewBag.DownloadedNoteSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("TOTAL EXPENSES", "AllMember", new { SortOrder = ViewBag.TotalExpensesSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("TOTAL EARNING", "AllMember", new { SortOrder = ViewBag.TotalEarningSortParm, AllMember_search = Request.QueryString["AllMember_search"], AllMember_page = ViewBag.currentPage })</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <!-- End of table heading -->
+
+                        <!-- table body -->
+                        <tbody>
+
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="11" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+                            @foreach (var item in Model.Members)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@item.user.FirstName</td>
+                                    <td>@item.user.LastName</td>
+                                    <td>@item.user.Email</td>
+                                    <td>@item.user.CreatedDate</td>
+                                    <td class="link-change-color"><a href="@Url.Action("UnderReviewNotes", "AdminNotesUnderReview", new {memberId = item.user.ID })">@item.underReviewNote</a></td>
+                                    <td class="link-change-color"><a href="@Url.Action("PublishedNote", "AdminPublishedNote", new { memberId = item.user.ID})">@item.publichedNote</a></td>
+                                    <td class="link-change-color"><a href="@Url.Action("AllDownloadedNote", "AdminAllDownloadedNote", new { memberId = item.user.ID})">@item.downloadedNote</a></td>
+                                    <td class="link-change-color"><a href="@Url.Action("AllDownloadedNote", "AdminAllDownloadedNote", new { memberId = item.user.ID})">$@item.totalExpenses</a></td>
+                                    <td>$@item.totalEarning</td>
+                                    <td>
+                                        <div class="btn-group dropleft">
+
+                                            <!-- drop down menu -->
+                                            <button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/Content/image/comman-images/dots.png" alt="menu" class="dropdown">
+                                            </button>
+
+                                            <!-- drop down items -->
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @Html.ActionLink("View More Details", "MemberDetail", "MemberDetail", new { memberId = item.user.ID }, new { @class = "dropdown-item" })
+                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#deactivate-@item.user.ID">Deactivate</button>
+                                            </div>
+
+                                            <!--pop up box for inreview notes -->
+                                            <div class="modal fade" id="deactivate-@item.user.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <p class="text-left">
+                                                                Are you sure you want to make this member inactive ?
+                                                                <br />
+                                                                <br />Press yes to continue.
+                                                            </p>
+                                                            <button type="button" class="btn btn-secondary deactiveBox" data-dismiss="modal">No</button>
+                                                            <a type="button" class="btn btn-primary deactiveBoxYes" href="@Url.Action("DeactiveUser","AdminAllMember", new { userId = item.user.ID})">Yes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End of popup box  -->
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                        <!-- END of table body -->
+
+                    </table>
+                </div>
+            </div>
+            <!-- END of table -->
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("AllMember", new { AllMember_page = @ViewBag.currentPage, SortOrder = Request.QueryString["SortOrder"], AllMember_search = Request.QueryString["AllMember_search"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("AllMember", new { AllMember_page = @ViewBag.currentPage - 1, SortOrder = Request.QueryString["SortOrder"], AllMember_search = Request.QueryString["AllMember_search"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "AllMember", new { AllMember_page = i, SortOrder = Request.QueryString["SortOrder"], AllMember_search = Request.QueryString["AllMember_search"]}, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("AllMember", new { AllMember_page = @ViewBag.currentPage, SortOrder = Request.QueryString["SortOrder"], AllMember_search = Request.QueryString["AllMember_search"]})"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("AllMember", new { AllMember_page = @ViewBag.currentPage + 1, SortOrder = Request.QueryString["SortOrder"], AllMember_search = Request.QueryString["AllMember_search"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+        </div>
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

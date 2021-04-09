@@ -1,0 +1,201 @@
+﻿@model IEnumerable<NotesMarketPlace.Models.AdminAllDownloadedViewModel>
+@{
+    ViewBag.Title = "Downloaded-Note";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- downloaded notes section -->
+<section id="downloaded-notes">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <h4>Downloaded Notes</h4>
+                </div>
+            </div>
+
+            <!-- downloaded notes heading -->
+            @using (Html.BeginForm("AllDownloadedNote", "AdminAllDownloadedNote", FormMethod.Get, new { memberId = ViewBag.MemberID, noteid = ViewBag.NoteID }))
+            {
+                <div class="row">
+
+                    <!-- select notes -->
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                        <label>Note</label>
+                        <div class="form-group filter-seller">
+                            @Html.DropDownList("Note", new SelectList(@ViewBag.noteNameList, "Name"), "Select Note", new { @class = "form-control", id = "inputState", name = "Note" })
+                        </div>
+                    </div>
+
+                    <!-- select seller -->
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                        <label>Seller</label>
+                        <div class="form-group filter-seller">
+                            @Html.DropDownList("sellerName", new SelectList(@ViewBag.sellerNameList, "Name"), "Select Name", new { @class = "form-control", id = "inputState", name = "sellerName" })
+                        </div>
+                    </div>
+
+                    <!-- select month -->
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-4">
+                        <label>Buyer</label>
+                        <div class="form-group filter-seller">
+                            @Html.DropDownList("buyerName", new SelectList(@ViewBag.buyerNamelist, "Name"), "Select Name", new { @class = "form-control", id = "inputState", name = "buyerName" })
+                        </div>
+                    </div>
+
+                    <!-- search bar/button -->
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="ADNotes_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>
+
+                </div>
+            }
+            <!-- END of downloaded note heading -->
+
+
+            <!-- downloaded note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table downloaded-notes-tbl">
+
+                        <!-- table head -->
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "AllDownloadedNote", new { SortOrder = ViewBag.TitleSortParm, ADNotes_search = Request.QueryString["ADNotes_search"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID, ADNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "AllDownloadedNote", new { SortOrder = ViewBag.CategorySortParm, ADNotes_search = Request.QueryString["ADNotes_search"],sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID, ADNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("BUYER", "AllDownloadedNote", new { SortOrder = ViewBag.BuyerSortParm, ADNotes_search = Request.QueryString["ADNotes_search"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID, ADNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col"></th>
+                                <th scope="col">@Html.ActionLink("SELLER", "AllDownloadedNote", new { SortOrder = ViewBag.SellerSortParm, ADNotes_search = Request.QueryString["ADNotes_search"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID, ADNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col"></th>
+                                <th scope="col">@Html.ActionLink("SELL TYPE", "AllDownloadedNote", new { SortOrder = ViewBag.SellTypeSortParm, ADNotes_search = Request.QueryString["ADNotes_search"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID, ADNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("PRICE", "AllDownloadedNote", new { SortOrder = ViewBag.PriceSortParm, ADNotes_search = Request.QueryString["ADNotes_search"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID, ADNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("DOWNLOADED DATE/TIME", "AllDownloadedNote", new { SortOrder = ViewBag.DateSortParm, ADNotes_search = Request.QueryString["ADNotes_search"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID, ADNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+
+                        <!-- table body -->
+                        <tbody>
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="11" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                //for count index number
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td class="link-change-color"><a href="@Url.Action("NoteDetails", "SearchNote", new { id = item.download.NoteID})">@item.download.NoteTitle</a></td>
+                                    <td>@item.download.NoteCategory</td>
+                                    <td>@item.buyer.FirstName @item.buyer.LastName</td>
+                                    <td><a href="@Url.Action("MemberDetail","MemberDetail", new { memberId = item.buyer.ID})"><img src="~/Content/image/comman-images/eye.png"></a></td>
+                                    <td>@item.seller.FirstName @item.seller.LastName</td>
+                                    <td><a href="@Url.Action("MemberDetail","MemberDetail", new { memberId = item.seller.ID})"><img src="~/Content/image/comman-images/eye.png"></a></td>
+                                    @if (item.download.IsPaid == true)
+                                    {
+                                        <td>Paid</td>
+                                        <td>$@item.download.PurchasedPrice</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                        <td>$0</td>
+                                    }
+                                    <td>@item.download.AttachmentDownloadedDate</td>
+                                    <td>
+                                        <div class="table-last-img">
+
+                                            <!-- drop down menu -->
+                                            <button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/Content/image/comman-images/dots.png" alt="menu" class="dropdown">
+                                            </button>
+
+                                            <!-- drop down items -->
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @Html.ActionLink("View More Details", "NoteDetails", "SearchNote", new { id = item.download.NoteID }, new { @class = "dropdown-item" })
+                                                @Html.ActionLink("Download Note", "AdminDownload", "AdminDownloadNote", new { noteId = item.download.NoteID, userId = item.seller.ID }, new { @class = "dropdown-item" })
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                no++; <!-- increase the index number -->
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END of download note table -->
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("AllDownloadedNote", new { ADNotes_page = @ViewBag.currentPage, ADNotes_searchsearch = Request.QueryString["ADNotes_search"], SortOrder = Request.QueryString["SortOrder"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID})"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("AllDownloadedNote", new { ADNotes_page = @ViewBag.currentPage - 1, ADNotes_searchsearch = Request.QueryString["ADNotes_search"], SortOrder = Request.QueryString["SortOrder"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID})"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "AllDownloadedNote", new { ADNotes_page = i, ADNotes_searchsearch = Request.QueryString["ADNotes_search"], SortOrder = Request.QueryString["SortOrder"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("AllDownloadedNote", new { ADNotes_page = @ViewBag.currentPage, ADNotes_searchsearch = Request.QueryString["ADNotes_search"], SortOrder = Request.QueryString["SortOrder"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("AllDownloadedNote", new { ADNotes_page = @ViewBag.currentPage + 1, ADNotes_searchsearch = Request.QueryString["ADNotes_search"], SortOrder = Request.QueryString["SortOrder"], sellerName = Request.QueryString["sellerName"], buyerName = Request.QueryString["buyerName"], Note = Request.QueryString["Note"], memberId = ViewBag.MemberID, noteid = ViewBag.NoteID })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- END of pagination -->
+
+        </div>
+    </div>
+</section>
+<!-- END of downloaded note section -->
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

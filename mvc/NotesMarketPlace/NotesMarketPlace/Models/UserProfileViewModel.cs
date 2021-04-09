@@ -35,7 +35,7 @@ namespace NotesMarketPlace.Models
 
         [Required(ErrorMessage = "Phone number is required")]
         [MaxLength(10, ErrorMessage = "Length should be <10")]
-        [Range(0, int.MaxValue, ErrorMessage = "Only positive number allowed")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only digits allowed")]
         public string PhoneNumber { get; set; }
 
         public HttpPostedFileBase ProfilePicture { get; set; }

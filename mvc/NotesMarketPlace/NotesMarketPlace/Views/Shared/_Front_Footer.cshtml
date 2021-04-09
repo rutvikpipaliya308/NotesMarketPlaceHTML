@@ -1,0 +1,29 @@
+﻿<!-- Footer Section -->
+<section id="footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-7 col-12 footer-text text-left">
+                <p>Copyright @@ Tatvasoft ALL Rights Reserved By</p>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 col-12 footer-icon text-right">
+                <ul class="social-list">
+                    @using (NotesMarketPlaceEntities db = new NotesMarketPlaceEntities())
+                    {
+                        String fb = db.SystemConfigurations.Where(x => x.ID == 8 && x.IsActive == true).FirstOrDefault().Value;
+                        String tw = db.SystemConfigurations.Where(x => x.ID == 9 && x.IsActive == true).FirstOrDefault().Value;
+                        String lnk = db.SystemConfigurations.Where(x => x.ID == 10 && x.IsActive == true).FirstOrDefault().Value;
+
+                        <li><a haref="@fb"><i class="fa fa-facebook"></i></a></li>
+                        <li><a haref="@tw"><i class="fa fa-twitter"></i></a></li>
+                        <li><a haref="@lnk"><i class="fa fa-linkedin"></i></a></li>
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End of footer section -->

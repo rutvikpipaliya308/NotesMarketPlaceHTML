@@ -5,7 +5,15 @@
 }
 
 @{
-    Html.RenderPartial("_Navbar_FSP");
+    if(Session["ID"] == null)
+    {
+        Html.RenderPartial("_Front_Navbar_FSP");
+    }
+    else
+    {
+        Html.RenderPartial("_Front_Navbar");
+    }
+
 }
 
 <!-- top-image -->
@@ -91,6 +99,6 @@
 </section>
 
 @{
-    Html.RenderPartial("_Footer");
+    Html.RenderPartial("_Front_Footer");
 }
 

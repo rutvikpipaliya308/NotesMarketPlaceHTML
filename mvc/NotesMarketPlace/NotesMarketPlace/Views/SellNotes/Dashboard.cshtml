@@ -5,7 +5,14 @@
 }
 
 @{     
-    Html.RenderPartial("_Navbar");
+    if (Session["ID"] != null)
+    {
+        Html.RenderPartial("_Front_Navbar");
+    }
+    else
+    {
+        Html.RenderPartial("_Front_Navbar_FSP");
+    }
 }
 
 <!-- Dashboard Stats -->
@@ -38,11 +45,11 @@
                 <div class="col-xl-4 col-lg-4 col-md-8 col-sm-8 col-12 sec-stats">
                     <div class="sec-stats-content">
                         <span>
-                            <h6>@ViewBag.total_sold_notes</h6>
+                            <a href="@Url.Action("MySoldNotes","SoldNotes")"><h6>@ViewBag.total_sold_notes</h6></a>
                             <p>Number Notes Sold</p>
                         </span>
                         <span>
-                            <h6>$@ViewBag.money_earned</h6>
+                            <a href="@Url.Action("MySoldNotes","SoldNotes")"><h6>$@ViewBag.money_earned</h6></a>
                             <p>Money Earned</p>
                         </span>
                     </div>
@@ -51,7 +58,7 @@
                 <!-- My downloads -->
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
                     <div class="stats-content">
-                        <h6>@ViewBag.my_downloads</h6>
+                        <a href="@Url.Action("MyDownloads","MyDownloads")"><h6>@ViewBag.my_downloads</h6></a>
                         <p>My Downloads</p>
                     </div>
                 </div>
@@ -59,7 +66,7 @@
                 <!-- My rejected notes -->
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
                     <div class="stats-content">
-                        <h6>@ViewBag.total_rejected_note</h6>
+                        <a href="@Url.Action("RejectedNotes","RejectedNotes")"><h6>@ViewBag.total_rejected_note</h6></a>
                         <p>My Rejected Notes</p>
                     </div>
                 </div>
@@ -67,7 +74,7 @@
                 <!-- Buyer Requests -->
                 <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-12 rstats">
                     <div class="stats-content">
-                        <h6>@ViewBag.buyer_request</h6>
+                        <a href="@Url.Action("BuyerRequest","BuyerRequest")"><h6>@ViewBag.buyer_request</h6></a>
                         <p>Buyer Requests</p>
                     </div>
                 </div>
@@ -135,10 +142,27 @@
                                                 <div class="inprogress-note-img text-center">
                                                     @if (items.Status == 6)
                                                     {
-                                                        <a href="@Url.Action("EditNote", "SellNotes", new { id = items.ID})"><img src="~/Content/image/comman-images/edit.png" alt="edit"></a>                                                        
-                                                        <button type="submit" onclick="return confirm('Are you sure you want to delete @items.Title Book')">
+                                                        <a href="@Url.Action("EditNote", "SellNotes", new { id = items.ID})"><img src="~/Content/image/comman-images/edit.png" alt="edit"></a>
+                                                        <button type="button" data-toggle="modal" class="delete-btn" data-target="#deletenote-@items.ID">
                                                             <img src="~/Content/image/comman-images/delete.png" alt="delete">
                                                         </button>
+
+                                                        <!--pop up box for inreview notes -->
+                                                        <div class="modal fade" id="deletenote-@items.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <p class="text-left">
+                                                                            Are you sure you want to delete this note ?
+                                                                            <br />
+                                                                            <br />Press yes to continue.
+                                                                        </p>
+                                                                        <button type="button" class="btn btn-secondary deletenoteBox" data-dismiss="modal">No</button>
+                                                                        <a type="button" class="btn btn-secandory deletenoteBoxYes" href="@Url.Action("Delete","SellNotes",new{ id = items.ID})">Yes</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     }
                                                     else
                                                     {
@@ -330,6 +354,6 @@
 </section>
 
 @{
-    Html.RenderPartial("_Footer");
+    Html.RenderPartial("_Front_Footer");
 }
 

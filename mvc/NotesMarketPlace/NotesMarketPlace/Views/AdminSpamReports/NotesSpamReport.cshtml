@@ -1,0 +1,165 @@
+﻿@model NotesMarketPlace.Models.AdminSpamNotesIssuesViewModel
+@{
+    ViewBag.Title = "NotesSpamReport";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- spam reports notes -->
+<section id="spam-reports">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- inprogress note heading -->
+            @using (Html.BeginForm("NotesSpamReport", "AdminSpamReports", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-4 col-sm-4 col-12">
+                        <h4>Spam Reports</h4>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-8 col-sm-8 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="Spam_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            <!-- inprogress note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table spam-reports-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("REPORTED BY", "NotesSpamReport", new { SortOrder = ViewBag.ReportedBySortParm, Spam_search = Request.QueryString["Spam_search"], Spam_page = @ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "NotesSpamReport", new { SortOrder = ViewBag.TitleSortParm, Spam_search = Request.QueryString["Spam_search"], Spam_page = @ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "NotesSpamReport", new { SortOrder = ViewBag.CategorySortParm, Spam_search = Request.QueryString["Spam_search"], Spam_page = @ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("DATE EDITED", "NotesSpamReport", new { SortOrder = ViewBag.DateSortParm, Spam_search = Request.QueryString["Spam_search"], Spam_page = @ViewBag.currentPage })</th>
+                                <th scope="col">REMARK</th>
+                                <th></th>
+                                <th scope="col">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+
+                            @foreach (var item in Model.issue)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@item.Users.FirstName @item.Users.LastName</td>
+                                    <td class="link-change-color"><a href="@Url.Action("NoteDetails", "SearchNote", new { id = item.NoteID})">@item.SellerNotes.Title</a></td>
+                                    <td>@item.SellerNotes.NoteCategories.Name</td>
+                                    <td>@item.CreatedDate</td>
+                                    <td>@item.Remarks</td>
+                                    <td>
+                                        <button type="button" class="delete-btn" data-toggle="modal" data-target="#spamreportdelete-@item.ID"><img src="~/Content/image/comman-images/delete.png" alt="delete image"></button>
+
+                                        <!--pop up box for delete spam reported issues -->
+                                        <div class="modal fade" id="spamreportdelete-@item.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <p class="text-left">
+                                                            Are you sure you want to delete reported issue ?
+                                                            <br />
+                                                            <br />Press yes to continue.
+                                                        </p>
+                                                        <button type="button" class="btn btn-secondary deactiveBox" data-dismiss="modal">No</button>
+                                                        <a type="button" class="btn btn-primary deactiveBoxYes" href="@Url.Action("DeleteSpamReport","AdminSpamReports", new { issueId = item.ID})">Yes</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="btn-group dropleft">
+                                            <!-- drop down menu -->
+                                            <button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/Content/image/comman-images/dots.png" alt="menu" class="dropdown">
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @Html.ActionLink("View More Details", "NoteDetails", "SearchNote", new { id = item.NoteID }, new { @class = "dropdown-item" })
+                                                @Html.ActionLink("Download Note", "AdminDownload", "AdminDownloadNote", new { noteId = item.NoteID, userId = item.SellerNotes.SellerID }, new { @class = "dropdown-item" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("NotesSpamReport", new { Spam_page = @ViewBag.currentPage, SortOrder = Request.QueryString["SortOrder"], Spam_search = Request.QueryString["Spam_search"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("NotesSpamReport", new { Spam_page = @ViewBag.currentPage - 1, SortOrder = Request.QueryString["SortOrder"], Spam_search = Request.QueryString["Spam_search"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "NotesSpamReport", new { Spam_page = i, SortOrder = Request.QueryString["SortOrder"], Spam_search = Request.QueryString["Spam_search"] }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("NotesSpamReport", new { Spam_page = @ViewBag.currentPage, SortOrder = Request.QueryString["SortOrder"], Spam_search = Request.QueryString["Spam_search"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("NotesSpamReport", new { Spam_page = @ViewBag.currentPage + 1, SortOrder = Request.QueryString["SortOrder"], Spam_search = Request.QueryString["Spam_search"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+        </div>
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

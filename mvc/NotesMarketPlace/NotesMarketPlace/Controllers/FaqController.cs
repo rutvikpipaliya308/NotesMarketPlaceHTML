@@ -11,6 +11,7 @@ namespace NotesMarketPlace.Controllers
         // GET: Faq/Faq
         [HttpGet]
         [Route("Faq")]
+        [OutputCache(Duration = 0)]
         public ActionResult Faq()
         {
             ViewBag.navClass = "white-nav";

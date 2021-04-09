@@ -1,0 +1,180 @@
+﻿@model NotesMarketPlace.Models.ManageAdministratorViewModel
+@{
+    ViewBag.Title = "ManageAdministrator";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- manage administrator -->
+<section id="manage-administrator">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- manage administrator heading -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <h4>Manage Administrator</h4>
+                </div>
+            </div>
+            <!-- END of heading -->
+
+            <!-- search section  -->
+            @using (Html.BeginForm("ManageAdministrator", "AdminManageAdministrator", FormMethod.Get))
+            {
+                <div class="row">
+
+                    <!-- ADD administrator button -->
+                    <div class="col-xl-5 col-lg-5 col-md-3 col-sm-4 col-12">
+                        <a type="button" class="btn btn-primary btn-lg administrator-btn" href="@Url.Action("AddAdmin","AdminManageAdministrator")">ADD ADMINISTRATOR</a>                        
+                    </div>
+
+                    <!-- Search -->
+                    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-8 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="Admini_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>
+
+                </div>
+            }
+            <!-- END of search section -->
+
+            <!-- manage administrator table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table manage-administrator-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("FIRST NAME", "ManageAdministrator", new { SortOrder = ViewBag.FirstnameSortParm, Admini_search = Request.QueryString["Admini_search"], Admini_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("LAST NAME", "ManageAdministrator", new { SortOrder = ViewBag.LastnameSortParm, Admini_search = Request.QueryString["Admini_search"], Admini_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("EMAIL", "ManageAdministrator", new { SortOrder = ViewBag.EmailSortParm, Admini_search = Request.QueryString["Admini_search"], Admini_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("PHONE NO.", "ManageAdministrator", new { SortOrder = ViewBag.PhoneNoSortParm, Admini_search = Request.QueryString["Admini_search"], Admini_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("DATE ADDED", "ManageAdministrator", new { SortOrder = ViewBag.DateSortParm, Admini_search = Request.QueryString["Admini_search"], Admini_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("ACTIVE", "ManageAdministrator", new { SortOrder = ViewBag.ActiveSortParm, Admini_search = Request.QueryString["Admini_search"], Admini_page = ViewBag.currentPage })</th>
+                                <th scope="col">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                //calculate the index number
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+                            @foreach (var item in Model.allAdmins)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@item.admins.FirstName</td>
+                                    <td>@item.admins.LastName</td>
+                                    <td>@item.admins.Email</td>
+                                    <td>+@item.adminProfiles.PhoneNumber_CountryCode @item.adminProfiles.PhoneNumber</td>
+                                    <td>@item.admins.CreatedDate</td>
+                                    @if (item.admins.IsActive == true)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                    <td>
+                                        <div class="table-last-img">
+                                            <div class="edit-img"><a href="@Url.Action("EditAdmins", "AdminManageAdministrator", new { id = item.admins.ID})"><img src="~/Content/image/comman-images/edit.png"></a></div>
+                                            <button type="button" class="delete-btn" data-toggle="modal" data-target="#admindelete-@item.admins.ID"><img src="~/Content/image/comman-images/delete.png" alt="delete image"></button>
+                                        </div>
+
+                                        <!--pop up box for delete admin -->
+                                        <div class="modal fade" id="admindelete-@item.admins.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <p class="text-left">
+                                                            Are you sure you want to make this administrator inactive ?
+                                                            <br />
+                                                            <br />Press yes to continue.
+                                                        </p>
+                                                        <button type="button" class="btn btn-secondary deactiveBox" data-dismiss="modal">No</button>
+                                                        <a type="button" class="btn btn-primary deactiveBoxYes" href="@Url.Action("DeleteAdmin","AdminManageAdministrator", new { admID = item.admins.ID})">Yes</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END of popup box -->
+
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END of manage administaroe section -->
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("ManageAdministrator", new { Admini_page = @ViewBag.currentPage, Admini_search = Request.QueryString["Admini_search"], SortOrder = Request.QueryString["SortOrder"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ManageAdministrator", new { Admini_page = @ViewBag.currentPage - 1, Admini_search = Request.QueryString["Admini_search"], SortOrder = Request.QueryString["SortOrder"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "ManageAdministrator", new { Admini_page = i, Admini_search = Request.QueryString["Admini_search"], SortOrder = Request.QueryString["SortOrder"] }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("ManageAdministrator", new { Admini_page = @ViewBag.currentPage, Admini_search = Request.QueryString["Admini_search"], SortOrder = Request.QueryString["SortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ManageAdministrator", new { Admini_page = @ViewBag.currentPage + 1, Admini_search = Request.QueryString["Admini_search"], SortOrder = Request.QueryString["SortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+        </div>
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}
+

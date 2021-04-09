@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Title -->
+    <title>@ViewBag.Title | NotesMarketPlace</title>
+
+    <!-- meta-tag -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/image/favicon/favicon.ico">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+
+    <!-- Font Awasome CSS-->
+    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css">
+
+    <!-- Responsive tabs -->
+    <link rel="stylesheet" href="~/Content/responsive-tabs.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/Content/admin-css/style.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/Content/admin-css/responsive.css">
+
+</head>
+
+<body>
+
+    @RenderBody()
+
+    <!-- jquery -->
+    <script src="~/Scripts/jquery.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Scripts/popper.min.js"></script>
+
+    <!-- Bootsrap js -->
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <!-- Custom js -->
+    <script src="~/Scripts/admin-script/script.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

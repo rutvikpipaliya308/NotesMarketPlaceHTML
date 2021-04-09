@@ -16,6 +16,7 @@ namespace NotesMarketPlace.Controllers
         //GET : Contactus/Contactus
         [HttpGet]
         [Route("ContactUs")]
+        [OutputCache(Duration = 0)]
         public ActionResult ContactUs()
         {
             ViewBag.navClass = "white-nav";
@@ -28,7 +29,7 @@ namespace NotesMarketPlace.Controllers
                 {
                     var user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
                     ContactUsViewModel contact = new ContactUsViewModel();
-                    contact.FirstName = user.FirstName + " " + user.LastName;
+                    contact.FirstName = user.FirstName; 
                     contact.Email = user.Email;
                     return View(contact);
                 }
@@ -41,6 +42,9 @@ namespace NotesMarketPlace.Controllers
         [Route("ContactUs")]
         public ActionResult ContactUs(ContactUsViewModel commentdetails)
         {
+            ViewBag.navClass = "white-nav";
+            ViewBag.ContactUs = "active";
+
             if (ModelState.IsValid)
             {
                 //sending mail with comment
@@ -97,7 +101,9 @@ namespace NotesMarketPlace.Controllers
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("rutvikpipaliya33@gmail.com", "3oo82ooo");
+            string email = System.Configuration.ConfigurationManager.AppSettings["SenderEmail"];
+            string password = System.Configuration.ConfigurationManager.AppSettings["Password"];
+            client.Credentials = new System.Net.NetworkCredential(email, password);
             try
             {
                 client.Send(mail);

@@ -21,6 +21,7 @@ namespace NotesMarketPlace.Controllers
         [HttpGet]
         [Authorize]
         [Route("MySoldNotes")]
+        [OutputCache(Duration = 0)]
         public ActionResult MySoldNotes(String sortOrder, string SN_search, int MySoldNotes_page = 1)
         {
             ViewBag.navClass = "white-nav";

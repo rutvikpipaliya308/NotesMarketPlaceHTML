@@ -840,7 +840,7 @@ ul.social-list li a i {
 	color: white;
 }
 
-/*--------------- search and dilter notes section -------------*/
+/*--------------- search and filter notes section -------------*/
 
 #search-filter-section h2 {
 	font-size: 24px;
@@ -873,7 +873,7 @@ ul.social-list li a i {
 }
 
 .searchbar {
-	margin-bottom: 2px;
+	margin-bottom: 20px;
 }
 
 .search-field-icon {
@@ -2073,18 +2073,19 @@ details[open] .faq__question > h6 {
 	list-style: none;
 	margin-left: -40px
 }
-
+/*contact us end*/
 
 .notelink {
 	color: #6255a5;
 }
 
+/*table heading link*/
 th a{
 	color: #333333;
 }
 
 /*delete button on deshboard*/
-.inprogress-note-img button {
+.inprogress-note-img button.delete-btn {
 	border: none;
 	background-color: white;
 	outline: none;
@@ -2104,6 +2105,7 @@ th a{
 	padding-bottom: 5px;
 }
 
+/*sucess message*/
 .forgotpass-content .text-success,
 .signup-content .text-success,
 .changepass-content .text-success {
@@ -2111,20 +2113,46 @@ th a{
 	padding-bottom: 10px;
 }
 
-/* conformation for paid note */
-.modal-body .confirmBox {
-	font-weight: 500;
-	font-size: 19px;
-	padding-top: 15px;
-	margin-bottom: 10px;
-}
-
+/* paid note confirm box */
 .modal-body .confirmBoxYes {	
 	background-color: #6255a5;
 	border-color: #6255a5;
 	margin-bottom: 16px;
 	float: right;
 	line-height: 25px;
+	margin-right: 15px;
+}
+
+.modal-body .confirmBox {
+	margin-bottom: 16px;
+	float: right;
+	line-height: 25px;
+}
+
+.inprogress-note-tbl .modal-body .deletenoteBox {
+	margin-bottom: 16px !important;
+	float: right !important;
+	line-height: 25px !important;
+	margin-right: 15px;
+}
+
+.modal-body .deletenoteBoxYes {
+	margin-bottom: 16px;
+	float: right;
+	line-height: 25px;
+	background-color: #6255a5;
+	border-color: #6255a5;
+	margin-right: 15px;
+	color: white;
+}
+
+.modal-body .deletenoteBoxYes:hover {
+	background-color: #6255a5;
+	border-color: #6255a5;
+}
+
+.confirmBoxYes:hover {
+	background-color: #6255a5;
 }
 
 .login-content span.field-validation-error,
@@ -2143,6 +2171,7 @@ input.input-validation-error {
 	border-color: #ced4da !important;
 }
 
+/* mobile number predigit in userprofile */
 #userprofile-predigit {
 	width: 30%;
 	left: 0;
@@ -2152,6 +2181,7 @@ input.input-validation-error {
 	padding-left: 14%;
 }
 
+ /*confirm box */
  button.exampleClose,
  button.exampleYes {
 	float: right;
@@ -2163,8 +2193,55 @@ button.exampleYes {
 	width: 66px !important;
 }
 
+/* error for email not verify */
 .email-not-verify {
 	font-size: 14px !important;
 	margin: 0;
 	padding: 0;
+}
+
+/* user review delete by admin */
+ul.review-delete button > img {
+	float: right;
+	height: 25px !important;
+	width: 25px !important;
+	margin-right: 50px
+}
+
+ul.review-delete button {
+	float: right;
+}
+
+ul.review-delete h6 > button {
+	outline: none;
+	border: none;
+	background-color: white;
+}
+
+/* popup box close button */
+button.popup-close-btn {
+	text-decoration: none;
+	border: none;
+	outline: none;
+}
+
+#customer-review div.modal-body p,
+.inprogress-note-tbl div.modal-body p {
+	margin-top: 20px;
+}
+
+td.link-change-color a,
+.link-change-color a {
+	color: #6255a5;
+}
+
+/* min size of page if less data */
+#buyer-requests,
+#mysoldnotes,
+#addCountry,
+#addCategory,
+add-administrator,
+mydownloads {
+	position: relative;
+	min-height: 85%;
 }

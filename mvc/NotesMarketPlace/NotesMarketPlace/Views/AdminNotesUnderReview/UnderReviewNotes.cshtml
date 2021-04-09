@@ -1,0 +1,238 @@
+﻿@model IEnumerable<NotesMarketPlace.Models.AdminNotesUnderReviewViewModel>
+@{
+    ViewBag.Title = "UnderReviewNotes";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!--  notes underr review -->
+<section id="notes-under-review">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <h4>Notes Under Review</h4>
+                </div>
+            </div>
+
+            <!-- underreview note heading -->
+            @using (Html.BeginForm("UnderReviewNotes", "AdminNotesUnderReview", FormMethod.Get, new { memberId = ViewBag.tempId }))
+            {
+
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <label>Seller</label>
+                        <div class="form-group filter-seller">
+                            @Html.DropDownList("sellerName", new SelectList(@ViewBag.sellerNameList, "Name"), "Select Name", new { @class = "form-control", id = "inputState", name = "sellerName" })
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="NUReview_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- END of under review section -->
+
+            <!-- underreview note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table notes-under-review-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "UnderReviewNotes", new { SortOrder = ViewBag.TitleSortParm, NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"] , memberId = ViewBag.tempId, NUR_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "UnderReviewNotes", new { SortOrder = ViewBag.CategorySortParm, NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId, NUR_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("SELLER", "UnderReviewNotes", new { SortOrder = ViewBag.SellerSortParm, NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId, NUR_page = ViewBag.currentPage })</th>
+                                <th></th>
+                                <th scope="col">@Html.ActionLink("DATE ADDED", "UnderReviewNotes", new { SortOrder = ViewBag.DateSortParm, NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId, NUR_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("STATUS", "UnderReviewNotes", new { SortOrder = ViewBag.StatusSortParm, NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId, NUR_page = ViewBag.currentPage })</th>
+                                <th scope="col">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="9" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td class="link-change-color"><a href="@Url.Action("NoteDetails", "SearchNote", new { id = item.sellNotes.ID})">@item.sellNotes.Title</a></td>
+                                    <td>@item.sellNotes.NoteCategories.Name</td>
+                                    <td>@item.user.FirstName @item.user.LastName</td>
+                                    <td><a href="@Url.Action("MemberDetail","MemberDetail", new { memberId = item.user.ID})"><img src="~/Content/image/comman-images/eye.png"></a></td>
+                                    <td>@item.sellNotes.CreatedDate</td>
+                                    <td>@item.sellNotes.ReferenceData.Value</td>
+                                    <td>
+                                        <div class="table-last-img">
+
+                                            <!-- buttons -->
+                                            <button type="button" class="btn btn-success" data-target="#approveModal-@item.sellNotes.ID" data-toggle="modal">Approve</button>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-danger" data-target="#rejectModal-@item.sellNotes.ID" data-toggle="modal">Reject</button>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-secondary" data-target="#inreviewModal-@item.sellNotes.ID" data-toggle="modal">InReview</button>&nbsp;&nbsp;
+
+                                            <!-- pop up box for approved note -->
+                                            <div class="modal fade" id="approveModal-@item.sellNotes.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">                                                      
+
+                                                        <div class="modal-body">
+                                                            <p class="text-left">
+                                                                if you approve the notes- System will publish the notes over portal.
+                                                                <br />
+                                                                <br />Press yes to continue.
+                                                            </p>
+                                                            <button type="button" class="btn btn-secondary approvedBox" data-dismiss="modal">No</button>
+                                                            <a type="button" class="btn btn-primary approvedBoxYes" href="@Url.Action("ChangeStatus","AdminNotesUnderReview", new { noteid = item.sellNotes.ID, value = "approved"})">Yes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END of approved popup -->
+
+                                            <!--pop up box for reject note -->
+                                            <div class="modal fade" id="rejectModal-@item.sellNotes.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">                                                       
+
+                                                        <div class="modal-body">
+                                                            @using (Html.BeginForm("rejectNote", "AdminNotesUnderReview", FormMethod.Post))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+
+                                                                <input name="noteid" value="@item.sellNotes.ID" hidden>
+
+                                                                <h2 class="text-left">@item.sellNotes.Title - @item.sellNotes.NoteCategories.Name</h2>
+
+                                                                <div class="form-group">
+                                                                    <label class="pull-left">Remarks*</label>
+                                                                    <textarea class="form-control" name="remarkReject" id="remarkReject-@item.sellNotes.ID" rows="4" placeholder="Comments..." required="required"></textarea>
+                                                                </div>
+
+                                                                <div>
+                                                                    <button type="button" class="btn btn-secondary rejectBox" data-dismiss="modal">Cancle</button>
+                                                                    <button type="submit" class="btn btn-danger rejectBox" onclick="return confirm('Are you sure you want to reject this note ?')" data-target="#rejectConfirmModal-@item.sellNotes.ID" data-toggle="modal">Reject</button>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END of rejectes note popup-->
+
+                                            <!--pop up box for inreview notes -->
+                                            <div class="modal fade" id="inreviewModal-@item.sellNotes.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">                                                      
+
+                                                        <div class="modal-body">
+                                                            <p class="text-left">
+                                                                Via marking the note in Review - System will let user know the review process has been initiated
+                                                                <br />
+                                                                <br />Press yes to continue.
+                                                            </p>
+                                                            <button type="button" class="btn btn-secondary inreviewBox" data-dismiss="modal">No</button>
+                                                            <a type="button" class="btn btn-primary inreviewBoxYes" href="@Url.Action("ChangeStatus","AdminNotesUnderReview", new { noteid = item.sellNotes.ID, value = "inreview"})">Yes</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END of inreview popup box -->
+
+                                            <div class="btn-group dropleft">
+
+                                                <!-- drop down menu -->
+                                                <button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <img src="~/Content/image/comman-images/dots.png" alt="menu" class="dropdown">
+                                                </button>
+
+                                                <!-- Drop down item -->
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    @Html.ActionLink("View More Details", "NoteDetails", "SearchNote", new { id = item.sellNotes.ID }, new { @class = "dropdown-item" })
+                                                    @Html.ActionLink("Download Note", "AdminDownload", "AdminDownloadNote", new { noteId = item.sellNotes.ID, userId = item.user.ID }, new { @class = "dropdown-item" })
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END of underreview note table-->
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("UnderReviewNotes", new { NUR_page = @ViewBag.currentPage, SortOrder = Request.QueryString["SortOrder"], NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("UnderReviewNotes", new { NUR_page = @ViewBag.currentPage - 1, SortOrder = Request.QueryString["SortOrder"], NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId })"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "UnderReviewNotes", new { NUR_page = i, SortOrder = Request.QueryString["SortOrder"], NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("UnderReviewNotes", new { NUR_page = @ViewBag.currentPage, SortOrder = Request.QueryString["SortOrder"], NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("UnderReviewNotes", new { NUR_page = @ViewBag.currentPage + 1, SortOrder = Request.QueryString["SortOrder"], NUReview_search = Request.QueryString["NUReview_search"], sellerName = Request.QueryString["sellerName"], memberId = ViewBag.tempId })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+        </div>
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

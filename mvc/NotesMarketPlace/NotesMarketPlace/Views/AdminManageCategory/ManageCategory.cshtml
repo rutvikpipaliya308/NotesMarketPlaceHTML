@@ -1,0 +1,177 @@
+﻿@model NotesMarketPlace.Models.ManageCategoryViewModel
+@{
+    ViewBag.Title = "Manage-Category";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- manage category -->
+<section id="manage-category">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <h4>Manage Category</h4>
+                </div>
+            </div>
+
+            <!-- manage category heading -->
+            @using (Html.BeginForm("ManageCategory", "AdminManageCategory", FormMethod.Get))
+            {
+                <div class="row">
+
+                    <!-- ADD category button -->
+                    <div class="col-xl-5 col-lg-5 col-md-3 col-sm-4 col-12">                        
+                        <a type="button" class="btn btn-primary btn-lg category-btn" href="@Url.Action("AddCategory","AdminManageCategory")">ADD CATEGORY</a>
+                    </div>
+
+                    <!-- search bar/btn -->
+                    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-8 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="Category_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>  
+                    
+                </div>
+             }
+
+                <!-- manage category table -->
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table manage-category-tbl">
+                            <thead>
+                                <tr>
+                                    <th scope="col">SR.NO</th>
+                                    <th scope="col">@Html.ActionLink("CATEGORY", "ManageCategory", new { SortOrder = ViewBag.CategorySortParm, Category_search = Request.QueryString["Category_search"], Category_page = ViewBag.currentPage })</th>
+                                    <th scope="col">@Html.ActionLink("DESCRIPTION", "ManageCategory", new { SortOrder = ViewBag.DescriptionSortParm, Category_search = Request.QueryString["Category_search"], Category_page = ViewBag.currentPage })</th>
+                                    <th scope="col">@Html.ActionLink("DATE ADDED", "ManageCategory", new { SortOrder = ViewBag.AddedBySortParm, Category_search = Request.QueryString["Category_search"], Category_page = ViewBag.currentPage })</th>
+                                    <th scope="col">@Html.ActionLink("ADDED BY", "ManageCategory", new { SortOrder = ViewBag.ActiveSortParm, Category_search = Request.QueryString["Category_search"], Category_page = ViewBag.currentPage })</th>
+                                    <th scope="col">@Html.ActionLink("ACTIVE", "ManageCategory", new { SortOrder = ViewBag.DateSortParm, Category_search = Request.QueryString["Category_search"], Category_page = ViewBag.currentPage })</th>
+                                    <th scope="col">ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @if (ViewBag.totalPage == 0)
+                                {
+                                    <tr>
+                                        <td colspan="7" class="text-center">No Record Found</td>
+                                    </tr>
+                                }
+                                @{
+                                    //increase the index
+                                    int no = (ViewBag.currentPage - 1) * 10 + 1;
+                                }
+                                @foreach (var item in Model.Category)
+                                {
+                                    <tr>
+                                        <td>@no</td>
+                                        <td>@item.categories.Name</td>
+                                        <td>@item.categories.Description</td>
+                                        <td>@item.categories.CreatedDate</td>
+                                        <td>@item.users.FirstName @item.users.LastName</td>
+                                        @if (item.categories.IsActive == true)
+                                        {
+                                            <td>Yes</td>
+                                        }
+                                        else
+                                        {
+                                            <td>No</td>
+                                        }
+
+                                        <td>
+                                            <div class="table-last-img">
+                                                <div class="edit-img"><a href="@Url.Action("EditCategory", "AdminManageCategory", new { id = item.categories.ID})"><img src="~/Content/image/comman-images/edit.png"></a></div>
+                                                <button type="button" class="delete-btn" data-toggle="modal" data-target="#categorydelete-@item.categories.ID"><img src="~/Content/image/comman-images/delete.png" alt="delete image"></button>                                            
+                                            </div>
+
+                                            <!--pop up box for delete category -->
+                                            <div class="modal fade" id="categorydelete-@item.categories.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <p class="text-left">
+                                                                Are you sure you want to make this category inactive ?
+                                                                <br />
+                                                                <br />Press yes to continue.
+                                                            </p>
+                                                            <button type="button" class="btn btn-secondary deactiveBox" data-dismiss="modal">No</button>
+                                                            <a type="button" class="btn btn-primary deactiveBoxYes" href="@Url.Action("DeleteCategory","AdminManageCategory", new { catID = item.categories.ID})">Yes</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- ENd of popup box -->
+
+                                        </td>
+                                    </tr>
+                                    no++;
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <!-- End of managecategory table -->
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("ManageCategory", new { Category_page = @ViewBag.currentPage, Category_search = Request.QueryString["Category_search"], SortOrder = Request.QueryString["SortOrder"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ManageCategory", new { Category_page = @ViewBag.currentPage - 1, Category_search = Request.QueryString["Category_search"], SortOrder = Request.QueryString["SortOrder"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "ManageCategory", new { Category_page = i, Category_search = Request.QueryString["Category_search"], SortOrder = Request.QueryString["SortOrder"] }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("ManageCategory", new { Category_page = @ViewBag.currentPage, Category_search = Request.QueryString["Category_search"], SortOrder = Request.QueryString["SortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ManageCategory", new { Category_page = @ViewBag.currentPage + 1, Category_search = Request.QueryString["Category_search"], SortOrder = Request.QueryString["SortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+         </div>
+    </div>
+</section>
+<!-- END of -->
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

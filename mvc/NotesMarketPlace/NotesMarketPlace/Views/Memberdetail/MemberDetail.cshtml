@@ -1,0 +1,250 @@
+﻿@model NotesMarketPlace.Models.MemberDetailViewModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- member details section -->
+<section id="member-details">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <h2>Member Details</h2>
+                </div>
+            </div>
+
+            
+            <div class="row member-details-top">
+
+                <!-- member image -->
+                <div class="member-detail-img">
+                    @if (Model.memberProfile.ProfilePicture == null)
+                    {
+                        <img src="~/Content/image/default-user-img/user-img.png" alt="default image">
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(Model.memberProfile.ProfilePicture)" alt="member profile image">
+                    }
+
+                </div>
+
+                <!-- left side -->
+                <div class="member-info-left">
+                    <div class="member-details-info1">
+                        <ul class="member-info1">
+                            <li>First Name:</li>
+                            <li>Last Name:</li>
+                            <li>Email:</li>
+                            <li>DOB:</li>
+                            <li>Phone Number:</li>
+                            <li>College/University:</li>
+                        </ul>
+                    </div>
+                    <div class="member-details-info2">
+                        <ul class="member-info2">
+                            <li>@Model.member.FirstName</li>
+                            <li>@Model.member.LastName</li>
+                            <li>@Model.member.Email</li>
+                            @if (Model.memberProfile.DOB == null)
+                            {
+                                <li>--</li>
+                            }
+                            else
+                            {
+                                <li>@Model.memberProfile.DOB</li>
+                            }
+                            <li>+@Model.memberProfile.PhoneNumber_CountryCode @Model.memberProfile.PhoneNumber</li>
+                            @if (Model.memberProfile.University == null && Model.memberProfile.College == null)
+                            {
+                                <li>--</li>
+                            }
+                            else
+                            {
+                                if (Model.memberProfile.University == null)
+                                {
+                                    <li>@Model.memberProfile.College</li>
+                                }
+                                else if (Model.memberProfile.College == null)
+                                {
+                                    <li>@Model.memberProfile.University</li>
+                                }
+                                else
+                                {
+                                    <li>@Model.memberProfile.University</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- right side -->
+                <div class="member-info-right">
+                    <div class="member-details-info1">
+                        <ul class="member-info1">
+                            <li>Address 1:</li>
+                            <li>Address 2:</li>
+                            <li>City:</li>
+                            <li>State:</li>
+                            <li>Country:</li>
+                            <li>Zip Code:</li>
+                        </ul>
+                    </div>
+                    <div class="member-details-info2">
+                        <ul class="member-info2">
+                            <li>@Model.memberProfile.AddressLine1</li>
+                            <li>@Model.memberProfile.AddressLine2</li>
+                            <li>@Model.memberProfile.City</li>
+                            <li>@Model.memberProfile.State</li>
+                            <li>@Model.memberProfile.Country</li>
+                            <li>@Model.memberProfile.ZipCode</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+    </div>
+</section>
+<!-- END of member detail section-->
+
+<!-- member detail section -->
+<section id="member-details-table">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- notes heading -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-6 col-md-4 col-sm-4 col-12">
+                    <h4>Notes</h4>
+                </div>
+            </div>
+
+            <!-- inprogress note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table member-detail-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "MemberDetail", new { SortOrder = ViewBag.TitleSortParm })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "MemberDetail", new { SortOrder = ViewBag.CategorySortParm })</th>
+                                <th scope="col">@Html.ActionLink("STATUS", "MemberDetail", new { SortOrder = ViewBag.StatusSortParm })</th>
+                                <th scope="col">@Html.ActionLink("DOWNLOADED NOTES", "MemberDetail", new { SortOrder = ViewBag.TotalDownloadSortParm })</th>
+                                <th scope="col">@Html.ActionLink("TOTAL EARNINGS", "MemberDetail", new { SortOrder = ViewBag.TotalEarningSortParm })</th>
+                                <th scope="col">@Html.ActionLink("DATE ADDED", "MemberDetail", new { SortOrder = ViewBag.DateAddSortParm })</th>
+                                <th scope="col">@Html.ActionLink("PUBLISHED DATE", "MemberDetail", new { SortOrder = ViewBag.DatePubSortParm })</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="9" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+                            @foreach (var item in Model.memDetails)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td class="link-change-color"><a href="@Url.Action("NoteDetails", "SearchNote", new { id = item.sellnote.ID})">@item.sellnote.Title</a></td>
+                                    <td>@item.sellnote.NoteCategories.Name</td>
+                                    <td>@item.sellnote.ReferenceData.Value</td>
+                                    <td class="link-change-color"><a href="@Url.Action("AllDownloadedNote","AdminAllDownloadedNote", new { noteid = item.sellnote.ID})">@item.totalDownload</a></td>
+                                    <td>$@item.totalEarning</td>
+                                    <td>@item.sellnote.CreatedDate</td>
+                                    @if (item.sellnote.PublishedDate == null)
+                                    {
+                                        <td>NA</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.sellnote.PublishedDate</td>
+                                    }
+
+                                    <td>
+                                        <div class="btn-group dropleft">
+                                            <!-- drop down menu -->
+                                            <button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/Content/image/comman-images/dots.png" alt="menu" class="dropdown">
+                                            </button>
+
+                                            <!-- Drop down item -->
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @Html.ActionLink("Download Note", "AdminDownload", "AdminDownloadNote", new { noteId = item.sellnote.ID, userId = item.sellnote.SellerID }, new { @class = "dropdown-item" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("MemberDetail", new { MemDetail_page = @ViewBag.currentPage, SortOrder = ViewBag.TitleSortParm })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("MemberDetail", new { MemDetail_page = @ViewBag.currentPage - 1, SortOrder = ViewBag.TitleSortParm })"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "MemberDetail", new { MemDetail_page = i, SortOrder = ViewBag.TitleSortParm }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("MemberDetail", new { MemDetail_page = @ViewBag.currentPage, SortOrder = ViewBag.TitleSortParm })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("MemberDetail", new { MemDetail_page = @ViewBag.currentPage + 1, SortOrder = ViewBag.TitleSortParm })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+        </div>
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

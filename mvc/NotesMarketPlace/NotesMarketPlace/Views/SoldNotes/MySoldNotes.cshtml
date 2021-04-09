@@ -5,7 +5,7 @@
 }
 
 @{
-    Html.RenderPartial("_Navbar");
+    Html.RenderPartial("_Front_Navbar");
 }
 
 
@@ -37,12 +37,12 @@
                         <thead>
                             <tr>
                                 <th scope="col">SR NO.</th>
-                                <th scope="col">@Html.ActionLink("NOTE TITLE", "MySoldNotes", new { sortOrder = ViewBag.TitleSortParm, SN_search = Request.QueryString["SN_search"] })</th>
-                                <th scope="col">@Html.ActionLink("CATEGORY", "MySoldNotes", new { sortOrder = ViewBag.CategorySortParm, SN_search = Request.QueryString["SN_search"] })</th>
-                                <th scope="col">@Html.ActionLink("BUYER", "MySoldNotes", new { sortOrder = ViewBag.BuyerNameSortParm, SN_search = Request.QueryString["SN_search"] })</th>
-                                <th scope="col">@Html.ActionLink("SELL TYPE", "MySoldNotes", new { sortOrder = ViewBag.SellTypeSortParm, SN_search = Request.QueryString["SN_search"] })</th>
-                                <th scope="col">@Html.ActionLink("PRICE", "MySoldNotes", new { sortOrder = ViewBag.PriceSortParm, SN_search = Request.QueryString["SN_search"] })</th>
-                                <th scope="col">@Html.ActionLink("DOWNLOADESD DATE/TIME", "MySoldNotes", new { sortOrder = ViewBag.DateSortParm, SN_search = Request.QueryString["SN_search"] })</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "MySoldNotes", new { sortOrder = ViewBag.TitleSortParm, SN_search = Request.QueryString["SN_search"], MySoldNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "MySoldNotes", new { sortOrder = ViewBag.CategorySortParm, SN_search = Request.QueryString["SN_search"], MySoldNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("BUYER", "MySoldNotes", new { sortOrder = ViewBag.BuyerNameSortParm, SN_search = Request.QueryString["SN_search"], MySoldNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("SELL TYPE", "MySoldNotes", new { sortOrder = ViewBag.SellTypeSortParm, SN_search = Request.QueryString["SN_search"], MySoldNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("PRICE", "MySoldNotes", new { sortOrder = ViewBag.PriceSortParm, SN_search = Request.QueryString["SN_search"], MySoldNotes_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("DOWNLOADESD DATE/TIME", "MySoldNotes", new { sortOrder = ViewBag.DateSortParm, SN_search = Request.QueryString["SN_search"], MySoldNotes_page = ViewBag.currentPage })</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -62,7 +62,7 @@
                             {
                                 <tr>
                                     <td>@no</td>
-                                    <td>@item.downloadtbl.NoteTitle</td>
+                                    <td class="link-change-color"><a href="@Url.Action("NoteDetails", "SearchNote", new { id = item.downloadtbl.NoteID})">@item.downloadtbl.NoteTitle</a></td>
                                     <td>@item.downloadtbl.NoteCategory</td>
                                     <td>@item.usertbl.Email</td>
                                     @if (item.downloadtbl.IsPaid == true)
@@ -110,11 +110,11 @@
 
                             @if (ViewBag.currentPage == 1)
                             {
-                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage })"><i class="fa fa-angle-left"></i></a>
+                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], SN_search = Request.QueryString["SN_search"] })"><i class="fa fa-angle-left"></i></a>
                             }
                             else
                             {
-                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage - 1 })"><i class="fa fa-angle-left"></i></a>
+                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"], SN_search = Request.QueryString["SN_search"]  })"><i class="fa fa-angle-left"></i></a>
                             }
 
                             @{                                     
@@ -126,18 +126,18 @@
                                     }
                                     else
                                     {
-                                        @Html.ActionLink(i.ToString(), "MySoldNotes", new { MySoldNotes_page = i }, new { @class = "page-link" })
+                                        @Html.ActionLink(i.ToString(), "MySoldNotes", new { MySoldNotes_page = i, sortOrder = Request.QueryString["sortOrder"], SN_search = Request.QueryString["SN_search"] }, new { @class = "page-link" })
                                     }
                                 }
                             }
 
                             @if (ViewBag.currentPage == ViewBag.endPage)
                             {
-                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage })"><i class="fa fa-angle-right"></i></a>
+                                <a href="@Url.Action("MySoldNotes", new { MySoldNotes_page = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], SN_search = Request.QueryString["SN_search"]  })"><i class="fa fa-angle-right"></i></a>
                             }
                             else
                             {
-                                <a href="@Url.Action("MySoldNotes", new {  MySoldNotes_page = @ViewBag.currentPage + 1 })"><i class="fa fa-angle-right"></i></a>
+                                <a href="@Url.Action("MySoldNotes", new {  MySoldNotes_page = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"], SN_search = Request.QueryString["SN_search"]  })"><i class="fa fa-angle-right"></i></a>
                             }
 
                         </div>
@@ -150,6 +150,6 @@
 </section>
 
 @{
-    Html.RenderPartial("_Footer");
+    Html.RenderPartial("_Front_Footer");
 }
 

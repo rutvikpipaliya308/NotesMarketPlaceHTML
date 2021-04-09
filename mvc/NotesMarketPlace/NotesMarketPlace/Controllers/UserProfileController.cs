@@ -108,17 +108,19 @@ namespace NotesMarketPlace.Controllers
                         userProfilemodel.ProfilePicture.SaveAs(userprofilefilepath);
                     }
                     else
-                    {
-                        string defaultFilename= "user-img.png";
-                        string userprofilepath = "~/Members/" + user.ID + "/";
-                        CreateDirectoryIfMissing(userprofilepath);
-                        string userprofilefilepath = Path.Combine(Server.MapPath(userprofilepath), defaultFilename);
-                        userProfile.ProfilePicture = userprofilepath + defaultFilename;
-                        userProfilemodel.ProfilePicture.SaveAs(userprofilefilepath);
+                    {                        
+                        //fetch default file name 
+                        string defaultFilename= Directory.GetFiles(Server.MapPath("~/Content/image/default-user-img/")).FirstOrDefault();
+                        string finalfilename = System.IO.Path.GetFileName(defaultFilename);
+                        
+                        //store default file name
+                        string userprofilepath = "~/Content/image/default-user-img/";                                               
+                        userProfile.ProfilePicture = userprofilepath + finalfilename;
+                        
                     }                   
 
                     db.UserProfile.Add(userProfile);                    
-                    db.SaveChanges();
+                    db.SaveChanges();                   
 
                 }
                 else
@@ -172,6 +174,8 @@ namespace NotesMarketPlace.Controllers
             }
 
             UserProfileViewModel userprofiledetail = new UserProfileViewModel();
+
+            //get gender list 
             var gender = db.ReferenceData.Where(x => x.IsActive == true && x.RefCategory == "Gender").ToList();
             userprofiledetail.GenderList = gender;
             

@@ -1,0 +1,61 @@
+﻿@model NotesMarketPlace.Models.ManageTypeViewModel
+@{
+    ViewBag.Title = "Edit-Type";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+@{ 
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- edit type section -->
+<section id="addType">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h2>Add Type</h2>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("EditType", "AdminManageType", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.ID)
+
+                <!-- type name -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>Type *</label>
+                        @Html.TextBoxFor(model => model.typeName, new { @class = "form-control", id = "add-type-name", placeholder = "Enter type name", type = "text" })
+                        @Html.ValidationMessageFor(model => model.typeName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- description -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>Description *</label>
+                        @Html.TextAreaFor(model => model.description, new { @class = "form-control", id = "add-type-description", placeholder = "Enter your Description..", rows = "4" })
+                        @Html.ValidationMessageFor(model => model.description, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 add-type-submit">
+                        <button type="submit" class="btn btn-primary btn-lg">SUBMIT</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- END of edit type section -->
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}
+

@@ -8,9 +8,12 @@ using System.IO;
 
 namespace NotesMarketPlace.Controllers
 {    
+    [RoutePrefix("Home")]
+    
     public class HomeController : Controller
     {
         [HttpGet]
+        [Authorize(Roles = "Member")]
         public ActionResult Index()
         {
             return View();

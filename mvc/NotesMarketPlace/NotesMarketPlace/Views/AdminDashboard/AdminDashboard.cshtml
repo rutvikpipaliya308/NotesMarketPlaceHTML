@@ -1,0 +1,261 @@
+﻿@model IEnumerable<NotesMarketPlace.Models.AdminDashboardViewModel>
+@{
+    ViewBag.Title = "Admin-Dashboard";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- dashboard section -->
+<section id="dashboard">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <h2>Dashboard</h2>
+                </div>
+            </div>
+
+            <!-- dashboard stats -->
+            <div class="row">
+
+                <!-- number of notes in review -->
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 stats">
+                    <div class="stats-content">
+                        <h6 class="link-change-color"><a href="@Url.Action("UnderReviewNotes","AdminNotesUnderReview")">@ViewBag.inreviewNote</a></h6>
+                        <p>Number of Notes in Review for Publish</p>
+                    </div>
+                </div>
+
+                <!-- Number of notes download -->
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 stats">
+                    <div class="stats-content">
+                        <h6 class="link-change-color"><a href="@Url.Action("AllDownloadedNote","AdminAllDownloadedNote")">@ViewBag.totalDownload</a></h6>
+                        <p>Number of New Notes Downloaded<br>(Last 7 days)</p>
+                    </div>
+                </div>
+
+                <!-- Number of new registration -->
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 stats">
+                    <div class="stats-content">
+                        <h6 class="link-change-color"><a href="@Url.Action("AllMember","AdminAllMember")">@ViewBag.TotalRegistered</a></h6>
+                        <p>Numbers of New Registration(Last 7 Days)</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END of stats -->
+
+        </div>
+    </div>
+</section>
+
+<!-- published notes -->
+<section id="published-notes">
+    <div class="content-box">
+        <div class="container">
+
+            @using (Html.BeginForm("AdminDashboard", "AdminDashboard", FormMethod.Get))
+            {
+                <div class="row">
+
+                    <!-- inprogress note heading -->
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                        <h4>Published Note</h4>
+                    </div>
+
+                    <!-- search bar/button -->
+                    <div class="col-xl-7 col-lg-6 col-md-9 col-sm-8 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="Apub_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>
+
+                    <!-- select month -->
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-8 filter">
+                        <div class="form-group filter-months">
+                            @Html.DropDownList("month", new SelectList(@ViewBag.lastSixMonths, "MMMM"), "Select Month", new { @class = "form-control", id = "inputState", name = "month" })
+                        </div>
+                    </div>
+
+                </div>
+             }
+
+            <!-- inprogress note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table published-note-tbl">
+
+                        <!-- table head -->
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "AdminDashboard", new { sortOrder = ViewBag.TitleSortParm, Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"], Apun_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "AdminDashboard", new { sortOrder = ViewBag.CategorySortParm, Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"], Apun_page = ViewBag.currentPage })</th>                                
+                                <th scope="col">@Html.ActionLink("ATTCHMENT SIZE", "AdminDashboard", new { sortOrder = ViewBag.SizeSortParm, Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"], Apun_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("SELL TYPE", "AdminDashboard", new { sortOrder = ViewBag.SellTypeSortParm, Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"], Apun_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("PRICE", "AdminDashboard", new { sortOrder = ViewBag.PriceSortParm, Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"], Apun_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("PUBLISHER", "AdminDashboard", new { sortOrder = ViewBag.NameSortParm, Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"], Apun_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("PUBLISHED DATE", "AdminDashboard", new { sortOrder = ViewBag.DateSortParm, Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"], Apun_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("NUMBER OF DOWNLOADS", "AdminDashboard", new { sortOrder = ViewBag.TotalDownloadSortParm, Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"], Apun_page = ViewBag.currentPage })</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <!-- EBD of table head -->
+
+                        <!-- table body -->
+                        <tbody>
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="10" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                //calculate the index no
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td class="link-change-color"><a href="@Url.Action("NoteDetails", "SearchNote", new { id = item.Notes.notes.ID})">@item.Notes.notes.Title</a></td>
+                                    <td>@item.Notes.notes.NoteCategories.Name</td>
+                                    @if (item.totalSize > 1048576)
+                                    {
+                                        <td>@item.totalSize MB</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.totalSize KB</td>
+                                    }
+
+                                    @if (item.Notes.notes.IsPaid == true)
+                                    {
+                                        <td>Paid</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Free</td>
+                                    }
+                                    <td>$@item.Notes.notes.SellingPrice</td>
+                                    <td>@item.Notes.users.FirstName @item.Notes.users.LastName</td>
+                                    <td>@item.Notes.notes.PublishedDate</td>
+                                    <td class="link-change-color"><a href="@Url.Action("AllDownloadedNote","AdminAllDownloadedNote", new { noteid = item.Notes.notes.ID})">@item.totalDownload</a></td>
+                                    <td>
+                                        <div class="btn-group dropleft">
+
+                                            <!-- drop down menu -->
+                                            <button type="button" id="dropdownMenu2" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/Content/image/comman-images/dots.png" alt="menu" class="dropdown">
+                                            </button>
+
+                                            <!-- Drop down items -->
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @Html.ActionLink("Download Note", "AdminDownload", "AdminDownloadNote", new { noteId = item.Notes.notes.ID, userId = item.Notes.notes.SellerID }, new { @class = "dropdown-item" })
+                                                @Html.ActionLink("View More Details", "NoteDetails", "SearchNote", new { id = item.Notes.notes.ID }, new { @class = "dropdown-item" })                                                
+                                                <button type="button" class="btn btn-secondary dropdown-item" data-target="#unPublishedModal-@item.Notes.notes.ID" data-toggle="modal">Unpublished</button>
+                                            </div>
+
+                                            <!--pop up box for unpublished note -->
+                                            <div class="modal fade" id="unPublishedModal-@item.Notes.notes.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">                                                       
+
+                                                        <div class="modal-body">
+                                                            @using (Html.BeginForm("UnpublishedNote", "AdminDashboard", FormMethod.Post))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+
+                                                                <input name="noteid" value="@item.Notes.notes.ID" hidden>
+
+                                                                <h2 class="text-left">@item.Notes.notes.Title</h2>
+
+                                                                <div class="form-group">
+                                                                    <label class="pull-left">Remarks*</label>
+                                                                    <textarea class="form-control" name="remarkUnPublished" id="remarkUnPublished-@item.Notes.notes.ID" rows="4" placeholder="Comments..." required="required"></textarea>
+                                                                </div>
+
+                                                                <div>
+                                                                    <button type="button" class="btn btn-secondary unpublishedBox" data-dismiss="modal">Cancle</button>
+                                                                    <button type="submit" class="btn btn-primary unpublishedBoxYes" onclick="return confirm('Are you sure you want to unpublished this note ?')" data-target="#rejectConfirmModal-@item.Notes.notes.ID" data-toggle="modal">Unpublish</button>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END of popup box -->
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END of table -->
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("AdminDashboard", new { Apun_page = @ViewBag.currentPage, sortOrder = Request.QueryString["SortOrder"], Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"] })"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("AdminDashboard", new { Apun_page = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["SortOrder"], Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "AdminDashboard", new { Apun_page = i, sortOrder = Request.QueryString["SortOrder"], Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"] }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("AdminDashboard", new { Apun_page = @ViewBag.currentPage, sortOrder = Request.QueryString["SortOrder"], Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("AdminDashboard", new { Apun_page = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["SortOrder"], Apub_search = Request.QueryString["Apub_search"], month = Request.QueryString["month"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+        </div>
+    </div>
+</section>
+
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

@@ -1,0 +1,61 @@
+﻿@model NotesMarketPlace.Models.ManageCategoryViewModel
+@{
+    ViewBag.Title = "Edit-Category";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- edit category section -->
+<section id="addCategory">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h2>Add Category</h2>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("EditCategory", "AdminManageCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.ID)
+
+                <!-- category name -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>Category Name *</label>
+                        @Html.TextBoxFor(model => model.categoryName, new { @class = "form-control", id = "add-category-firstname", placeholder = "Enter category name", type = "text" })
+                        @Html.ValidationMessageFor(model => model.categoryName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- description -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>Description *</label>
+                        @Html.TextAreaFor(model => model.description, new { @class = "form-control", id = "add-category-description", placeholder = "Enter your Description..", rows = "4" })
+                        @Html.ValidationMessageFor(model => model.description, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 add-category-submit">
+                        <button type="submit" class="btn btn-primary btn-lg">SUBMIT</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- END of edit category -->
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

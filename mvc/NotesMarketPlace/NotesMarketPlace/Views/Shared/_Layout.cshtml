@@ -48,7 +48,17 @@
     <script src="~/Scripts/bootstrap.js"></script>
 
     <!-- Custom js -->
-    <script src="~/Scripts/script.js"></script>
+    <script src="~/Scripts/front-script/script.js"></script>
+
+    <!-- Script for search note -->
+    <script src="~/Scripts/front-script/SearchNotejs.js"></script>
+
+    @if(ViewBag.Requested != null)
+    {
+        <script type="text/javascript">
+            window.$("#thankspopup").modal("show");
+        </script>
+    }
 
     @RenderSection("scripts", required: false)
 

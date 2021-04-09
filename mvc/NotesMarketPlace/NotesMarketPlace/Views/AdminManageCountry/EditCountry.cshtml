@@ -1,0 +1,61 @@
+﻿@model NotesMarketPlace.Models.ManageCountryViewModel
+@{
+    ViewBag.Title = "Edit-Country";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- edit country section -->
+<section id="addCountry">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h2>Add Country</h2>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("EditCountry", "AdminManageCountry", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.ID)
+
+                <!-- country name -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>Country Name *</label>
+                        @Html.TextBoxFor(model => model.countryName, new { @class = "form-control", id = "add-country-name", placeholder = "Enter country name", type = "text" })
+                        @Html.ValidationMessageFor(model => model.countryName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- country code -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>Country Code *</label>
+                        @Html.TextBoxFor(model => model.countryCode, new { @class = "form-control", id = "add-country-code", placeholder = "Enter country code", type = "text" })
+                        @Html.ValidationMessageFor(model => model.countryCode, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 add-country-submit">
+                        <button type="submit" class="btn btn-primary btn-lg">SUBMIT</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- End of edit country -->
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

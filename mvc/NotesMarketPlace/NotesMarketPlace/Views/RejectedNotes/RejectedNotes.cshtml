@@ -5,7 +5,7 @@
 }
 
 @{ 
-    Html.RenderPartial("_Navbar");
+    Html.RenderPartial("_Front_Navbar");
 }
 
 <section id="rejectednotes">
@@ -37,8 +37,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">SR NO.</th>
-                                <th scope="col">@Html.ActionLink("NOTE TITLE", "RejectedNotes", new { sortOrder = ViewBag.TitleSortParm, RN_search = Request.QueryString["RN_search"] })</th>
-                                <th scope="col">@Html.ActionLink("CATEGORY", "RejectedNotes", new { sortOrder = ViewBag.CategorySortParm, RN_search = Request.QueryString["RN_search"] })</th>
+                                <th scope="col">@Html.ActionLink("NOTE TITLE", "RejectedNotes", new { sortOrder = ViewBag.TitleSortParm, RN_search = Request.QueryString["RN_search"], RejecteNotes_page = @ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("CATEGORY", "RejectedNotes", new { sortOrder = ViewBag.CategorySortParm, RN_search = Request.QueryString["RN_search"], RejecteNotes_page = @ViewBag.currentPage })</th>
                                 <th scope="col">REMARKS</th>
                                 <th scope="col">CLONE</th>
                                 <th scope="col"></th>
@@ -94,11 +94,11 @@
 
                             @if (ViewBag.currentPage == 1)
                             {
-                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage })"><i class="fa fa-angle-left"></i></a>
+                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], RN_search = Request.QueryString["RN_search"] })"><i class="fa fa-angle-left"></i></a>
                             }
                             else
                             {
-                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage - 1 })"><i class="fa fa-angle-left"></i></a>
+                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage - 1, sortOrder = Request.QueryString["sortOrder"], RN_search = Request.QueryString["RN_search"] })"><i class="fa fa-angle-left"></i></a>
                             }
 
                             @{
@@ -110,18 +110,18 @@
                                     }
                                     else
                                     {
-                                        @Html.ActionLink(i.ToString(), "RejectedNotes", new { RejecteNotes_page = i }, new { @class = "page-link" })
+                                        @Html.ActionLink(i.ToString(), "RejectedNotes", new { RejecteNotes_page = i, sortOrder = Request.QueryString["sortOrder"], RN_search = Request.QueryString["RN_search"] }, new { @class = "page-link" })
                                     }
                                 }
                             }
 
                             @if (ViewBag.currentPage == ViewBag.endPage)
                             {
-                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage })"><i class="fa fa-angle-right"></i></a>
+                                <a href="@Url.Action("RejectedNotes", new { RejecteNotes_page = @ViewBag.currentPage, sortOrder = Request.QueryString["sortOrder"], RN_search = Request.QueryString["RN_search"] })"><i class="fa fa-angle-right"></i></a>
                             }
                             else
                             {
-                                <a href="@Url.Action("RejectedNotes", new {  RejecteNotes_page = @ViewBag.currentPage + 1 })"><i class="fa fa-angle-right"></i></a>
+                                <a href="@Url.Action("RejectedNotes", new {  RejecteNotes_page = @ViewBag.currentPage + 1, sortOrder = Request.QueryString["sortOrder"], RN_search = Request.QueryString["RN_search"] })"><i class="fa fa-angle-right"></i></a>
                             }
 
                         </div>
@@ -135,6 +135,6 @@
 </section>
 
 @{ 
-    Html.RenderPartial("_Footer");
+    Html.RenderPartial("_Front_Footer");
 }
 

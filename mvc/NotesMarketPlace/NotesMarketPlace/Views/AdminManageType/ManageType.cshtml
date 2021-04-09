@@ -1,0 +1,175 @@
+﻿@model NotesMarketPlace.Models.ManageTypeViewModel
+
+@{
+    ViewBag.Title = "Manage-Type";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- manage type -->
+<section id="manage-type">
+    <div class="content-box">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <h4>Manage Type</h4>
+                </div>
+            </div>
+
+            <!-- inprogress note heading -->
+            @using (Html.BeginForm("ManageType", "AdminManageType", FormMethod.Get))
+            {
+                <div class="row">
+
+                    <!-- ADD type button -->
+                    <div class="col-xl-5 col-lg-5 col-md-3 col-sm-4 col-12">
+                        <a type="button" class="btn btn-primary btn-lg type-btn" href="@Url.Action("AddType","AdminManageType")">ADD TYPE</a>
+                    </div>
+
+                    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-8 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="Type_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>
+
+                </div>
+            }
+            <!-- Inprogress note heading end -->
+
+            <!-- inprogress note table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table manage-type-tbl">
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("Type", "ManageType", new { SortOrder = ViewBag.TypeSortParm, Type_search = Request.QueryString["Type_search"], Type_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("DESCRIPTION", "ManageType", new { SortOrder = ViewBag.DescriptionSortParm, Type_search = Request.QueryString["Type_search"], Type_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("DATE ADDED", "ManageType", new { SortOrder = ViewBag.AddedBySortParm, Type_search = Request.QueryString["Type_search"], Type_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("ADDED BY", "ManageType", new { SortOrder = ViewBag.ActiveSortParm, Type_search = Request.QueryString["Type_search"], Type_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("ACTIVE", "ManageType", new { SortOrder = ViewBag.DateSortParm, Type_search = Request.QueryString["Type_search"], Type_page = ViewBag.currentPage })</th>
+                                <th scope="col">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                //increser index no
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+                            @foreach (var item in Model.NoteTypes)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@item.Type.Name</td>
+                                    <td>@item.Type.Description</td>
+                                    <td>@item.Type.CreatedDate</td>
+                                    <td>@item.users.FirstName @item.users.LastName</td>
+                                    @if (item.Type.IsActive == true)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                    <td>
+                                        <div class="table-last-img">
+                                            <div class="edit-img"><a href="@Url.Action("EditType", "AdminManageType", new { id = item.Type.ID})"><img src="~/Content/image/comman-images/edit.png"></a></div>
+                                            <button type="button" class="delete-btn" data-toggle="modal" data-target="#typedelete-@item.Type.ID"><img src="~/Content/image/comman-images/delete.png" alt="delete image"></button>
+                                        </div>
+
+                                        <!--pop up box for delete category -->
+                                        <div class="modal fade" id="typedelete-@item.Type.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <p class="text-left">
+                                                            Are you sure you want to make this note type inactive ?
+                                                            <br />
+                                                            <br />Press yes to continue.
+                                                        </p>
+                                                        <button type="button" class="btn btn-secondary deactiveBox" data-dismiss="modal">No</button>
+                                                        <a type="button" class="btn btn-primary deactiveBoxYes" href="@Url.Action("DeleteType","AdminManageType", new { typID = item.Type.ID})">Yes</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END of popup box -->
+
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("ManageType", new { Type_page = @ViewBag.currentPage, Type_search = Request.QueryString["Type_search"], SortOrder = Request.QueryString["SortOrder"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ManageType", new { Type_page = @ViewBag.currentPage - 1, Type_search = Request.QueryString["Type_search"], SortOrder = Request.QueryString["SortOrder"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "ManageType", new { Type_page = i, Type_search = Request.QueryString["Type_search"], SortOrder = Request.QueryString["SortOrder"] }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("ManageType", new { Type_page = @ViewBag.currentPage, Type_search = Request.QueryString["Type_search"], SortOrder = Request.QueryString["SortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ManageType", new { Type_page = @ViewBag.currentPage + 1, Type_search = Request.QueryString["Type_search"], SortOrder = Request.QueryString["SortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+        </div>
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}
+

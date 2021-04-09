@@ -58,7 +58,7 @@ namespace NotesMarketPlace.Models
         [Required(ErrorMessage = "Select the Selling Mode")]
         public bool IsPaid { get; set; }
 
-        [RegularExpression(@"((\d+)((\. \d{1,2})?))$", ErrorMessage = "Valid Decimal number with maximum 2 decimal places")]
+        [RegularExpression(@"^((\d+)((\. \d{0,2})))$", ErrorMessage = "Valid Decimal number with maximum 2 decimal places")]
         public Nullable<decimal> SellingPrice { get; set; }
         
         public HttpPostedFileBase NotesPreview { get; set; }

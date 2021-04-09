@@ -17,8 +17,9 @@ namespace NotesMarketPlace.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Member")]
         [Route("RejectedNotes")]
+        [OutputCache(Duration = 0)]
         public ActionResult RejectedNotes(String sortOrder, string RN_search, int RejecteNotes_page = 1)
         {
             ViewBag.navClass = "white-nav";
@@ -81,6 +82,9 @@ namespace NotesMarketPlace.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Member")]
+        [Route("CloneNote/{noteid}")]
+        [OutputCache(Duration = 0)]
         public ActionResult CloneNote(int noteid)
         {
             var user = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
@@ -119,12 +123,12 @@ namespace NotesMarketPlace.Controllers
                 var clonenotefilepath = "~/Members/" + user.ID + "/" + clonenote.ID + "/";
 
                 var filepath = Path.Combine(Server.MapPath(clonenotefilepath));
-
                 FileInfo file = new FileInfo(rejectednotefilepath);
-
                 Directory.CreateDirectory(filepath);
+
                 if (file.Exists)
                 {
+                    //copy the file from reject note and save in clone
                     System.IO.File.Copy(rejectednotefilepath, Path.Combine(filepath, Path.GetFileName(rejectednotefilepath)));
                 }
 
@@ -141,11 +145,11 @@ namespace NotesMarketPlace.Controllers
                 var filepath = Path.Combine(Server.MapPath(clonenotefilepath));
 
                 FileInfo file = new FileInfo(rejectednotefilepath);
-
                 Directory.CreateDirectory(filepath);
 
                 if (file.Exists)
                 {
+                    //copy note review from rejected note and save in clone
                     System.IO.File.Copy(rejectednotefilepath, Path.Combine(filepath, Path.GetFileName(rejectednotefilepath)));
                 }
 
@@ -161,6 +165,7 @@ namespace NotesMarketPlace.Controllers
 
             Directory.CreateDirectory(attachementfilepath);
 
+            //copy all files from reject and save again
             foreach (var files in Directory.GetFiles(rejectednoteattachement))
             {
                 FileInfo file = new FileInfo(files);
@@ -170,6 +175,7 @@ namespace NotesMarketPlace.Controllers
                     System.IO.File.Copy(file.ToString(), Path.Combine(attachementfilepath, Path.GetFileName(file.ToString())));
                 }
 
+                //add data in attachment folder
                 SellerNotesAttachements attachement = new SellerNotesAttachements();
                 attachement.NoteID = clonenote.ID;
                 attachement.FileName = Path.GetFileName(file.ToString());

@@ -13,6 +13,7 @@ using NotesMarketPlace.Models;
 
 namespace NotesMarketPlace.Controllers
 {
+    [Authorize]
     public class SearchNoteController : Controller
     {
         readonly NotesMarketPlaceEntities db;     
@@ -23,6 +24,8 @@ namespace NotesMarketPlace.Controllers
         
         [HttpGet]
         [Route("SearchNotes")]
+        [AllowAnonymous]
+        [OutputCache(Duration = 0)]
         public ActionResult SearchNotes(string search, string type, string category, string university, string course, string country, string ratings, int page = 1)
         {
             ViewBag.navclass = "white-nav";
@@ -44,8 +47,11 @@ namespace NotesMarketPlace.Controllers
             ViewBag.countryList = db.Countries.Where(x => x.IsActive == true).ToList();
 
             ViewBag.RatingList = new List<SelectListItem> { new SelectListItem { Text = "1+", Value = "1" }, new SelectListItem { Text = "2+", Value = "2" }, new SelectListItem { Text = "3+", Value = "3" }, new SelectListItem { Text = "4+", Value = "4" }, new SelectListItem { Text = "5", Value = "5" } };
-            var noteslist = db.SellerNotes.Where(x => x.Status == 9);    //only published note        
 
+            var noteslist = db.SellerNotes.Where(x => x.Status == 9 && x.IsActive == true);    //only published note        
+
+
+            //fetch data based on filters
             if (!String.IsNullOrEmpty(search))
             {
                 noteslist = noteslist.Where(x => x.Title.ToLower().Contains(search.ToLower()) ||
@@ -75,11 +81,12 @@ namespace NotesMarketPlace.Controllers
 
             List<SearchNoteViewModel> searchNotesList = new List<SearchNoteViewModel>();
 
+            //count total and avg review
             if (String.IsNullOrEmpty(ratings))
             {
                 foreach (var item in noteslist)
                 {
-                    var review = db.SellerNotesReviews.Where(x => x.NoteID == item.ID).Select(x => x.Ratings);
+                    var review = db.SellerNotesReviews.Where(x => x.NoteID == item.ID && x.IsActive == true).Select(x => x.Ratings);
                     var totalreview = review.Count();
                     var avgreview = totalreview > 0 ? Math.Ceiling(review.Average()) : 0;
                     var spamcount = db.SellerNotesReportedIssues.Where(x => x.NoteID == item.ID).Count();
@@ -98,7 +105,7 @@ namespace NotesMarketPlace.Controllers
             {
                 foreach (var item in noteslist)
                 {
-                    var review = db.SellerNotesReviews.Where(x => x.NoteID == item.ID).Select(x => x.Ratings);
+                    var review = db.SellerNotesReviews.Where(x => x.NoteID == item.ID && x.IsActive == true).Select(x => x.Ratings);
                     var totalreview = review.Count();
                     var avgreview = totalreview > 0 ? Math.Ceiling(review.Average()) : 0;
                     var spamcount = db.SellerNotesReportedIssues.Where(x => x.NoteID == item.ID).Count();                    
@@ -133,15 +140,26 @@ namespace NotesMarketPlace.Controllers
 
         // GET: SearchNote
         [HttpGet]
-        [Route("NoteDetails/{id}")]
+        [Route("NoteDetail/{id}")]
+        [OutputCache(Duration = 0)]
+        [AllowAnonymous]
         public ActionResult NoteDetails(int id)
         {
             ViewBag.navClass = "white-nav";
             ViewBag.SearchNotes = "active";
 
-            var user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
-            //check user enter detail of profile or not
-            ViewBag.isUserProfile = db.UserProfile.FirstOrDefault(x => x.UserID == user.ID);
+            ViewBag.SadminPhone = db.SystemConfigurations.FirstOrDefault(x => x.Key == "SupportContactNumber").Value;
+
+            if(Session["ID"] != null)
+            {
+                var user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
+
+                //check user enter detail of profile or not
+                if (user.RoleID == 3 || user.RoleID == 4)
+                {
+                    ViewBag.isAdmin = user.RoleID;
+                }
+            }                        
 
             var totalReportedIssue = db.SellerNotesReportedIssues.Where(x => x.NoteID == id).Count();            
 
@@ -153,7 +171,7 @@ namespace NotesMarketPlace.Controllers
             var country = db.SellerNotes.FirstOrDefault(x => x.ID == id).Country;
             ViewBag.countryName = db.Countries.FirstOrDefault(x => x.ID == country && x.IsActive == true).Name;
 
-
+            //Querystring
             IEnumerable<ReviewsModel> reviews = from review in db.SellerNotesReviews
                                                 join users in db.Users on review.ReviewedByID equals users.ID
                                                 join userprofile in db.UserProfile on review.ReviewedByID equals userprofile.UserID
@@ -169,15 +187,34 @@ namespace NotesMarketPlace.Controllers
             detail.AvgRating = (int)rating;
             detail.notesreview = reviews;
 
+            //show popup box
+            if (TempData["Requested"] != null)
+            {
+                ViewBag.Requested = "Requested";
+            }
+
             return View(detail);            
         }       
 
         //download note for valid user
         [Authorize]
+        [HttpGet]
+        [OutputCache(Duration = 0)]
         public ActionResult Download(int noteId, int userId)
         {
             //Download the file                                                
             var user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
+
+            //check its member or admin
+            if(user.RoleID == 3 || userId == user.ID || user.RoleID == 4)
+            {
+                return RedirectToAction("AdminDownload", "AdminDownloadNote", new { noteId = noteId, userId = userId});
+            }
+
+            if (Session["ID"] == null)
+            {
+                return RedirectToAction("Login","Account");
+            }            
 
             //check user enter the profile details or not
             bool temp = db.UserProfile.Any(x => x.UserID == user.ID);
@@ -202,8 +239,7 @@ namespace NotesMarketPlace.Controllers
             
             //when user first time download
             if (!db.Downloads.Any(x => x.NoteID == noteId && x.Downloader == user.ID))
-            {                  
-
+            {                 
                 //Save data in database 
                 SellerNotes obj = new SellerNotes();
                 NoteCategories cat = new NoteCategories();
@@ -219,6 +255,7 @@ namespace NotesMarketPlace.Controllers
                 downloadnotedetail.NoteTitle = title;
                 downloadnotedetail.NoteCategory = db.NoteCategories.FirstOrDefault(x => x.ID == category).Name;
                 downloadnotedetail.CreatedDate = DateTime.Now;
+                downloadnotedetail.CreatedBy = user.ID;
                 downloadnotedetail.AttachmentDownloadedDate = DateTime.Now;
                 downloadnotedetail.IsActive = true;
 
@@ -245,9 +282,9 @@ namespace NotesMarketPlace.Controllers
                 db.Downloads.Add(downloadnotedetail);
                 db.SaveChanges();
             }
-
+                        
             //check allow download
-            var res = db.Downloads.FirstOrDefault(x => x.NoteID == noteId);
+            var res = db.Downloads.FirstOrDefault(x => x.NoteID == noteId && x.Downloader == user.ID);
             if (res.IsSellerHasAllowedDownload == false && res.IsPaid == true)
             {
                 int userOfNote = db.SellerNotes.FirstOrDefault(x => x.ID == noteId).SellerID;
@@ -255,11 +292,16 @@ namespace NotesMarketPlace.Controllers
                 string fullName = user.FirstName + " " + user.LastName;
                 forallowdownload(name, fullName);
 
-                return RedirectToAction("NoteDetails", new { id = noteId });
-            }              
+                //set temp data for popup box
+                TempData["Requested"] = "Requested"; 
 
+                return RedirectToAction("NoteDetails", new { id = noteId });
+            }
+                                              
             Downloads forModifydata = new Downloads();
+            forModifydata.IsAttachmentDownloaded = true;
             forModifydata.ModifiedDate = DateTime.Now;
+            forModifydata.ModifiedBy = user.ID;
             forModifydata.AttachmentDownloadedDate = DateTime.Now;
             db.SaveChanges();
 
@@ -285,7 +327,7 @@ namespace NotesMarketPlace.Controllers
             }        
             
             //for only one file
-            return File(fullpath, "text/plain", filename);       
+            return File(fullpath, "application/pdf", filename);       
         }
 
         //email template
@@ -345,15 +387,36 @@ namespace NotesMarketPlace.Controllers
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("rutvikpipaliya33@gmail.com", "3oo82ooo");
+            string email = System.Configuration.ConfigurationManager.AppSettings["SenderEmail"];
+            string password = System.Configuration.ConfigurationManager.AppSettings["Password"];
+            client.Credentials = new System.Net.NetworkCredential(email, password);
             try
             {
-                client.Send(mail);
+                client.Send(mail);                
             }
             catch (Exception e)
             {
                 Debug.WriteLine("------------- " + e.ToString());
             }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [Route("DeleteReview/{rid}")]
+        public ActionResult DeleteReview(int rid)
+        {
+            var user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
+            var review = db.SellerNotesReviews.Where(x => x.ID == rid && x.IsActive == true).FirstOrDefault();
+
+            int noteID = review.NoteID;
+
+            review.IsActive = false;
+            review.ModifiedDate = DateTime.Now;
+            review.ModifiedBy = user.ID;
+
+            db.SaveChanges();
+
+            return RedirectToAction("NoteDetails", new { id = noteID});
         }
     }
 }

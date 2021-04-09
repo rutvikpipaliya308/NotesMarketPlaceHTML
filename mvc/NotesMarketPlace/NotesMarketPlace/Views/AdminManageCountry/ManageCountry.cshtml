@@ -1,0 +1,175 @@
+﻿@model NotesMarketPlace.Models.ManageCountryViewModel
+@{
+    ViewBag.Title = "ManageCountry";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_navbar");
+}
+
+<!-- manage country section -->
+<section id="manage-country">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <h4>Manage Country</h4>
+                </div>
+            </div>
+
+            <!-- manage country heading -->
+            @using (Html.BeginForm("ManageCountry", "AdminManageCountry", FormMethod.Get))
+            {
+                <div class="row">
+
+                    <!-- ADD country button -->
+                    <div class="col-xl-5 col-lg-5 col-md-3 col-sm-4 col-12">
+                        <a type="button" class="btn btn-primary btn-lg country-btn" href="@Url.Action("AddCountry","AdminManageCountry")">ADD COUNTRY</a>                        
+                    </div>
+
+                    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-8 col-12 search-bar-btn">
+                        <div class="search-btn">
+                            <button type="submit" id="search-btn" class="btn btn-primary btn-lg">SEARCH</button>
+                        </div>
+                        <div>
+                            <input type="text" id="myInput" name="Country_search" placeholder="Search..." title="Type in a name">
+                        </div>
+                    </div>
+
+                </div>
+            }
+            <!-- End of manage country heading -->
+
+            <!-- manage country table -->
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table manage-country-tbl">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">SR.NO</th>
+                                <th scope="col">@Html.ActionLink("COUNTRY NAME", "ManageCountry", new { SortOrder = ViewBag.CountryNameSortParm, Country_search = Request.QueryString["Country_search"], Country_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("COUNTRY CODE", "ManageCountry", new { SortOrder = ViewBag.CountryCodeSortParm, Country_search = Request.QueryString["Country_search"], Country_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("DATE ADDED", "ManageCountry", new { SortOrder = ViewBag.DateSortParm, Country_search = Request.QueryString["Country_search"], Country_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("ADDED BY", "ManageCountry", new { SortOrder = ViewBag.AddedBySortParm, Country_search = Request.QueryString["Country_search"], Country_page = ViewBag.currentPage })</th>
+                                <th scope="col">@Html.ActionLink("ACTIVE", "ManageCountry", new { SortOrder = ViewBag.ActiveSortParm, Country_search = Request.QueryString["Country_search"], Country_page = ViewBag.currentPage })</th>
+                                <th scope="col">ACTION</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (ViewBag.totalPage == 0)
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            @{
+                                //increase the index no
+                                int no = (ViewBag.currentPage - 1) * 10 + 1;
+                            }
+                            @foreach (var item in Model.Country)
+                            {
+                                <tr>
+                                    <td>@no</td>
+                                    <td>@item.countries.Name</td>
+                                    <td>@item.countries.CountryCode</td>
+                                    <td>@item.countries.CreatedDate</td>
+                                    <td>@item.users.FirstName @item.users.LastName</td>
+                                    @if (item.countries.IsActive == true)
+                                    {
+                                        <td>Yes</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                    <td>
+                                        <div class="table-last-img">
+                                            <div class="edit-img"><a href="@Url.Action("EditCountry", "AdminManageCountry", new { id = item.countries.ID})"><img src="~/Content/image/comman-images/edit.png"></a></div>
+                                            <button type="button" class="delete-btn" data-toggle="modal" data-target="#countrydelete-@item.countries.ID"><img src="~/Content/image/comman-images/delete.png" alt="delete image"></button>
+                                        </div>
+
+                                        <!--pop up box for delete country -->
+                                        <div class="modal fade" id="countrydelete-@item.countries.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <p class="text-left">
+                                                            Are you sure you want to make this country inactive ?
+                                                            <br />
+                                                            <br />Press yes to continue.
+                                                        </p>
+                                                        <button type="button" class="btn btn-secondary deactiveBox" data-dismiss="modal">No</button>
+                                                        <a type="button" class="btn btn-primary deactiveBoxYes" href="@Url.Action("DeleteCountry","AdminManageCountry", new { conID = item.countries.ID})">Yes</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END of popup box -->
+
+                                    </td>
+                                </tr>
+                                no++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- pagination of progress notes -->
+            @if (ViewBag.totalPage != 0)
+            {
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="pagination">
+
+                            @if (ViewBag.currentPage == 1)
+                            {
+                                <a href="@Url.Action("ManageCountry", new { Country_page = @ViewBag.currentPage, Country_search = Request.QueryString["Country_search"], SortOrder = Request.QueryString["SortOrder"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ManageCountry", new { Country_page = @ViewBag.currentPage - 1, Country_search = Request.QueryString["Country_search"], SortOrder = Request.QueryString["SortOrder"]})"><i class="fa fa-angle-left"></i></a>
+                            }
+
+                            @{
+                                for (int i = ViewBag.startPage; i <= ViewBag.endPage; i++)
+                                {
+                                    if (i == ViewBag.currentPage)
+                                    {
+                                        <a class="active">@i<span class="sr-only">(current)</span></a>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(i.ToString(), "ManageCountry", new { Country_page = i, Country_search = Request.QueryString["Country_search"], SortOrder = Request.QueryString["SortOrder"] }, new { @class = "page-link" })
+                                    }
+                                }
+                            }
+
+                            @if (ViewBag.currentPage == ViewBag.endPage)
+                            {
+                                <a href="@Url.Action("ManageCountry", new { Country_page = @ViewBag.currentPage, Country_search = Request.QueryString["Country_search"], SortOrder = Request.QueryString["SortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("ManageCountry", new { Country_page = @ViewBag.currentPage + 1, Country_search = Request.QueryString["Country_search"], SortOrder = Request.QueryString["SortOrder"] })"><i class="fa fa-angle-right"></i></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- end of pagination -->
+
+        </div>
+    </div>
+</section>
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

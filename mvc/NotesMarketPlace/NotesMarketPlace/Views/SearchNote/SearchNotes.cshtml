@@ -5,7 +5,14 @@
 }
 
 @{ 
-    Html.RenderPartial("_Navbar_FSP");
+    if (Session["ID"] == null)
+    {
+        Html.RenderPartial("_Front_Navbar_FSP");
+    }
+    else
+    {
+        Html.RenderPartial("_Front_Navbar");
+    }
 }    
 
 <!-- top-image -->
@@ -38,15 +45,13 @@
             {
                 @Html.AntiForgeryToken()
 
-                <div class="row">
-                    <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="form-group searchbar">                            
-                            <input type="search" name="search" class="form-control" id="searchnote-searchbar" value="@ViewBag.Search" placeholder="Search Notes Here...">
-                        </div>
+                <div class="row search-filter">
+                    <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 searchbar">                                                  
+                          <input type="search" name="search" class="form-control" id="searchnote-searchbar" value="@ViewBag.Search" placeholder="Search Notes Here...">                        
                     </div>
                 </div>
 
-                <div class="row filters">
+                <div class="row filters search-filter">
                     <div class="form-group col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">                        
                         @Html.DropDownList("type", new SelectList(@ViewBag.typeList, "ID", "Name"), "Select Type", new { @class = "form-control", id = "type" })                        
                     </div>
@@ -220,7 +225,10 @@
     </div>
 </section>
 
+<!-- scrip file for search note -->
+<script type ="text/javascript" src="~/Scripts/front-script/SearchNotejs.js"></script>
+
 @{ 
-    Html.RenderPartial("_Footer");
+    Html.RenderPartial("_Front_Footer");
 }
 

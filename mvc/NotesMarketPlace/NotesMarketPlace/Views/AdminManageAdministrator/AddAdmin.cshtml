@@ -1,0 +1,83 @@
+﻿@model NotesMarketPlace.Models.ManageAdministratorViewModel
+@{
+    ViewBag.Title = "Add-Admin";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_Admin_Navbar");
+}
+
+<!-- add administrator section -->
+<section id="add-administrator">
+    <div class="content-box">
+        <div class="container">
+
+            <!-- heading -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h2>Add Administrator</h2>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("AddAdmin", "AdminManageAdministrator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                               
+                <!-- first name -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>First Name *</label>
+                        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", id = "myprofile-firstname", placeholder = "Enter your first name" })
+                        @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- last name -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>Last Name *</label>
+                        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", id = "myprofile-lastname", placeholder = "Enter your last name" })
+                        @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- email -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 form-group">
+                        <label>Email *</label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", id = "myprofile-email", placeholder = "Enter your email address" })
+                        @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <!-- phone number -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 form-group mobile-predigit">
+                        <label>
+                            <nobr>Phone Number</nobr>
+                        </label>
+                        @Html.TextBoxFor(model => model.PhoneNumber_CountryCode, new { @class = "form-control", id = "myprofile-predigit", placeholder = "Country Code" })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber_CountryCode, null, new { @class = "text-danger" })
+
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control mobile-number", id = "myprofile-phoneno", placeholder = "Enter your phone number" })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, null, new { @class = "text-danger phoneno-error" })
+                    </div>
+                </div>
+
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 myprofile-submit">
+                        <button type="submit" class="btn btn-primary btn-lg">SUBMIT</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!-- END of add admin section -->
+
+@{
+    Html.RenderPartial("_Admin_Footer");
+}

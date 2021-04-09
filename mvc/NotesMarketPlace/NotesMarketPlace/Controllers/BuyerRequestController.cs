@@ -10,16 +10,19 @@ using System.Web.Mvc;
 using NotesMarketPlace.Models;
 
 namespace NotesMarketPlace.Controllers
-{
+{    
     public class BuyerRequestController : Controller
     {
         readonly NotesMarketPlaceEntities db;
-        public BuyerRequestController(){ db = new NotesMarketPlaceEntities(); }
+        public BuyerRequestController()
+        {
+            db = new NotesMarketPlaceEntities(); 
+        }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Member")]
         [Route("BuyerRequest")]
-        // GET: BuyerRequest
+        [OutputCache(Duration = 0)]
         public ActionResult BuyerRequest(string BR_search, string sortOrder, int BuyerRequest_page = 1, int noteid = 0, string buyer_email = null)
         {           
             ViewBag.navClass = "white-nav";
@@ -105,15 +108,13 @@ namespace NotesMarketPlace.Controllers
             }
 
             //pagination
-            var pager = new Pager(buyerrequest.Count(), BuyerRequest_page, 5);
+            var pager = new Pager(buyerrequest.Count(), BuyerRequest_page, 10);
             ViewBag.currentPage = pager.CurrentPage;
             ViewBag.endPage = pager.EndPage;
             ViewBag.startpage = pager.StartPage;
-
-            ViewBag.pageNumber = BuyerRequest_page;
+            
             ViewBag.srno = BuyerRequest_page;
-
-            ViewBag.TotalBuyerRequestPage = Math.Ceiling(buyerrequest.Count() / 5.0);
+            ViewBag.TotalBuyerRequestPage = Math.Ceiling(buyerrequest.Count() / 10.0);
             buyerrequest = buyerrequest.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
 
             //seller allow download mail
@@ -125,7 +126,6 @@ namespace NotesMarketPlace.Controllers
             return View(buyerrequest);
         }
 
-
         public void BuildEmailVerifyTemplate(string buyeremail, int buyernoteid)
         {
             string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "AllowDownload" + ".cshtml");
@@ -136,6 +136,7 @@ namespace NotesMarketPlace.Controllers
             var noterow = db.Downloads.FirstOrDefault(x => x.NoteID == buyernoteid && x.Downloader == buyer.ID);
             noterow.IsSellerHasAllowedDownload = true;
             noterow.ModifiedDate = DateTime.Now;
+            noterow.ModifiedBy = user.ID;
             db.SaveChanges();
 
             body = body.Replace("@ViewBag.FirstName", buyer.FirstName);
@@ -150,8 +151,8 @@ namespace NotesMarketPlace.Controllers
 
             from = "rutvikpipaliya33@gmail.com";
             to = sendTo.Trim();
-            bcc = "";
-            cc = "";
+            bcc = ""; //blind carbun copy for security reason
+            cc = ""; //carbun copy
             subject = subjectname + " Allows you to download a note";
 
             StringBuilder sb = new StringBuilder();
@@ -187,7 +188,9 @@ namespace NotesMarketPlace.Controllers
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("rutvikpipaliya33@gmail.com", "3oo82ooo");
+            string email = System.Configuration.ConfigurationManager.AppSettings["SenderEmail"];
+            string password = System.Configuration.ConfigurationManager.AppSettings["Password"];
+            client.Credentials = new System.Net.NetworkCredential(email, password);
             try
             {
                 client.Send(mail);

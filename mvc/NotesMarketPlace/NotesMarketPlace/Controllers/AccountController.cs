@@ -14,7 +14,13 @@ using System.Diagnostics;
 namespace NotesMarketPlace.Controllers
 {
     public class AccountController : Controller
-    {        
+    {
+        readonly NotesMarketPlaceEntities db;
+        public AccountController()
+        {
+            db = new NotesMarketPlaceEntities();
+        }
+
         // GET: Account/Login
         [HttpGet]
         [AllowAnonymous]
@@ -30,7 +36,7 @@ namespace NotesMarketPlace.Controllers
         [AllowAnonymous]
         [Route("Login")]
         public ActionResult Login(LoginViewModel userlogin)
-        {
+        {            
             if(ModelState.IsValid)
             { 
                 using (var db = new NotesMarketPlaceEntities())
@@ -43,7 +49,7 @@ namespace NotesMarketPlace.Controllers
                     }
                     
                     var isUser = db.Users.Where(x => x.Email.Equals(userlogin.Email) && x.Password.Equals(userlogin.Password) && x.IsActive == true).FirstOrDefault();
-
+                                       
                     //Wrong Password
                     if (isUser == null)
                     {
@@ -89,7 +95,10 @@ namespace NotesMarketPlace.Controllers
                             }
                             
                         }
-                        //For Admin and SuperAdmin
+                        else if(isUser.RoleID == 3 || isUser.RoleID == 4)
+                        {
+                            return RedirectToAction("AdminDashboard", "AdminDashboard");
+                        }                        
                         else
                         {
                             return RedirectToAction("Login", "Account");
@@ -104,13 +113,23 @@ namespace NotesMarketPlace.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
+            int admin = 0;
+            if(Session["ID"] != null)
+            {
+                admin = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name).RoleID;
+            }            
             FormsAuthentication.SignOut();
             Session.Abandon();
             Session.Clear();
             Session["ID"] = null;
             Session["Email"] = null;
             Session.RemoveAll();
-            return RedirectToAction("Login", "Account");
+
+            if(admin == 3 || admin == 4)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         //SignUp
@@ -150,14 +169,14 @@ namespace NotesMarketPlace.Controllers
                             LastName = signupviewmodel.LastName,
                             Email = signupviewmodel.Email,
                             Password = signupviewmodel.Password,
-                            CreatedDate = DateTime.Now,
+                            CreatedDate = DateTime.Now,                            
                             IsActive = true
                         };
 
                         db.Users.Add(user);
                         db.SaveChanges();
-                        BuildEmailVerifyTemplate(user.ID); //sending email to user
-                        db.Dispose();
+                        BuildEmailVerifyTemplate(user.ID); //sending email to user  
+                        db.Dispose();                                                                      
                         ViewBag.sucess = " your account has been sucessfully created.";
                         return View();
                     }
@@ -185,7 +204,9 @@ namespace NotesMarketPlace.Controllers
             {
                 Users user = db.Users.FirstOrDefault(x => x.ID == regID);
                 user.IsEmailVerified = true;
+                user.CreatedBy = user.ID;
                 user.ModifiedDate = DateTime.Now;
+                user.ModifiedBy = user.ID;
                 db.SaveChanges();
             }
             return RedirectToAction("Index", "Home");
@@ -248,7 +269,9 @@ namespace NotesMarketPlace.Controllers
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("rutvikpipaliya33@gmail.com", "3oo82ooo");
+            string email = System.Configuration.ConfigurationManager.AppSettings["SenderEmail"];
+            string password = System.Configuration.ConfigurationManager.AppSettings["Password"];
+            client.Credentials = new System.Net.NetworkCredential(email, password);
             try
             {
                 client.Send(mail);
@@ -260,16 +283,14 @@ namespace NotesMarketPlace.Controllers
         }
         
         //GET : Account/ForgotPassword
-        [HttpGet]
-        [Route("ForgotPassword")]
+        [HttpGet]        
         public ActionResult ForgotPassword()
         {           
              return View();     
         }
 
         //POST : Account/ForgotPassword
-        [HttpPost]
-        [Route("ForgotPassword")]
+        [HttpPost]        
         public ActionResult ForgotPassword(ForgotPasswordViewModel forgotpassword)
         {
             if(ModelState.IsValid)

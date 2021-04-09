@@ -1,0 +1,135 @@
+﻿<section class="navigation white-nav">
+    <div class="nav-box">
+        <div class="container">
+            <nav class="navbar">
+
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <a href="@Url.Action("AdminDashboard","AdminDashboard")"></a><img src="~/Content/image/logo/blue-logo.png" alt="logo">
+                </div>
+
+                <!-- Link -->
+                <div class="nav-menu-link">
+                    <ul class="navbar-nav container">
+
+                        <!-- Dashboard -->
+                        <li class="nav-item">
+                            <a class="nav-link @ViewBag.Dashboard" href="@Url.Action("AdminDashboard","AdminDashboard")">Dashboard</a>
+                        </li>
+
+                        <!-- Notes -->
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link @ViewBag.Notes" data-toggle="dropdown" href="#">Notes</a>
+                                <!-- image for responsive view -->
+                                <img class="arrow-down" src="~/Content/image/comman-images/arrow-down.jpg" alt=""> 
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item @ViewBag.underReview" href="@Url.Action("UnderReviewNotes","AdminNotesUnderReview")">Notes Under Review</a>
+                                    <a class="dropdown-item @ViewBag.published" href="@Url.Action("PublishedNote","AdminPublishedNote")">Published Notes</a>
+                                    <a class="dropdown-item @ViewBag.downloaded" href="@Url.Action("AllDownloadedNote","AdminAllDownloadedNote")">Downloaded Notes</a>
+                                    <a class="dropdown-item @ViewBag.reject" href="@Url.Action("RejectedNote","AdminRejectedNote")">Rejected Notes</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Members -->
+                        <li class="nav-item">
+                            <a class="nav-link @ViewBag.Members" href="@Url.Action("AllMember","AdminAllMember")">Members</a>
+                        </li>
+
+                        <!-- Reports -->
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link @ViewBag.Reports" data-toggle="dropdown" href="#">Reports</a>
+                                <img class="arrow-down" src="~/Content/image/comman-images/arrow-down.jpg" alt="">
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item @ViewBag.Reports" href="@Url.Action("NotesSpamReport","AdminSpamReports")">Spam Reports</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Settings -->
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link @ViewBag.Settings" data-toggle="dropdown" href="#">Settings</a>
+                                <img class="arrow-down" src="~/Content/image/comman-images/arrow-down.jpg" alt="">
+                                <div class="dropdown-menu">
+                                    @{ using (var db = new NotesMarketPlaceEntities())
+                                        {
+                                            int id = (int)System.Web.HttpContext.Current.Session["ID"];
+                                            int roleid = db.Users.FirstOrDefault(x => x.ID == id && x.IsActive == true).RoleID;
+
+                                            if (roleid == 4)
+                                            {
+                                                <a class="dropdown-item @ViewBag.managesystem" href="@Url.Action("SystemConfiguration","ManageSystemConfiguration")">Manage System Configuration</a>
+                                                <a class="dropdown-item @ViewBag.manageadmini" href="@Url.Action("ManageAdministrator", "AdminManageAdministrator")">Manage Administrator</a>
+                                            }
+                                        }
+                                    }
+                                    <a class="dropdown-item @ViewBag.managecategory" href="@Url.Action("ManageCategory", "AdminManageCategory")">Manage Category</a>
+                                    <a class="dropdown-item @ViewBag.managetype" href="@Url.Action("ManageType", "AdminManageType")">Manage Type</a>
+                                    <a class="dropdown-item @ViewBag.managecountries" href="@Url.Action("ManageCountry", "AdminManageCountry")">Manage Countries</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Profile -->
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    @{ using (var db = new NotesMarketPlaceEntities())
+                                        {
+                                            int id = (int)System.Web.HttpContext.Current.Session["ID"];
+                                            var data = db.UserProfile.FirstOrDefault(x => x.UserID == id && x.IsActive == true);
+
+                                            <!-- default image -->
+                                            if (data == null || data.ProfilePicture == null)
+                                            {
+                                                //fetch default file name 
+                                                string defaultFilename = Directory.GetFiles(Server.MapPath("~/Content/image/default-user-img/")).FirstOrDefault();
+                                                string finalfilename = System.IO.Path.GetFileName(defaultFilename);
+
+                                                //store default file name
+                                                string userprofilepath = "~/Content/image/default-user-img/";
+                                                string path = userprofilepath + finalfilename;
+
+                                                <img class="rounded-circle" src="@Url.Content(path)" alt="user-image">
+                                            }
+                                            else
+                                            {
+                                                <img class="rounded-circle" src="@Url.Content(data.ProfilePicture)" alt="userimg">
+                                            }
+                                        }
+                                    }
+                                    
+                                </a>
+                                <img class="arrow-down" src="~/Content/image/comman-images/arrow-down.jpg" alt="">
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item @ViewBag.profile" href="@Url.Action("AdminProfile", "AdminProfile")">Update Profile</a>
+                                    <a class="dropdown-item" href="@Url.Action("ChangePassword", "ChangePassword")">Change Password</a>
+                                    <a class="dropdown-item btn" href="@Url.Action("Logout","Account")" title="Logout" role="button"><span><b>Logout</b></span></a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Logout Btn -->
+                        <li class="nav-item">
+                            <div id="btn-purple">
+                                <a class="btn" href="@Url.Action("Logout","Account")" title="Logout" role="button">Logout</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <!-- Mobile Toggle Btn -->
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+</section>

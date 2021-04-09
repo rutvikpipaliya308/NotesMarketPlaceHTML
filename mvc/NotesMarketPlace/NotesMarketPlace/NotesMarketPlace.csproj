@@ -132,11 +132,26 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminAllDownloadedNoteController.cs" />
+    <Compile Include="Controllers\AdminAllMemberController.cs" />
+    <Compile Include="Controllers\AdminDashboardController.cs" />
+    <Compile Include="Controllers\AdminDownloadNoteController.cs" />
+    <Compile Include="Controllers\AdminManageAdministratorController.cs" />
+    <Compile Include="Controllers\AdminManageCategoryController.cs" />
+    <Compile Include="Controllers\AdminManageCountryController.cs" />
+    <Compile Include="Controllers\AdminManageTypeController.cs" />
+    <Compile Include="Controllers\AdminNotesUnderReviewController.cs" />
+    <Compile Include="Controllers\AdminProfileController.cs" />
+    <Compile Include="Controllers\AdminPublishedNoteController.cs" />
+    <Compile Include="Controllers\AdminRejectedNoteController.cs" />
+    <Compile Include="Controllers\AdminSpamReportsController.cs" />
     <Compile Include="Controllers\BuyerRequestController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageSystemConfigurationController.cs" />
+    <Compile Include="Controllers\MemberdetailController.cs" />
     <Compile Include="Controllers\MyDownloadsController.cs" />
     <Compile Include="Controllers\RejectedNotesController.cs" />
     <Compile Include="Controllers\SoldNotesController.cs" />
@@ -153,6 +168,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddNotesViewModel.cs" />
+    <Compile Include="Models\AdminAllDownloadedViewModel.cs" />
+    <Compile Include="Models\AdminAllMemberViewModel.cs" />
+    <Compile Include="Models\AdminDashboardViewModel.cs" />
+    <Compile Include="Models\AdminProfileViewModel.cs" />
+    <Compile Include="Models\ManageAdministratorViewModel.cs" />
+    <Compile Include="Models\AdminNotesUnderReviewViewModel.cs" />
+    <Compile Include="Models\AdminPublishedNoteViewModel.cs" />
+    <Compile Include="Models\AdminRejectedNoteViewModel.cs" />
+    <Compile Include="Models\AdminSpamNotesIssuesViewModel.cs" />
     <Compile Include="Models\BuyerRequestViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\ContactUsViewModel.cs" />
@@ -160,6 +184,10 @@
     <Compile Include="Models\EditNoteViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ManageCategoryViewModel.cs" />
+    <Compile Include="Models\ManageCountryViewModel.cs" />
+    <Compile Include="Models\ManageTypeViewModel.cs" />
+    <Compile Include="Models\MemberDetailViewModel.cs" />
     <Compile Include="Models\MyDownloadsViewModel.cs" />
     <Compile Include="Models\MySoldNotesViewModel.cs" />
     <Compile Include="Models\NoteDetailViewModel.cs" />
@@ -167,7 +195,9 @@
     <Compile Include="Models\RejectedNotesViewModel.cs" />
     <Compile Include="Models\SearchNoteViewModel.cs" />
     <Compile Include="Models\SellerNotesAttachements.cs" />
+    <Compile Include="Models\SystemConfigViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
+    <Compile Include="Models\UserRoleProvider.cs" />
     <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="MyModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -220,6 +250,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\admin-css\responsive.css" />
+    <Content Include="Content\admin-css\style.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -240,8 +272,6 @@
     <Content Include="Content\image\comman-images\eye.png" />
     <Content Include="Content\image\comman-images\search-icon.png" />
     <Content Include="Content\image\Dashboard\my-earning.png" />
-    <Content Include="Content\image\default-note-img\note.jpg" />
-    <Content Include="Content\image\default-user-img\user-img.png" />
     <Content Include="Content\image\extra-images\banner.png" />
     <Content Include="Content\image\extra-images\calendar.png" />
     <Content Include="Content\image\extra-images\close.png" />
@@ -297,6 +327,7 @@
       <DependentUpon>MyModel.edmx</DependentUpon>
       <LastGenOutput>MyModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\admin-script\script.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="MyModel.edmx">
@@ -317,7 +348,9 @@
     <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="EmailTemplate\AllowDownload.cshtml" />
     <Content Include="EmailTemplate\RequestForAllowDownload.cshtml" />
+    <Content Include="EmailTemplate\UnPublishedNote.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\front-script\SearchNotejs.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -330,7 +363,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.min.js" />
-    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\front-script\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -347,10 +380,10 @@
     <Content Include="Views\Account\VerifyEmail.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\ContactUs\ContactUs.cshtml" />
-    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Front_Footer.cshtml" />
     <Content Include="Views\Faq\Faq.cshtml" />
     <Content Include="Views\SellNotes\AddNotes.cshtml" />
-    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Shared\_Front_Navbar.cshtml" />
     <Content Include="Views\SellNotes\Dashboard.cshtml" />
     <Content Include="Views\SearchNote\NoteDetails.cshtml" />
     <Content Include="Views\SellNotes\EditNote.cshtml" />
@@ -360,13 +393,43 @@
     <Content Include="Views\ChangePassWord\ChangePassword.cshtml" />
     <Content Include="Views\MyDownloads\MyDownloads.cshtml" />
     <Content Include="Views\SoldNotes\MySoldNotes.cshtml" />
-    <Content Include="Views\Shared\_Navbar_FSP.cshtml" />
+    <Content Include="Views\Shared\_Front_Navbar_FSP.cshtml" />
     <Content Include="Views\RejectedNotes\RejectedNotes.cshtml" />
     <Content Include="Views\BuyerRequest\BuyerRequest.cshtml" />
+    <Content Include="Views\Shared\_Admin_Layout.cshtml" />
+    <Content Include="Views\AdminDashboard\AdminDashboard.cshtml" />
+    <Content Include="Views\Shared\_Admin_Navbar.cshtml" />
+    <Content Include="Views\Shared\_Admin_Footer.cshtml" />
+    <Content Include="Views\AdminNotesUnderReview\UnderReviewNotes.cshtml" />
+    <Content Include="Views\AdminPublishedNote\PublishedNote.cshtml" />
+    <Content Include="Views\AdminAllDownloadedNote\AllDownloadedNote.cshtml" />
+    <Content Include="Views\AdminRejectedNote\RejectedNote.cshtml" />
+    <Content Include="Views\Memberdetail\MemberDetail.cshtml" />
+    <Content Include="Views\AdminAllMember\AllMember.cshtml" />
+    <Content Include="Views\AdminSpamReports\NotesSpamReport.cshtml" />
+    <Content Include="Views\AdminManageCategory\ManageCategory.cshtml" />
+    <Content Include="Views\AdminManageCategory\AddCategory.cshtml" />
+    <Content Include="Views\AdminManageCategory\EditCategory.cshtml" />
+    <Content Include="Views\AdminManageCountry\ManageCountry.cshtml" />
+    <Content Include="Views\AdminManageCountry\AddCountry.cshtml" />
+    <Content Include="Views\AdminManageCountry\EditCountry.cshtml" />
+    <Content Include="Views\AdminManageType\ManageType.cshtml" />
+    <Content Include="Views\AdminManageType\AddType.cshtml" />
+    <Content Include="Views\AdminManageType\EditType.cshtml" />
+    <Content Include="Views\AdminManageAdministrator\ManageAdministrator.cshtml" />
+    <Content Include="Views\AdminManageAdministrator\AddAdmin.cshtml" />
+    <Content Include="Views\AdminManageAdministrator\EditAdmins.cshtml" />
+    <Content Include="Views\AdminProfile\AdminProfile.cshtml" />
+    <Content Include="Views\ManageSystemConfiguration\SystemConfiguration.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admins\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Content\image\default-note-img\" />
+    <Folder Include="Content\image\default-user-img\" />
     <Folder Include="Members\" />
+    <Folder Include="Views\AdminDownloadNote\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -14,12 +14,13 @@ namespace NotesMarketPlace.Controllers
         {
             db = new NotesMarketPlaceEntities();
         }
-       
+
         [HttpGet]
         [Authorize]
         [Route("ChangePassword")]
+        [OutputCache(Duration = 0)]
         public ActionResult ChangePassword()
-        {            
+        {
             return View();
         }
 
@@ -27,24 +28,32 @@ namespace NotesMarketPlace.Controllers
         [Authorize]
         [ValidateAntiForgeryToken]
         [Route("ChangePassword")]
+        [OutputCache(Duration = 0)]
         public ActionResult ChangePassword(ChangePasswordViewModel changepass)
         {
-            Users user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name && x.IsActive == true);
-
-            if (ModelState.IsValid && user != null)
+            try
             {
-                if(changepass.oldPassword == user.Password)
+                Users user = db.Users.FirstOrDefault(x => x.Email == User.Identity.Name && x.IsActive == true);
+
+                if (ModelState.IsValid && user != null)
                 {
-                    user.Password = changepass.newPassword;
-                    db.SaveChanges();
-                    ViewBag.status = "sucess";
+                    if (changepass.oldPassword == user.Password)
+                    {
+                        user.Password = changepass.newPassword;
+                        db.SaveChanges();
+                        ViewBag.status = "sucess";
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("oldPassword", "Password dosen't match");
+                    }
                 }
-                else
-                {
-                    ModelState.AddModelError("oldPassword", "Password dosen't match");
-                }
+                return View();
             }
-            return View();
+            catch(NullReferenceException)
+            {
+                return View("Error");
+            }
         }
     }
 }

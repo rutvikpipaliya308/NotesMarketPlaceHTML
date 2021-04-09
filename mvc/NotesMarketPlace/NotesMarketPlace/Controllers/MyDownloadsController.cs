@@ -16,8 +16,9 @@ namespace NotesMarketPlace.Controllers
         }
         
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Member")]
         [Route("MyDownloads")]
+        [OutputCache(Duration = 0)]
         public ActionResult MyDownloads(String sortOrder, string MD_search, int MyDownloads_page = 1)
         {
             ViewBag.navClass = "white-nav";
@@ -48,7 +49,8 @@ namespace NotesMarketPlace.Controllers
                          x.mydownloadtbl.NoteCategory.Contains(MD_search) ||
                          x.userstbl.Email.Contains(MD_search) ||                         
                          x.mydownloadtbl.IsPaid.ToString().Contains(MD_search) ||
-                         x.mydownloadtbl.PurchasedPrice.ToString().Contains(MD_search));
+                         x.mydownloadtbl.PurchasedPrice.ToString().Contains(MD_search) ||
+                         x.mydownloadtbl.AttachmentDownloadedDate.ToString().Contains(MD_search));
             }
 
             //sorting
@@ -100,8 +102,7 @@ namespace NotesMarketPlace.Controllers
             ViewBag.currentPage = pager.CurrentPage;
             ViewBag.endPage = pager.EndPage;
             ViewBag.startpage = pager.StartPage;
-
-            ViewBag.pageNumber = MyDownloads_page;
+                        
             ViewBag.srno = MyDownloads_page;
             ViewBag.TotalMyDownloadsPage = Math.Ceiling(mydownloads.Count() / 10.0);
             mydownloads = mydownloads.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize);
@@ -110,8 +111,9 @@ namespace NotesMarketPlace.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
+        [OutputCache(Duration = 0)]
         public ActionResult NoteReview(FormCollection form)
         {
             var user = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
@@ -140,17 +142,18 @@ namespace NotesMarketPlace.Controllers
                 review.Ratings = Convert.ToDecimal(form["rate"]);
                 review.Comments = form["review"];
                 review.ModifiedDate = DateTime.Now;
+                review.ModifiedBy = user.ID;
 
                 db.SaveChanges();
             }
 
             return RedirectToAction("MyDownloads");
-
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Member")]
         [ValidateAntiForgeryToken]
+        [OutputCache(Duration = 0)]
         public ActionResult ReportSpam(FormCollection form)
         {
             var user = db.Users.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
@@ -176,6 +179,7 @@ namespace NotesMarketPlace.Controllers
                 spamreport.AgainstDownloadID = Convert.ToInt32(form["downloadid"]);                
                 spamreport.Remarks = form["spamreport"];
                 spamreport.ModifiedDate = DateTime.Now;
+                spamreport.ModifiedBy = user.ID;
 
                 db.SaveChanges();
             }
